@@ -343,3 +343,37 @@ noscript.Product__Block {
     width: 50%;
   }
 }
+
+/*css for クラウドファンディング*/
+.crowdfunder-widget {
+    padding: 0 !important;
+    background-color: unset !important;
+}
+
+p:has(.cf-backertotal) {
+    display: none !important;
+}
+
+p:has(.cf-moneytotal) {
+    display: none !important;
+}
+
+.cf-meter {
+    display: none !important;
+}
+
+
+.cf-meter-label {
+    display: none !important;
+}
+
+.support-progress {
+    background-color: aliceblue;
+    border: 1px solid black;
+    height: 0.6rem;
+}
+
+.progress-supported {
+    height: 100%;
+    background-color: black;
+}
