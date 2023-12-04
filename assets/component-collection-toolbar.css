@@ -1,0 +1,12 @@
+.CollectionToolBar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.CollectionToolBar .CollectionToolBar__FilterButton {
+  padding: 0;
+}

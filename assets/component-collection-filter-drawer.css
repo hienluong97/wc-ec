@@ -1,0 +1,41 @@
+:root {
+  --tg-component-filter-toolbar-seleced-label-background-color: var(--tg-sys-color-surface5);
+  --tg-component-filter-toolbar-seleced-label-text-color: var(--tg-sys-color-on-surface);
+}
+
+.FilterProducts__Drawer .Accordion__Button {
+  font-family: var(--tg-sys-typescale-label-large-font);
+  font-style: var(--tg-sys-typescale-label-large-style);
+  font-weight: var(--tg-sys-typescale-label-large-weight);
+  font-size: var(--tg-sys-typescale-label-large-size);
+  line-height: var(--tg-sys-typescale-label-large-line-height);
+  letter-spacing: var(--tg-sys-typescale-label-large-tracking);
+}
+.FilterProducts__Drawer .Accordion__Collapse {
+  border-left: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+  border-right: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+  border-bottom: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+}
+.FilterProducts__Drawer .Accordion__Body {
+  padding-left: 0;
+  padding-right: 0;
+}
+.FilterProducts__Drawer .Accordion__Body.List .List__Item {
+  padding: 0.25rem 1rem;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+.FilterProducts__Drawer .Accordion__Body.List .List__Item.Active, .FilterProducts__Drawer .Accordion__Body.List .List__Item:hover, .FilterProducts__Drawer .Accordion__Body.List .List__Item:focus {
+  color: var(--tg-component-filter-toolbar-seleced-label-text-color);
+  background: var(--tg-component-filter-toolbar-seleced-label-background-color);
+}
+.FilterProducts__Drawer .Accordion__Body--priceRange {
+  padding: 1rem 2rem 1rem 1.25rem;
+}
+.FilterProducts__Drawer .Accordion__Collapse--price {
+  padding-top: 48px;
+}
+.FilterProducts__Drawer .Accordion__Item.Accordion__Item--DrawerSorting .List__Item.Active {
+  font-weight: 500;
+  color: var(--tg-sys-color-theme);
+}

@@ -1,0 +1,364 @@
+{%- capture section_settings -%}
+{
+  "url": {{ collection.url | default: '/collections/all' | json }},
+  "sortBy": {{ collection.sort_by | default: collection.default_sort_by | json }}
+}
+{%- endcapture -%}
+
+{%- liquid
+  assign products_enable_filtering = false   
+  assign products_enable_sorting  = false 
+  for block in section.blocks
+    case block.type
+      when 'product_grid'
+        assign desktop_items_per_row = block.settings.grid_desktop_items_per_row | times: 1   
+        assign mobile_items_per_row  = block.settings.grid_mobile_items_per_row | times: 1  
+
+        assign products_enable_filtering = block.settings.enable_filtering   
+        assign products_enable_sorting  = block.settings.enable_sorting
+        assign products_filter_type  = block.settings.filter_type
+
+        capture collection_products 
+          render 'collection-product-grid', block: block, desktop_items_per_row: desktop_items_per_row, mobile_items_per_row: mobile_items_per_row
+        endcapture
+
+        comment  
+          empty collection, filter product count is 0  
+        endcomment  
+        if collection.products_count > 0
+          if products_enable_filtering or products_enable_sorting
+            if products_filter_type == 'vertical'
+              capture collection_aside
+                render 'collection-aside', block: block, show_filter_color_swatch: block.settings.show_filter_color_swatch, enable_sorting: products_enable_sorting, enable_filtering: products_enable_filtering
+              endcapture
+            endif
+
+            capture collection_filter_drawer
+              render 'filters-drawer', block: block, show_filter_color_swatch: block.settings.show_filter_color_swatch, enable_sorting: products_enable_sorting, enable_filtering: products_enable_filtering
+            endcapture 
+          endif
+        endif
+
+    endcase
+  endfor 
+-%}
+
+{%- capture collection_info -%}
+  {%- liquid
+    assign collection_show_description = false 
+    assign collection_show_image = false 
+    if collection.description != blank and section.settings.show_collection_description 
+      assign collection_show_description = true
+    endif 
+    if section.settings.show_collection_image and collection.image 
+      assign collection_show_image = true 
+    endif 
+  -%}
+  {%- if collection_show_description or collection_show_image -%}
+
+    {{ 'component-text-on-image.css' | asset_url | stylesheet_tag }}
+    
+    <div class="CollectionInformation {% if collection_show_image %}CollectionInformation--withImage {% endif %} TextOnImage TextOnImage--middleLeft">
+      {%- if collection_show_image -%}
+        <div class="TextOnImage__ImageWrapper Ratio ImageOverlay">
+          {% assign collection_image = collection.image %}
+          <img class="TextOnImage__Image Image--lazyLoad"
+            srcset="{%- if collection_image.width >= 375 -%}{{ collection_image | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if collection_image.width >= 550 -%}{{ collection_image | image_url: width: 550 }} 550w,{%- endif -%}
+            {%- if collection_image.width >= 750 -%}{{ collection_image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if collection_image.width >= 1100 -%}{{ collection_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if collection_image.width >= 1500 -%}{{ collection_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if collection_image.width >= 1780 -%}{{ collection_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+            {%- if collection_image.width >= 2000 -%}{{ collection_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+            {%- if collection_image.width >= 3000 -%}{{ collection_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {%- if collection_image.width >= 3840 -%}{{ collection_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+            {{ collection_image | image_url }} {{ collection_image.width }}w"
+              sizes="100vw"
+              src="{{ collection_image | image_url: width: 1200 }}"
+              data-src="{{ collection_image | image_url: width: 1200 }}"
+              decoding="async"
+              loading="lazy"
+              width="{{ collection_image.width }}"
+              height="{{ collection_image.height }}"
+              alt="{{ collection_image.alt | escape }}">
+          <span class="Image--loader"></span>
+        </div>
+      {%- endif -%}
+
+      <div class="TextOnImage__Content">
+        <div class="TextOnImage__ContentInner CollectionInformation__Inner {% if collection_show_image %}CollectionInformation__Inner--{{ section.settings.collection_image_size }}{% endif %}">
+          <div class="CollectionInformation__Description Container" style="{% if collection_show_image %}--tg-sys-section-collection-information-color-text: {{ section.settings.collection_description_color }};{% endif %}">
+            {%- if collection_show_description -%}
+              {{- collection.description -}}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
+<style type="text/css">
+  section-collection{
+    display: block;
+  }
+</style>
+
+{%- render 'page-header' -%}
+
+{{ 'component-collection-info.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-toolbar.css' | asset_url | stylesheet_tag }}
+
+<section-collection class="Collection Container--spacing{{ section.settings.spacing_position }}" data-section-settings='{{ section_settings }}' data-section-id="{{ section.id }}">
+  {{ collection_info }}
+  <div class="Collection__Inner">
+   
+
+    <div class="Collection__Content FilterProducts {% unless collection.products_count > 0 %}Collection__Content--emptyResult{% endunless %}">
+      
+      {{ collection_aside }}
+
+      {%- if collection.products_count > 0 -%}
+        <div class="Collection__Products FilterProducts__Content">
+          <div class="{% if products_filter_type == 'vertical' %}HiddenLarge {% endif %}CollectionToolBar Container Container--fluid">
+            {%- if products_enable_filtering or products_enable_sorting -%}
+              <button class="Button Button--text CollectionToolBar__FilterButton no-js-hidden"
+                data-tg-toggle="Drawer" data-tg-target="#FilterProductsDrawer"
+                aria-label="{{ 'collection.filter.show_filter' | t }}"
+                type="button">
+                {% render 'icons', icon: 'sliders' %}<span style="padding-left: 4px;">{{ 'collection.filter.title' | t }}</span>
+              </button>
+            {%- endif -%}
+
+            {%- assign products_results_count = search.results_count -%}
+            {%- if template.name == 'collection' -%}
+                {%- assign products_results_count = collection.products_count -%}
+            {%- endif -%}
+            <div class="CollectionToolBar__ResultCount" data-items-count="{{ products_results_count }}">
+              {{ 'collection.general.product_count' | t: count: products_results_count }}
+            </div>
+          </div>
+
+          {{- collection_products -}}
+        </div>
+      {%- else -%}
+        <div class="FilterProducts__Content">
+          <div class="EmptyResult Container">
+            <h1 class="EmptyResult__Title">{{ 'collection.general.no_products' | t }}</h1>
+
+            {%- if collection.filters.size > 0 -%}
+              <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="EmptyResult__Action Button Button--primary" data-tg-action="reset-tags">{{ 'collection.general.reset' | t }}</a>
+            {%- else -%}
+               <a href="{{ routes.all_products_collection_url }}" class="Button Button--primary">{{ 'general.continue_shopping' | t }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+
+  {{ collection_filter_drawer }}
+
+</section-collection>
+
+<script src="{{ 'component-filter-product.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'section-collection.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Collection products",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "label": "Show collection description",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "Show collection image",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "collection_description_color",
+      "label": "Collection description color",
+      "info": "Visible when the ‘Show collection image’ setting is checked and the collection's featured image not blank.",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "collection_image_size",
+      "label": "Collection image size",
+      "options": [
+        {
+          "value": "fitContent",
+          "label": "Fit Content"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "fitContent"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_grid",
+      "name": "Product grid",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Fitlers and Sorting"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_filtering",
+          "label": "Enable filtering",
+          "info": "Customize filters with the Search & Discovery app. [Learn more](https://help.shopify.com/manual/online-store/search-and-discovery/filters)",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_filter_color_swatch",
+          "label": "Show filter color swatch",
+          "info": "Visible when the ‘Enable filtering’ setting is checked.",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_sorting",
+          "label": "Enable sorting",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "filter_type",
+          "options": [
+            {
+              "value": "vertical",
+              "label": "Vertical"
+            },
+            {
+              "value": "drawer",
+              "label": "Drawer"
+            }
+          ],
+          "default": "vertical",
+          "label": "Desktop filter layout",
+          "info": "Drawer is the default mobile layout."
+        },
+        {
+          "type": "header",
+          "content": "Grid"
+        },
+        {
+          "type": "range",
+          "id": "grid_items_per_page",
+          "label": "Products per page",
+          "min": 4,
+          "max": 50,
+          "step": 1,
+          "default": 18
+        },
+        {
+          "type": "range",
+          "min": 2,
+          "max": 6,
+          "step": 1,
+          "id": "grid_desktop_items_per_row",
+          "label": "Number of columns on desktop",
+          "default": 3
+        },
+        {
+          "type": "select",
+          "options": [
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            }
+          ],
+          "id": "grid_mobile_items_per_row",
+          "label": "Number of columns on mobile",
+          "default": "2"
+        },
+        {
+          "type": "header",
+          "content": "Product Card"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_product_info",
+          "label": "Show product info",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show product rating",
+          "default": false,
+          "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#featured-collection-show-product-rating)."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_swatches",
+          "label": "Show swatch",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "label": "Show vendor",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_quick_add",
+          "default": false,
+          "label": "Enable quick add button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

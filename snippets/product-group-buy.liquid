@@ -1,0 +1,68 @@
+{%- if block.settings.product_list != blank -%}
+{{ 'component-flickity.css' | asset_url | stylesheet_tag }}
+
+{%- if block.settings.enable_quick_add -%}
+    <script src="{{ 'component-quick-add-to-cart-button.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- capture flickity_options -%}
+{
+    "prevNextButtons": true,
+    "pageDots": false,
+    "wrapAround": false,
+    "contain": true,
+    "cellAlign": "left",
+    "watchCSS": true,
+    "dragThreshold": 8,
+    "groupCells": true,
+    "arrowShape": "m19.396765,50.965636l66.403248,0l0,-1.931267l-67.943033,0l22.134416,-22.209574l-1.347312,-1.351887l-23.866675,23.754587l-0.57742,0.772507l0.57742,0.772507l23.866675,23.754587l1.347312,-1.351887l-22.134416,-22.209574l0.57742,0l0.962366,0z"
+}
+{%- endcapture -%}
+
+<div class="Product__Block Product__Block--styleWith ProductStyleWith">
+
+    {%- if block.settings.heading != blank -%}
+        <header class="SectionHeader Container Container--fluid SectionHeader--horizontal">
+            <div class="SectionHeader__Text">
+                <h2 class="SectionHeader__Heading CustomSize {{ block.settings.heading_font_size }}">{{ block.settings.heading }}</h2>
+            </div>
+        </header>
+    {%- endif -%}
+
+    <div class="ProductStyleWith__Body ProductListWrapper">
+        <div class="ProductList ProductList--carousel Carousel" data-flickity-config='{{ flickity_options }}'>
+            {%- assign product_list = block.settings.product_list -%}
+            {%- assign product_list_count = 0 -%}
+            {%- if product_list != blank -%}
+                {%- liquid
+                    for related_product in product_list
+                        if product.id != related_product.id
+                            assign product_list_count = product_list_count | plus: 1
+                        endif
+                    endfor 
+
+                    assign card_desktop_items_per_row = 3
+                    assign card_mobile_items_per_row = 1
+                    if product_list_count == 2
+                        assign card_desktop_items_per_row = 6
+                        assign card_mobile_items_per_row = 2
+                    elsif product_list_count > 2
+                        assign card_desktop_items_per_row = 6
+                        assign card_mobile_items_per_row = 2.38
+                    endif
+
+                -%}
+
+                {%- for related_product in product_list -%}
+                    {%- if product.id != related_product.id -%}
+                        <div class="Carousel__Item 1/2--small 1/2--medium-up Carousel__Item--count{{ product_list_count }}">
+                            {%- render 'product-card', product: related_product, card_desktop_items_per_row: card_desktop_items_per_row, card_mobile_items_per_row: card_mobile_items_per_row, show_rating: block.settings.show_rating, show_product_info: block.settings.show_product_info, show_vendor: block.settings.show_vendor, show_swatches: block.settings.show_swatches, show_quick_add: false -%}
+                        </div>
+                    {%- endif -%} 
+                {%- endfor -%}
+            {%- endif -%} 
+            
+        </div>
+    </div>
+</div>
+{%- endif -%}

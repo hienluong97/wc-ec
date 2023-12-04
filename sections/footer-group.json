@@ -1,0 +1,59 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-text": {
+          "type": "text",
+          "settings": {
+            "heading": "OUR MISSION",
+            "logo_max_width": 140,
+            "mobile_logo_max_width": 75,
+            "content": "<p>Share contact information, store details, and brand content with your customers.<\/p>",
+            "show_social_media": true
+          }
+        },
+        "footer-link-1": {
+          "type": "links",
+          "settings": {
+            "heading": "SHOP",
+            "menu": "footer"
+          }
+        },
+        "footer-link-2": {
+          "type": "links",
+          "settings": {
+            "heading": "INFORMATION",
+            "menu": "footer"
+          }
+        },
+        "footer-newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "SUBSCRIBE TO OUR EMAILS",
+            "content": "<p>A short sentence describing what someone will receive by subscribing.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "footer-text",
+        "footer-link-1",
+        "footer-link-2",
+        "footer-newsletter"
+      ],
+      "settings": {
+        "footer_width": "full_width",
+        "background_color": "#1c1b1b",
+        "text_color": "#fbfbfb",
+        "show_payment_methods": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

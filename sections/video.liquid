@@ -1,0 +1,180 @@
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign video_id = section.settings.self_hosted_video.id | default: section.settings.video_url.id
+  assign video_alt = section.settings.self_hosted_video.alt | default: section.settings.description
+  assign poster = section.settings.self_hosted_video.preview_image | default: section.settings.cover_image
+-%}
+
+<section id="section-{{ section.id }}" class="VideoSection Container--videoSection Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }}"
+style="border-top: 1px solid var(--tg-sys-color-outline); border-bottom: 1px solid var(--tg-sys-color-outline);">
+
+  <deferred-media  class="DeferredMedia VideoSection__Media" data-tg-video-auto="{% if section.settings.enable_video_autoplay %}1{% else %}0{% endif %}">
+    {%- if poster != blank -%}
+      <div class="DeferredMedia__CoverImageWrapper Ratio" 
+        style="--tg-aspect-ratio: {{ poster.aspect_ratio }};">
+
+        {{ poster | image_url: width: 3840 | image_tag:
+          loading: 'lazy',
+          decoding: 'async',
+          sizes: '100vw',
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          class: 'DeferredMedia__CoverImage Image--lazyLoad',
+          alt: video_alt
+        }}
+
+        <span class="Image--loader"></span> 
+        {%- if section.settings.video_url != blank -%}
+          <button class="Button Button--icon Button--play" {% if section.settings.video_url != blank %}id="Deferred-Cover-Modal-{{ section.id }}-{{ video_id }}"{% endif %}>{% render 'icons', icon: 'play-fill' %}</button>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if poster == blank -%}
+      <div class="DeferredMedia__CoverImageWrapper Ratio" style="--tg-aspect-ratio:  1.7777777777778;">
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'DeferredMedia__CoverImage SvgPlaceholder' }}
+        {%- if section.settings.video_url != blank -%}
+          <button class="Button Button--icon Button--play" id="Deferred-Cover-Modal-{{ section.id }}-{{ video_id }}">{% render 'icons', icon: 'play-fill' %}</button>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <template>
+      {%- liquid
+        assign video_autoply = section.settings.enable_video_autoplay 
+        assign video_mute = 0
+        assign video_controls = 1
+
+        assign video_self_host_mute = false
+
+        if video_autoply
+          assign video_mute = 1
+          assign video_self_host_mute = true
+        endif
+        unless section.settings.show_video_controls
+          assign video_controls = 0
+        endunless
+      -%}
+      {%- if section.settings.self_hosted_video == null and section.settings.video_url != null -%}
+        {%- liquid
+          assign loop = ''
+          if section.settings.enable_video_looping
+            assign loop = '&loop=1&playlist=' | append: video_id
+          endif
+        -%}
+        {%- if section.settings.video_url.type == 'youtube' -%}
+          <iframe src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=1&controls={{ video_controls }}&mute={{ video_mute }}{{ loop }}" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+        {%- else -%}
+          <iframe src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&controls={{ video_controls }}&muted={{ video_mute }}{{ loop }}&autopause=0" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+        {%- endif -%}
+      {%- else -%}
+        {{ section.settings.self_hosted_video
+          | video_tag:
+            class: 'VideoSection__SelfVideo',
+            image_size: "1100x",
+            autoplay: video_autoply,
+            loop: section.settings.enable_video_looping,
+            controls: section.settings.show_video_controls,
+            muted: video_self_host_mute,
+            playsinline: ""
+        }}
+      {%- endif -%}
+    </template>
+
+  </deferred-media>
+
+</section>
+
+{% schema %}
+{
+  "name": "Video",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_video_controls",
+      "label": "Show video controls",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Play video on loop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_autoplay",
+      "label": "Mute autoplay video",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Shopify-hosted video"
+    },
+    {
+      "type": "video",
+      "id": "self_hosted_video",
+      "label": "Video"
+    },
+    {
+      "type": "header",
+      "content": "Or embed video from URL"
+    },
+    {
+      "type": "paragraph",
+      "content": "Shows when no Shopify-hosted video is selected."
+    },
+    {
+      "type": "image_picker",
+      "id": "cover_image",
+      "label": "Cover image"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "label": "Video URL",
+      "placeholder": "Use a YouTube or Vimeo URL"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Video alt text",
+      "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video-block)."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video"
+    }
+  ]
+}
+{% endschema %}

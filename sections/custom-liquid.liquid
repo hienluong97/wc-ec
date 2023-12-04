@@ -1,0 +1,47 @@
+<div class="Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }} CustomLiquid"
+  style="border-bottom: 1px solid var(--tg-sys-color-outline);border-top: 1px solid var(--tg-sys-color-outline);">
+  {{ section.settings.custom_liquid }}
+</div> 
+{% schema %}
+{
+  "name": "Custom Liquid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Medium"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom Liquid",
+      "info": "Add app snippets or other Liquid code to create advanced customizations."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Liquid"
+    }
+  ]
+}
+{% endschema %}

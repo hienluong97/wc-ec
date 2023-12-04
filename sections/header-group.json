@@ -1,0 +1,40 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "settings": {
+        "enable_bar": false,
+        "closeable": true,
+        "content": "<p>Make an announcement.<\/p>",
+        "background": "#fbfbfb",
+        "text_color": "#1c1b1b"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "enable_sticky_header": false,
+        "enable_transparent_header": true,
+        "enable_transparent_header_group": false,
+        "show_header_border": true,
+        "header_background": "#fbfbfb",
+        "header_text_color": "#1c1b1b",
+        "header_text_color_transparent": "#fbfbfb",
+        "logo_position": "middleLeft",
+        "logo_position_mobile": "Left",
+        "logo_max_width": 140,
+        "mobile_logo_max_width": 90,
+        "navigation_menu_main": "main-menu",
+        "show_text": false,
+        "enable_country_selector": true,
+        "enable_language_selector": true
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

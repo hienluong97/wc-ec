@@ -1,0 +1,50 @@
+{%- comment -%}
+--------------------------------------------------------------------------------------------------------------------
+COUNTRY AND LANGUAGE SELECTORS
+--------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+{%- form 'localization', class: 'LocalizationForm' -%}
+    {%- if country_selector -%}
+    <div class="CountrySelector">
+        <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+        <span class="VisuallyHidden">{{ 'general.localization.country' | t }}</span>
+        <div class="Dropdown">
+            <button class="Button Button--outline Button--small Dropdown__Toggle" type="button" data-tg-toggle="Dropdown" aria-expanded="false">
+                {{ localization.country.name }} ({{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }})
+            </button>
+            <ul class="Dropdown__Body">
+                {%- for country in localization.available_countries -%}
+                    <li class="Dropdown__Item {% if country.iso_code == localization.country.iso_code %}Active{%- endif %}">
+                        <button type="submit" name="country_code" class="Button Button--small" value="{{ country.iso_code }}" style="padding: 0;">
+                            {{ country.name }} <span class="LocalizationForm__Currency">({{ country.currency.iso_code }} {{ country.currency.symbol }})</span>
+                        </button>
+                    </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+    </div>
+    {%- endif -%}
+
+    {%- if language_selector -%}
+    <div class="LanguageSelector">
+        <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+        <span class="VisuallyHidden">{{ 'general.localization.language' | t }}</span>
+        <div class="Dropdown">
+            <button class="Button Button--outline Button--small Dropdown__Toggle" type="button" data-tg-toggle="Dropdown" aria-expanded="false">
+                {{ localization.language.endonym_name | capitalize }}
+            </button>
+            <ul class="Dropdown__Body">
+                {%- for language in localization.available_languages -%}
+                    <li class="Dropdown__Item {% if language.iso_code == localization.language.iso_code %}Active{%- endif %}">
+                        <button type="submit" name="locale_code" class="Button Button--small" value="{{ language.iso_code }}" style="padding: 0;">
+                            {{ language.endonym_name | capitalize }}
+                        </button>
+                    </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+    </div>
+    {%- endif -%}
+{%- endform -%}
+
+<script src="{{ 'popper.js' | asset_url }}" defer="defer"></script> 

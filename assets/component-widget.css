@@ -1,0 +1,44 @@
+/**
+ * ----------------------------------------------------------------------------
+ * widget
+ * ----------------------------------------------------------------------------
+ */
+.Widget + .Widget {
+  border-top: 1px solid var(--tg-sys-color-outline);
+}
+
+.Widget__Title {
+  padding: 1rem calc(var(--tg-container-gutter-x) * 2);
+  line-height: 1.65;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+  color: var(--tg-sys-color-on-background);
+}
+@media screen and (min-width: 641px) {
+  .Widget__Title {
+    padding: 1rem calc(var(--tg-container-gutter-x) * 3);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .Widget__Title {
+    padding: 1rem calc(var(--tg-container-gutter-x) * 4);
+  }
+}
+
+.Widget__Content {
+  padding: 1rem calc(var(--tg-container-gutter-x) * 2);
+}
+@media screen and (min-width: 641px) {
+  .Widget__Content {
+    padding: 1rem calc(var(--tg-container-gutter-x) * 3);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .Widget__Content {
+    padding: 1rem calc(var(--tg-container-gutter-x) * 4);
+  }
+}
+
+.Widget__ButtonWrapper {
+  margin-top: 1rem;
+}

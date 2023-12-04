@@ -1,0 +1,114 @@
+/**
+  * ----------------------------------------------------------------------------
+  * Testimonials
+  * ----------------------------------------------------------------------------
+  */
+section-testimonials {
+  display: block;
+}
+
+.Testimonials {
+  position: relative;
+  border-top: 1px solid var(--tg-sys-color-outline);
+}
+
+.Testimonials__Body {
+  margin-left: 0;
+  margin-top: -1px;
+  margin-right: -1px;
+  border-top: 1px solid var(--tg-sys-color-outline);
+}
+.Testimonials__Body .TestimonialWrapper {
+  border-right: 1px solid var(--tg-sys-color-outline);
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+  padding: 0;
+}
+
+.Testimonials__Body.flickity-ready.flickity-enabled .TestimonialWrapper {
+  height: 100%;
+}
+
+.Testimonial {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 2.5rem;
+}
+.Testimonial .Testimonial__Content {
+  border-radius: 2px;
+  position: relative;
+}
+.Testimonial .Testimonial__Content::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  display: block;
+  width: 12px;
+  height: 12px;
+  transform: rotate(-45deg) translateY(60%);
+}
+.Testimonial.Testimonial--thumbnailTop .Testimonial__Content {
+  order: 3;
+}
+.Testimonial.Testimonial--thumbnailTop .Testimonial__Content::after {
+  left: 36px;
+  top: 0;
+  bottom: auto;
+  transform: rotate(-45deg) translateY(-60%);
+}
+
+.Testimonial__Content {
+  width: 100%;
+}
+
+.Testimonial__ThumbnailWrapper {
+  margin-left: 16px;
+  width: 48px;
+  height: 48px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.Testimonial__Thumbnail {
+  border-radius: 24px;
+}
+
+.Testimonial__Author {
+  margin-left: 12px;
+}
+.Testimonial__Author .Testimonial__AuthorName {
+  margin-bottom: 0;
+}
+
+.Testimonial--center {
+  text-align: center;
+  justify-content: center;
+}
+.Testimonial--center .Testimonial__Author {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  order: 2;
+}
+.Testimonial--center .Testimonial__Content::after {
+  display: none;
+}
+.Testimonial--center .Testimonial__ThumbnailWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 12px;
+  order: 1;
+}
+.Testimonial--center.Testimonial--thumbnailTop .Testimonial__ThumbnailWrapper {
+  margin-top: 0;
+  margin-bottom: 16px;
+  order: 1;
+}
+.Testimonial--center.Testimonial--thumbnailTop .Testimonial__Content {
+  order: 2;
+}
+.Testimonial--center.Testimonial--thumbnailTop .Testimonial__Author {
+  order: 3;
+}

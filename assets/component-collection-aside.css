@@ -1,0 +1,50 @@
+.CollectionAside {
+  display: none;
+  border-right: 1px solid var(--tg-sys-color-outline);
+}
+@media screen and (min-width: 1008px) {
+  .CollectionAside {
+    display: block;
+    width: 25%;
+  }
+}
+.CollectionAside .CollectionAside__ProductCount {
+  padding: 0.75rem 1rem;
+}
+.CollectionAside .CollectionAside__Body {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+.CollectionAside .Accordion__Item {
+  border-top: 1px dashed rgba(var(--tg-sys-color-outline-rgb), 0.8);
+  padding-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.CollectionAside .Accordion__Item:first-child {
+  border-top: 0;
+}
+.CollectionAside .Accordion__Item--Sorting {
+  margin-bottom: 0;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px dashed rgba(var(--tg-sys-color-outline-rgb), 0.8);
+}
+.CollectionAside .Accordion__Item--Sorting .List__Item {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+.CollectionAside .Accordion__Item--Sorting .List__Item.Active {
+  font-weight: 500;
+  color: var(--tg-sys-color-theme);
+}
+.CollectionAside .Accordion__Button {
+  border: 0;
+}
+.CollectionAside .Accordion__Body {
+  background: none;
+  padding: 0 1.125rem;
+}
+.CollectionAside .Accordion__Collapse--price {
+  margin-top: 48px;
+}

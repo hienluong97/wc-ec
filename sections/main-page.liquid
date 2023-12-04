@@ -1,0 +1,348 @@
+{%- render 'page-header' -%}
+
+<div class="Page Container--spacing{{ section.settings.spacing_position }}">
+  <div class="PageLeft">
+    <div class="PageLeft__Inner">
+      {%- if page.content != blank -%}
+        <div class="Page__Content Container Container--fluid Container--spacingMediumPadding RTE">
+          {{ page.content }}
+        </div>
+      {%- endif -%}
+
+      {%- capture page_questions -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'question' -%}
+              <div class="Page__Question Accordion__Item" {{ block.shopify_attributes }}>
+                <div class="Accordion__Header">
+                  <button class="Accordion__Button {% unless block.settings.expand %}Collapsed{% endunless %}" type="button" data-tg-toggle="Collapse" {% if block.settings.expand %}aria-expanded="true"{% endif %} data-tg-target="#Page__QuestionAccordion-{{ block.id }}" aria-expanded="false">
+                    {{ block.settings.heading | escape }}
+                  </button>
+                </div>
+                <div id="Page__QuestionAccordion-{{ block.id }}" class="Accordion__Collapse Collapse {% if block.settings.expand %}Show{% endif %}">
+                  <div class="Accordion__Body RTE">
+                    {{ block.settings.answer }}
+                    {{ block.settings.page.content }}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%} 
+        {%- endfor -%} 
+      {%- endcapture -%}
+      
+      {%- assign first_question = true -%}
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'text_banner' -%}
+            <div class="Page__TextBanner TextBanner Container Container--fluid Container--spacingMediumPadding">
+              {%- if block.settings.heading != blank -%}
+                <div class="TextBanner__Title {{ block.settings.heading_size }}">
+                  {{ block.settings.heading }}
+                </div>
+              {%- endif -%}
+              {%- if block.settings.content != blank -%}
+                <div class="TextBanner__Content RTE">
+                  {{ block.settings.content }}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- when 'contact_form' -%}
+            <div class="Page__ContactForm Container Container--fluid Container--spacingMediumPadding">
+              {%- form 'contact', class: 'Form' -%}
+
+                {%- unless block.settings.description == blank -%}
+                  <div class="ContactForm__Description RTE">
+                      {{ block.settings.description }}
+                  </div>
+                {%- endunless -%}
+
+                {%- if form.posted_successfully? -%}
+                  <div class="Alert Alert--success RTE">
+                    {{ 'contact.form.successfully_sent' | t }}
+                  </div>
+                {%- else -%}
+                  {%- if form.errors -%}
+                    <div class="Form__Alert Alert Alert--danger">
+                      <ul class="List List--unstyle">
+                        {%- for field in form.errors -%}
+                          {%- if field == 'form' -%}
+                            <li>{{ form.errors.messages[field] }}</li>
+                          {%- else -%}
+                            <li><strong>{{ form.errors.translated_fields[field] }}</strong> {{ form.errors.messages[field] }}</li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endif -%}
+
+                {%- endif -%}
+          
+                <div class="Grid Grid--spacing">
+                  <div class="Grid__Item Grid__Item--spacing 1/2--medium-up">
+                      <div class="Form__Item Form__Item--floatingLabel">
+                          <input id="ContactFormBlockName--{{ section.id }}" type="text" name="contact[name]" class="Form__Input" aria-label="{{ 'contact.form.name' | t }}" placeholder="{{ 'contact.form.name' | t }}" required {% if customer %}value="{{ customer.name }}"{% endif %}>
+                          <label class="Form__Label" for="ContactFormBlockName--{{ section.id }}">{{ 'contact.form.name' | t }}</label>
+                      </div>
+                  </div>
+          
+                  <div class="Grid__Item Grid__Item--spacing 1/2--medium-up">
+                      <div class="Form__Item Form__Item--floatingLabel">
+                          <input id="ContactFormBlockEmail--{{ section.id }}" type="email" name="contact[email]" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" title="{{ 'general.meta.email_format' | t }}" class="Form__Input" aria-label="{{ 'contact.form.email' | t }}" placeholder="{{ 'contact.form.email' | t }}" required {% if customer %}value="{{ customer.email }}"{% endif %}>
+                          <label class="Form__Label" for="ContactFormBlockEmail--{{ section.id }}">{{ 'contact.form.email' | t }}</label>
+                      </div>
+                  </div>
+          
+                  <div class="Grid__Item Grid__Item--spacing">
+                      <div class="Form__Item Form__Item--floatingLabel">
+                          <textarea id="ContactFormBlockBody--{{ section.id }}" class="Form__Input" name="contact[body]" aria-label="{{ 'contact.form.message' | t }}" placeholder="{{ 'contact.form.message' | t }}" required style="height: 200px"></textarea>
+                          <label class="Form__Label" for="ContactFormBlockBody--{{ section.id }}">{{ 'contact.form.message' | t }}</label>
+                      </div>
+                  </div>
+          
+                  <div class="Grid__Item Grid__Item--spacing">
+                      <button class="Button Button--primary" type="submit">{{ 'contact.form.submit' | t }}</button>
+                  </div>
+                </div>
+              {% endform %} 
+            </div>
+          {%- when 'contact_text' -%}
+            <div class="Page__ContactText ContactText ">
+              {%- if block.settings.phone_title != blank or block.settings.phone_content != blank -%}
+                <div class="ContactText__Item">
+                  {%- if block.settings.phone_title != blank -%}
+                    <h3 class="ContactText__Title">{{ block.settings.phone_title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.phone_content != blank -%}
+                    <div class="ContactText__Content RTE">{{ block.settings.phone_content }}</div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.email_title != blank or block.settings.email_content != blank -%}
+                <div class="ContactText__Item">
+                  {%- if block.settings.email_title != blank -%}
+                    <h3 class="ContactText__Title">{{ block.settings.email_title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.email_content != blank -%}
+                    <div class="ContactText__Content RTE">{{ block.settings.email_content }}</div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.address_title != blank or block.settings.address_content != blank -%}
+                <div class="ContactText__Item">
+                  {%- if block.settings.address_title != blank -%}
+                    <h3 class="ContactText__Title">{{ block.settings.address_title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.address_content != blank -%}
+                    <div class="ContactText__Content RTE">{{ block.settings.address_content }}</div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- when 'question' -%}
+            {%- if first_question -%}
+              {%- assign first_question = false -%}
+              <div class="Page__Questions Container Container--fluid Container--spacingMediumPadding">
+                {{- page_questions -}}
+              </div>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if section.settings.image != blank -%}
+    <div class="PageRight Container Container--fluid Container--spacingMediumPadding">
+      <div class="PageRight__Inner">
+        {%- assign section_image = section.settings.image -%}
+        <div class="Ratio" style="--tg-aspect-ratio: {{ section_image.aspect_ratio }};">
+            <img class="Page__Image"
+              srcset="{%- if section_image.width >= 360 -%}{{ section_image | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if section_image.width >= 535 -%}{{ section_image | image_url: width: 535 }} 535w,{%- endif -%}
+                {%- if section_image.width >= 750 -%}{{ section_image | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if section_image.width >= 1070 -%}{{ section_image | image_url: width: 1070 }} 1070w,{%- endif -%}
+                {%- if section_image.width >= 1500 -%}{{ section_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                {{ section_image | image_url }} {{ section_image.width }}w"
+              src="{{ section_image | image_url: width: 1500 }}"
+              sizes="(min-width: 1008px) calc(100vw / 2), 100vw"
+              alt="{{ section_image.alt | escape }}"
+              loading="lazy"
+              decoding="async"
+              width="{{ section_image.width }}"
+              height="{{ section_image.height }}">
+
+          <noscript>
+            <img src="{{ section_image | image_url: width: 800 }}" loading="lazy" height="{{ section_image.height }}" width="{{ section_image.width }}" alt="{{ section_image.alt | escape }}">
+          </noscript>
+        </div>
+      </div>
+      
+    </div>
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Bottom"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_banner",
+      "name": "Text banner",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Tell your story"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "HeadlineSmall",
+              "label": "Small"
+            },
+            {
+              "value": "HeadlineMedium",
+              "label": "Medium"
+            },
+            {
+              "value": "HeadlineLarge",
+              "label": "Large"
+            }
+          ],
+          "default": "HeadlineMedium",
+          "label": "Heading size"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add your own custom content to give more information.</p>"
+        }
+      ]
+    },
+    {
+      "type": "contact_form",
+      "name": "Contact form",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "contact_text",
+      "name": "Contact text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "phone_title",
+          "label": "Phone",
+          "default": "PHONE"
+        },
+        {
+          "type": "richtext",
+          "id": "phone_content",
+          "label": "Phone text",
+          "default": "<p>Add your own phone information.</p>"
+        },
+        {
+          "type": "text",
+          "id": "email_title",
+          "label": "Email",
+          "default": "EMAIL"
+        },
+        {
+          "type": "richtext",
+          "id": "email_content",
+          "label": "Email text",
+          "default": "<p>Add your own email information.</p>"
+        },
+        {
+          "type": "text",
+          "id": "address_title",
+          "label": "Address",
+          "default": "ADDRESS"
+        },
+        {
+          "type": "richtext",
+          "id": "address_content",
+          "label": "Address text",
+          "default": "<p>Add your own address information.</p>"
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Question title"
+        },
+        {
+          "type": "header",
+          "content": "Answer"
+        },
+        {
+          "type": "checkbox",
+          "id": "expand",
+          "label": "Expand answer",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer content"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Answer content from page"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

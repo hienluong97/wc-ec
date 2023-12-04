@@ -1,0 +1,73 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Page header
+ * ----------------------------------------------------------------------------
+ */
+.PageHeader {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-top: -1px;
+  border-top: 1px solid var(--tg-sys-color-outline);
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+
+.PageHeaderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.PageHeader__Title {
+  font-weight: 600;
+  margin: 0;
+  font-family: var(--tg-sys-typescale-headline-medium-font);
+  font-style: var(--tg-sys-typescale-headline-medium-style);
+  font-weight: var(--tg-sys-typescale-headline-medium-weight);
+  font-size: var(--tg-sys-typescale-headline-medium-size);
+  line-height: var(--tg-sys-typescale-headline-medium-line-height);
+  letter-spacing: var(--tg-sys-typescale-headline-medium-tracking);
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.PageHeader__Breadcrumb {
+  font-family: var(--tg-sys-typescale-label-medium-font);
+  font-style: var(--tg-sys-typescale-label-medium-style);
+  font-weight: var(--tg-sys-typescale-label-medium-weight);
+  font-size: var(--tg-sys-typescale-label-medium-size);
+  line-height: var(--tg-sys-typescale-label-medium-line-height);
+  letter-spacing: var(--tg-sys-typescale-label-medium-tracking);
+  text-transform: uppercase;
+}
+.PageHeader__Breadcrumb .Breadcrumb__Item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.PageHeader__Breadcrumb .Breadcrumb__Item a {
+  padding: 0.885rem 0;
+}
+
+.Breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.Breadcrumb__Item + .Breadcrumb__Item {
+  padding-left: 0.5rem;
+}
+
+.Breadcrumb__Item + .Breadcrumb__Item::before {
+  float: left;
+  padding-right: 0.5rem;
+  color: var(--tg-sys-color-on-surface-variant);
+  content: var(--tg-breadcrumb-divider, "/");
+}
+
+.Breadcrumb__Item.Active {
+  color: var(--tg-sys-color-on-background);
+}

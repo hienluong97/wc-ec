@@ -1,0 +1,12 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Template list collections
+ * ----------------------------------------------------------------------------
+ */
+.Template--list-collections .ListCollections {
+  border-top: 1px solid var(--tg-sys-color-outline);
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+.Template--list-collections .ListCollections .Grid {
+  margin-bottom: -1px;
+}

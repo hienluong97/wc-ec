@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "grid_items_per_page": 12,
+        "grid_desktop_items_per_row": 3,
+        "grid_mobile_items_per_row": "1",
+        "featured_image_size": "4x3",
+        "card_align": "left",
+        "content_on_image": false,
+        "show_category": true,
+        "show_description": true,
+        "show_read_more": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

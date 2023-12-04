@@ -1,0 +1,45 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Template Search
+ * ----------------------------------------------------------------------------
+ */
+.Template--search .SearchFormWrapper {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+.Template--search .SearchForm {
+  position: relative;
+  display: flex;
+  padding: 2px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Template--search .SearchForm .Form__Submit {
+  word-break: keep-all;
+}
+.Template--search .SearchForm .Form__Input {
+  min-height: 44px;
+  z-index: 2;
+}
+.Template--search .SearchResults__Content {
+  width: 100%;
+}
+@media screen and (min-width: 1008px) {
+  .Template--search .SearchResults__Content {
+    width: 75%;
+    flex-grow: 1;
+  }
+}
+.Template--search .SearchResults {
+  display: flex;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+@media screen and (min-width: 1008px) {
+  .Template--search .SearchResults {
+    margin-bottom: 4rem;
+  }
+}

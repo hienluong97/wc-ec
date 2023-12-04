@@ -1,0 +1,46 @@
+{%- liquid 
+    assign collection_image = block.settings.image | default: collection.image | default: collection.products.first.featured_image
+-%}
+
+
+<div id="{% if block %}block{{ block.id }}{% endif %}"  class="CollectionCard">
+    <a href="{{ collection.url }}" class="TextOnImage TextOnImage--{{ block.settings.content_position | default: 'bottomCenter' }} TextOnImage--{{ section.settings.image_ratio }}"
+        style="{% if collection_image != blank and section.settings.image_ratio == 'natural' %}--tg-component-text-on-image-image-ratio-mobile: {{ collection_image.aspect_ratio }};--tg-component-text-on-image-image-ratio: {{ collection_image.aspect_ratio }};
+    {% elsif section.settings.image_ratio == 'natural' %}--tg-component-text-on-image-image-ratio-mobile: 0.75; --tg-component-text-on-image-image-ratio: 0.75;{% endif %}"
+    >
+        {%- if collection_image != blank -%}
+            <div class="TextOnImage__ImageWrapper Ratio">
+                
+                {%- capture tg_sizes -%}(min-width: 641px) calc(100vw / {{ section.settings.grid_desktop_items_per_row | default: 3 }}), 100vw{%- endcapture -%}
+                {{ collection_image | image_url: width: 3000 | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    sizes: tg_sizes,
+                    widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000',
+                    class: 'TextOnImage__Image Image--lazyLoad'
+                }}
+
+                <span class="Image--loader"></span> 
+            </div>
+        {%- elsif collection != blank -%}
+            <div class="TextOnImage__ImageWrapper Ratio">
+                <div class="TextOnImage__Image TextOnImage__Image--bgColor"></div>
+            </div>
+        {%- else -%}
+            <div class="TextOnImage__ImageWrapper Ratio">
+                {%- capture placeholder -%}{% cycle 'collection-6', 'collection-5', 'collection-4' %}{%- endcapture -%}
+                {{ placeholder | placeholder_svg_tag: 'TextOnImage__Image SvgPlaceholder' }} 
+            </div>
+        {%- endif -%}
+        
+        {%- if block.settings.heading != blank or collection != blank -%}
+            <div class="TextOnImage__Content">
+                <div class="TextOnImage__ContentInner">
+                    <button type="button" class="Button Button--{{ block.settings.heading_style | default: 'primary' }}">
+                        {%- if block.settings.heading != blank -%}{{ block.settings.heading }}{%- elsif collection -%}{{ collection.title }}{%- endif -%}
+                    </button>
+                </div>
+            </div>
+        {%- endif -%}
+    </a>
+</div>

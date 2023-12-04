@@ -1,0 +1,25 @@
+.TextBlockCard {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.TextBlockCard--positionTop {
+  justify-content: flex-start;
+}
+
+.TextBlockCard--positionMiddle {
+  justify-content: center;
+}
+
+.TextBlockCard--positionBottom {
+  justify-content: flex-end;
+}
+
+.TextBlockCard__Excerpt + .Button--primary,
+.TextBlockCard__Excerpt + .Button--outline {
+  margin-top: 0.5rem;
+}

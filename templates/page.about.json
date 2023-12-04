@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "text_banner": {
+          "type": "text_banner",
+          "settings": {
+            "heading": "Tell your story",
+            "heading_size": "HeadlineMedium",
+            "content": "<p>Add your own custom content to give more information.<\/p>"
+          }
+        },
+        "contact_text": {
+          "type": "contact_text",
+          "settings": {
+            "phone_title": "PHONE",
+            "phone_content": "<p>Add your own phone information.<\/p>",
+            "email_title": "EMAIL",
+            "email_content": "<p>Add your own email information.<\/p>",
+            "address_title": "ADDRESS",
+            "address_content": "<p>Add your own address information.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_banner",
+        "contact_text"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,45 @@
+/**
+  * ----------------------------------------------------------------------------
+  * Slideshow
+  * ----------------------------------------------------------------------------
+  */
+:root {
+  --tg-section-slideshow-background: var(--tg-sys-color-background);
+}
+
+section-slideshow {
+  display: block;
+}
+
+.Slideshow {
+  border-top: 1px solid var(--tg-sys-color-outline);
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+.Slideshow .flickity-page-dots, .Slideshow .flickity-button {
+  z-index: 2;
+}
+.Slideshow .Carousel .flickity-button:hover {
+  color: #333 !important;
+}
+.Slideshow .Carousel__Item {
+  opacity: 1;
+}
+.Slideshow .Slideshow__ImageWrapper {
+  background: var(--tg-section-slideshow-background);
+}
+.Slideshow .Carousel__Item .Slideshow__Image {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.Slideshow .Carousel.flickity-enabled .Carousel__Item.is-selected {
+  z-index: 2;
+}
+.Slideshow .Carousel.flickity-enabled .Carousel__Item.is-selected:not(:first-child) {
+  height: 100%;
+}
+
+.js .Slideshow .Carousel__Item:first-child {
+  opacity: 0;
+}

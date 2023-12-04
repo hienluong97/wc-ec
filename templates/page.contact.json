@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "text_banner": {
+          "type": "text_banner",
+          "settings": {
+            "heading": "Tell your story",
+            "heading_size": "HeadlineMedium",
+            "content": "<p>Add your own custom content to give more information.<\/p>"
+          }
+        },
+        "contact_form": {
+          "type": "contact_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "text_banner",
+        "contact_form"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,72 @@
+.Carousel {
+  position: relative;
+}
+.Carousel:focus-visible {
+  outline: 0;
+  box-shadow: none;
+}
+
+.Carousel:not(.flickity-enabled) {
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.Carousel:not(.flickity-enabled) .Carousel__Item {
+  flex-shrink: 0;
+  white-space: normal;
+  display: inline-block;
+}
+
+.Carousel__Item {
+  display: block;
+  flex: initial;
+}
+
+.Carousel--fadeIn .flickity-slider {
+  transform: none !important;
+}
+.Carousel--fadeIn .Carousel__Item {
+  left: 0 !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+.Carousel--fadeIn .Carousel__Item.is-selected {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.Carousel--insideDots .flickity-page-dots {
+  position: absolute;
+  width: auto;
+  margin: 0;
+  bottom: 1rem;
+  left: 1.5rem;
+}
+.Carousel--insideDots .flickity-page-dots .dot {
+  border-color: currentColor;
+}
+.Carousel--insideDots .flickity-page-dots .dot.is-selected {
+  background-color: currentColor;
+}
+.Carousel--insideDots .flickity-prev-next-button {
+  bottom: -25px;
+  z-index: 1;
+}
+.Carousel--insideDots .flickity-prev-next-button.next {
+  right: 25px;
+}
+.Carousel--insideDots .flickity-prev-next-button.previous {
+  right: 75px;
+  margin-right: 15px;
+}
+@media screen and (min-width: 1280px) {
+  .Carousel--insideDots .flickity-page-dots {
+    bottom: 1.5rem;
+    right: 2rem;
+    left: auto;
+  }
+}

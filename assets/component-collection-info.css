@@ -1,0 +1,69 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Collection information 
+ * ----------------------------------------------------------------------------
+ */
+/**
+* ----------------------------------------------------------------------------
+* Collection information 
+* ----------------------------------------------------------------------------
+*/
+:root {
+  --tg-sys-section-collection-information-background: var(--tg-sys-color-background);
+  --tg-sys-section-collection-information-color-text: var(--tg-sys-color-on-background);
+}
+
+.CollectionInformation {
+  width: 100%;
+  background: var(--tg-sys-section-collection-information-background);
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+  background-size: cover;
+  background-position: center;
+}
+.CollectionInformation.TextOnImage::before {
+  padding-bottom: 0;
+}
+.CollectionInformation .TextOnImage__Content {
+  padding: 0;
+}
+@media screen and (min-width: 641px) {
+  .CollectionInformation.CollectionInformation--withImage .CollectionInformation__Description {
+    padding-right: calc(var(--tg-container-gutter-x) * 3);
+    padding-left: calc(var(--tg-container-gutter-x) * 3);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .CollectionInformation.CollectionInformation--withImage .CollectionInformation__Description {
+    padding-right: calc(var(--tg-container-gutter-x) * 4);
+    padding-left: calc(var(--tg-container-gutter-x) * 4);
+  }
+}
+
+.CollectionInformation__Inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.CollectionInformation__Inner--fitContent {
+  min-height: 72px;
+}
+
+.CollectionInformation__Inner--small {
+  min-height: 200px;
+}
+
+.CollectionInformation__Inner--medium {
+  min-height: 320px;
+}
+
+.CollectionInformation__Inner--large {
+  min-height: 400px;
+}
+
+.CollectionInformation__Description {
+  color: var(--tg-sys-section-collection-information-color-text);
+}

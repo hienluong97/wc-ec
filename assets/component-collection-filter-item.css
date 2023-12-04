@@ -1,0 +1,45 @@
+.ProductFilters__Item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  word-break: break-all;
+}
+.ProductFilters__Item label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.ProductFilters__Item .Icon--checkbox-checked,
+.ProductFilters__Item .Icon--checkbox-unchecked {
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+.ProductFilters__Item input {
+  display: none;
+}
+.ProductFilters__Item .Icon--checkbox-checked {
+  display: none;
+}
+.ProductFilters__Item .Icon--checkbox-unchecked {
+  display: inline-block;
+}
+.ProductFilters__Item.Active .Icon--checkbox-checked {
+  display: inline-block;
+}
+.ProductFilters__Item.Active .Icon--checkbox-unchecked {
+  display: none;
+}
+
+.FilterProductsColorSwatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  margin-right: 4px;
+  background-size: cover;
+  background-position: center;
+}
+
+.FilterProductsColorSwatch--white {
+  border: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+}

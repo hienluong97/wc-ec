@@ -1,0 +1,37 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Product price
+ * ----------------------------------------------------------------------------
+ */
+:root {
+  --tg-product-price-regular-color: var(--tg-sys-color-on-surface-variant);
+  --tg-product-price-text-font-weight: 400;
+  --tg-product-price-sale-color: var(--tg-sys-color-on-background);
+}
+
+.Price {
+  display: inline-block;
+}
+
+.Price.Price--sale {
+  color: var(--tg-product-price-sale-color);
+  margin-right: 0.5rem;
+}
+
+.Price.Price--saleRegular {
+  position: relative;
+}
+.Price.Price--saleRegular::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+}
+
+.Product__PriceList, .Product__UnitPrice {
+  color: var(--tg-product-price-regular-color);
+  font-weight: var(--tg-product-price-text-font-weight);
+}

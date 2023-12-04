@@ -1,0 +1,26 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Template Product
+ * ----------------------------------------------------------------------------
+ */
+.Template--product .Product.Product--noMedia .ProductDesign {
+  justify-content: center;
+}
+.Template--product .Product.Product--noMedia .ProductSummary__Wrapper {
+  max-width: 800px;
+}
+.Template--product .ProductSummary {
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(var(--tg-header-height, 0px) * var(--use-sticky-header, 0) + var(--tg-other-sticky-elements-height, 0px));
+  padding: 2rem 2rem 0 2rem;
+  margin-bottom: -1px;
+}
+@media screen and (min-width: 1008px) {
+  .Template--product .ProductSummary {
+    margin-top: 1rem;
+  }
+}
+.Template--product .ProductDesign .Grid__Item {
+  padding-top: 0;
+}

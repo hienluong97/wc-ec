@@ -1,0 +1,32 @@
+{{ 'component-flickity.css' | asset_url | stylesheet_tag }}
+
+{%- capture flickity_options -%}
+{
+    "prevNextButtons": true,
+    "pageDots": false,
+    "wrapAround": false,
+    "contain": true,
+    "cellAlign": "center",
+    "watchCSS": true,
+    "dragThreshold": 8,
+    "groupCells": true,
+    "arrowShape": "m19.396765,50.965636l66.403248,0l0,-1.931267l-67.943033,0l22.134416,-22.209574l-1.347312,-1.351887l-23.866675,23.754587l-0.57742,0.772507l0.57742,0.772507l23.866675,23.754587l1.347312,-1.351887l-22.134416,-22.209574l0.57742,0l0.962366,0z"
+}
+{%- endcapture -%}
+
+<div class="Product__Block Product__Block--recommendations ProductBlockRecommendations {% if recommendations_type == 'complementary' %}ProductBlockRecommendations--complementary{% else %}ProductBlockRecommendations--related{% endif %}">
+
+    {%- if block.settings.heading != blank -%}
+        <header class="SectionHeader Container Container--fluid SectionHeader--horizontal">
+            <div class="SectionHeader__Text">
+                <h2 class="SectionHeader__Heading CustomSize {{ block.settings.heading_font_size }}">{{ block.settings.heading }}</h2>
+            </div>
+        </header>
+    {%- endif -%}
+
+    <div class="ProductBlockRecommendations__Body ProductListWrapper">
+        <div class="ProductList ProductList--carousel Carousel" data-flickity-config='{{ flickity_options }}'>
+            
+        </div>
+    </div>
+</div>

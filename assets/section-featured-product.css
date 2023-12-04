@@ -1,0 +1,31 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Featured producut
+ * ----------------------------------------------------------------------------
+ */
+section-featured-product {
+  display: block;
+}
+
+.FeaturedProduct__ViewMore {
+  margin-top: 1rem;
+  font-family: var(--tg-sys-typescale-label-medium-font);
+  font-style: var(--tg-sys-typescale-label-medium-style);
+  font-weight: var(--tg-sys-typescale-label-medium-weight);
+  font-size: var(--tg-sys-typescale-label-medium-size);
+  line-height: var(--tg-sys-typescale-label-medium-line-height);
+  letter-spacing: var(--tg-sys-typescale-label-medium-tracking);
+}
+
+.FeaturedProduct {
+  --tg-product-short-description-text-color: var(--tg-sys-color-on-surface);
+  --tg-product-short-description-background: var(--tg-sys-color-surface3);
+  border-top: 1px solid var(--tg-sys-color-outline);
+}
+.FeaturedProduct.FeaturedProduct--noMedia .FeaturedProduct__Body {
+  justify-content: center;
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+.FeaturedProduct.FeaturedProduct--noMedia .FeaturedProduct__Body > .Grid__Item {
+  border: none;
+}

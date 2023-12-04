@@ -1,0 +1,132 @@
+{%- capture section_settings -%}
+{
+  "itemCount": {{ cart.item_count }},
+  "sectionId": {{ section.id | json }},
+  "freeShippingString": "{{ 'cart.general.free_shipping' | t }}",
+  "freeShippingAmountString": "{{ 'cart.general.free_shipping_remaining_html' | t: remaining_amount: 'remaining__amount' }}",
+  "freeShippingThreshold": {{ section.settings.cart_show_free_shipping_threshold }},
+  "freeShippingAmount": {{ section.settings.cart_free_shipping_threshold | times: 100 }}
+}
+{%- endcapture -%}
+
+{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-items-drawer.css' | asset_url | stylesheet_tag }}
+{{ 'section-cart-drawer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-cart-drawer.js' | asset_url }}" defer="defer"></script>
+
+<section-cart-drawer id="CartDrawer" class="Drawer Drawer--end CartDrawer" aria-hidden="true" data-section-id="cart-drawer" data-section-settings='{{ section_settings }}'>
+  <div class="Drawer__Header">
+      <h5 class="Drawer__Title">{{ 'cart.general.title' | t }}</h5>
+      <button type="button" class="ButtonClose" data-tg-dismiss="Drawer" aria-label="{{ 'cart.general.close' | t }}"></button>
+  </div>
+  <form action="{{ routes.cart_url }}" method="POST" class="Form Form--cart" novalidate> 
+    <div class="Drawer__Body">
+      {%- if section.settings.announcement != blank -%}
+        <div class="CartDrawer__ShippingNotice Alert Alert--info Alert--small">
+          {{ section.settings.announcement }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.cart_show_free_shipping_threshold -%}
+        <div class="CartDrawer__ShippingAmountNotice Alert Alert--info Alert--small no-js-hidden" data-cart-currency-symbol="{{ cart.currency.symbol }}"  data-cart-total-price="{{ cart.total_price }}">
+          &nbsp;
+        </div>
+      {%- endif -%}
+
+      {%- if cart.item_count == 0 -%}
+        <div class="EmptyResult Container">
+          <p class="EmptyResult__Title TextMuted">{{ 'cart.general.empty' | t }}</p>
+        </div>
+      {%- else -%}
+        <div class="CartDrawer__Items">
+          {% render 'cart-items-drawer' %}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- unless cart.item_count == 0 -%} 
+      <div class="Drawer__Footer">
+        {%- if section.settings.cart_enable_notes -%}
+          <button type="button" class="Button Button--underline CartDrawer__NoteToggleButton" type="button" data-tg-toggle="Collapse" data-tg-target="#CartDrawerNoteCollapse" aria-expanded="false">
+          {%- if cart.note == blank -%}
+            {{ 'cart.general.add_note' | t }}
+          {%- else -%}
+            {{ 'cart.general.edit_note' | t }}
+            {%- endif -%}
+          </button>
+          <div class="CartDrawer__NoteCollapse Collapse" id="CartDrawerNoteCollapse">
+            <div class="CartDrawer__Note">
+              <div class="Form__Item Form__Item--floatingLabel">
+                <textarea id="CartNote" class="Form__Input" name="note" rows="5" placeholder="{{ 'cart.general.note_placeholder' | t }}">{{ cart.note }}</textarea>
+                <label for="CartNote">{{ 'cart.general.note_placeholder' | t }}</label>
+              </div>
+
+              <button type="button" class="Button Button--outline Button--small" data-tg-toggle="Collapse" data-tg-target="#CartDrawerNoteCollapse" >{{ 'cart.general.save_note' | t }}</button>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if cart.cart_level_discount_applications != blank -%}
+          {%- for discount_application in cart.cart_level_discount_applications -%}
+            <div class="CartDrawer__Discount">{%- render 'icons', icon: 'sale' -%} {{ 'cart.general.discount' | t }} ({{ discount_application.title }}): -<span>{{ discount_application.total_allocated_amount | money }}</span></div>
+          {%- endfor -%}
+        {%- endif -%}
+
+        <div class="CartDrawer__Total"><span class="">{{ 'cart.general.total' | t }}:</span> <span class="cart__total-count">{{ cart.total_price | money_with_currency }}</span></div>
+        <small class="Cart__Taxes TextMuted">
+          {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+            {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+          {%- elsif cart.taxes_included -%}
+            {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+          {%- elsif shop.shipping_policy.body != blank -%}
+            {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+          {%- else -%}
+            {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+          {%- endif -%}
+        </small>
+
+        <a href="{{ routes.cart_url }}" class="CartDrawer__Cart Button Button--outline Button--full">{{ 'cart.general.view_cart' | t }}</a>
+        
+        <button type="submit" name="checkout" class="CartDrawer__Checkout Button Button--primary Button--full">{{- 'cart.general.checkout' | t -}}</button>
+        
+      </div>
+    {%- endunless -%}
+
+    
+  </form>
+</section-cart-drawer>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "class": "shopify-section--cart-drawer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "cart_enable_notes",
+      "label": "Enable order notes",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement",
+      "label": "Announcement",
+      "default": "Make an announcement."
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_show_free_shipping_threshold",
+      "label": "Show free shipping minimum amount",
+      "info": "Make sure that you have properly configured your [shipping rates](/admin/settings/shipping).",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cart_free_shipping_threshold",
+      "label": "Free shipping minimum amount",
+      "info": "Use a number. Letters and special characters are not accepted.",
+      "default": "50"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+        "heading": "All Collections",
+        "collections_to_show": "all",
+        "image_ratio": "2x3"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

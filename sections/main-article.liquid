@@ -1,0 +1,223 @@
+{%- liquid
+  assign share_url = shop.url | append: article.url 
+  assign twitter_text = article.title 
+  assign pinterest_description = article.description | strip_html | truncatewords: 15 | url_param_escape 
+  assign pinterest_image = article.image | image_url: width: 750 | prepend: 'https:' 
+-%}
+
+{% render 'page-header' %}
+
+
+{% assign article_image = article.image %}
+
+<article class="Article{% if article_image != blank %} Article--hasImage{% endif %}" data-section-id="{{ section.id }}">
+    
+    {%- if article_image != blank -%}
+      {%- if section.settings.article_image_size == 'natural' -%}
+        {%- assign use_natural_size = true -%}
+      {%- else -%}
+          {%- assign use_natural_size = false -%}
+      {%- endif -%}
+
+      <div class="Ratio Article__ImageWrapper {% unless use_natural_size %}Ratio--{{ section.settings.article_image_size }}{% endunless %}" 
+        {% if use_natural_size %}style="--tg-aspect-ratio: {{ article.image.aspect_ratio }};"{% endif %}>
+        <img
+          srcset="{%- if article_image.width >= 375 -%}{{ article_image | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if article_image.width >= 550 -%}{{ article_image | image_url: width: 550 }} 550w,{%- endif -%}
+            {%- if article_image.width >= 750 -%}{{ article_image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if article_image.width >= 1100 -%}{{ article_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if article_image.width >= 1500 -%}{{ article_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if article_image.width >= 1780 -%}{{ article_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+            {%- if article_image.width >= 2000 -%}{{ article_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+            {%- if article_image.width >= 3000 -%}{{ article_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {%- if article_image.width >= 3840 -%}{{ article_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+            {{ article_image | image_url }} {{ article_image.width }}w"
+          sizes="100vw"
+          src="{{ article_image | image_url: width: 1000 }}"
+          data-src="{{ article_image | image_url: width: 1000 }}"
+          loading="lazy"
+          decoding="async"
+          alt="{{ article_image.alt | escape }}"
+          width="{{ article_image.width }}"
+          height="{{ article_image.height }}"
+          class="Image--lazyLoad Article__Image"
+        >
+
+        <span class="Image--loader"></span> 
+      </div>
+    {%- endif -%}
+
+    <div class="Article__ContentWrapper Container Container--narrow">
+      <div class="Article__Content">
+        <div class="Article__Body RTE">
+          {{ article.content }}
+        </div>
+
+        {%- if section.settings.show_share_buttons or section.settings.show_author or section.settings.show_date -%}
+          <footer class="Article__Footer">
+            {%- if section.settings.show_author or section.settings.show_date -%}
+              <div class="Article__MetaWraper">
+                {%- if section.settings.show_author -%}
+                  <div class="Article__Author">{{ article.author }}</div>
+                {%- endif -%}
+                {%- if section.settings.show_date -%}
+                  <div class="Aiticle__PublishedAt">{{ article.published_at | date: format: 'month_day_year' }}</div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.show_share_buttons -%}
+              <div class="Article__ShareButtons ShareButtons">
+                <span class="ShareTitle">{{ 'blog.article.share' | t }}</span>
+                <div class="ShareList">
+                  <a class="Button Button--icon" role="button" href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener">{% render 'icons', icon: 'facebook' %}</a>
+                  <a class="Button Button--icon" role="button" href="https://twitter.com/intent/tweet?{% if twitter_text != blank %}text={{ twitter_text | url_param_escape }}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener">{% render 'icons', icon: 'twitter' %}</i></a>
+                  <a class="Button Button--icon" role="button" href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener">{% render 'icons', icon: 'pinterest' %}</a>
+                </div>
+              </div>
+            {%- endif -%}
+          </footer>
+        {%- endif -%}
+      </div> 
+
+      {%- if blog.comments_enabled? -%}
+        {%- if article.comments_count > 0 -%}
+          <div class="Article__Comments">
+            <span class="anchor" id="comments"></span>
+
+            <h2 class="Article__CommentsCount">{{ 'blog.article.comments_count' | t: count: article.comments_count }}</h2>
+
+            <div class="Article__CommentList">
+              {%- paginate article.comments by 25 -%}
+                {%- for comment in article.comments -%}
+                  <div class="ArticleComment">
+                    <div class="ArticleComment__Body RTE">
+                      {{ comment.content }}
+                    </div>
+
+                    <div class="ArticleComment__Meta">
+                      <span class="ArticleComment__Author">{{ comment.author }}</span>
+                      <span class="ArticleComment__Date TextMuted">{{ comment.created_at | date: format: 'month_day_year' }}</span>
+                    </div>
+                  </div>
+                {%- endfor -%}
+
+                {% render 'pagination', paginate: paginate, hash: '#Comments' %}
+              {%- endpaginate -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="Article__CommentFormWrapper">
+          {% if article.comments_count == 0 %}
+            <span class="anchor" id="Comments"></span>
+          {%- endif -%}
+
+          <h2 class="Article__CommentFormTitle">{{ 'blog.comments.form_title' | t }}</h2>
+
+          {%- form 'new_comment', article, class: 'Form Article__CommentForm' -%}
+            {%- if form.posted_successfully? -%}
+              <p class="Alert Alert--success">
+                {%- if blog.moderated? -%}
+                  {{- 'blog.comments.success_moderated' | t -}}
+                {%- else -%}
+                  {{- 'blog.comments.success' | t -}}
+                {%- endif -%}
+              </p>
+            {%- endif -%}
+
+            {%- if form.errors -%}
+              <div class="Form__Alert Alert Alert--danger">
+                <ul class="List List--unstyle">
+                  {%- for field in form.errors -%}
+                    {%- if field == 'form' -%}
+                      <li>{{ form.errors.messages[field] }}</li>
+                    {%- else -%}
+                      <li><strong>{{ form.errors.translated_fields[field] }}</strong> {{ form.errors.messages[field] }}</li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+
+            <div class="Form__Item Form__Item--floatingLabel">
+              <input id="ArticleCommentFormAuthor--{{ section.id }}" type="text" class="Form__Input" name="comment[author]" placeholder="{{ 'blog.comments.name_placeholder' | t }}" aria-label="{{ 'blog.comments.name_placeholder' | t }}" value="{{ form.author | escape | default: customer.name }}" required="required">
+              <label class="Form__Label" for="ArticleCommentFormAuthor--{{ section.id }}">{{ 'blog.comments.name_placeholder' | t }}</label>
+            </div>
+
+            <div class="Form__Item Form__Item--floatingLabel">
+              <input id="ArticleCommentFormEmail--{{ section.id }}" type="email" class="Form__Input" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" title="{{ 'general.meta.email_format' | t }}" name="comment[email]" placeholder="{{ 'blog.comments.email_placeholder' | t }}" aria-label="{{ 'blog.comments.email_placeholder' | t }}" value="{{ form.email | escape | default: customer.email }}" required="required">
+              <label class="Form__Label" for="ArticleCommentFormEmail--{{ section.id }}">{{ 'blog.comments.email_placeholder' | t }}</label>
+            </div>
+
+            <div class="Form__Item Form__Item--floatingLabel">
+              <textarea id="ArticleCommentFormBody--{{ section.id }}" class="Form__Input" name="comment[body]" placeholder="{{ 'blog.comments.comment_placeholder' | t }}"  aria-label="{{ 'blog.comments.comment_placeholder' | t }}" required="required" style="height: 160px">
+                {{- form.body -}}
+              </textarea>
+              <label class="Form__Label" for="ArticleCommentFormBody--{{ section.id }}">{{ 'blog.comments.comment_placeholder' | t }}</label>
+            </div>
+           
+            {%- if blog.moderated? -%}
+              <p class="TextMuted">{{ 'blog.comments.approval_notice' | t }}</p>
+            {%- endif -%}
+
+            <button type="submit" class="Form__Submit Button Button--primary">{{ 'blog.comments.submit' | t }}</button>
+          {%- endform -%}
+        </div>
+      {%- endif -%}
+    </div>
+</article>
+
+{% schema %}
+{
+  "name": "Blog post page",
+  "settings": [
+    {
+      "type": "select",
+      "id": "article_image_size",
+      "label": "Article image height",
+      "options": [
+        {
+          "value": "natural",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "small"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "Show date"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": true,
+      "label": "Show author"
+    },
+    {
+      "type": "header",
+      "content": "Share buttons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show share buttons",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

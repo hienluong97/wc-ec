@@ -1,0 +1,272 @@
+{{ 'component-flickity.css' | asset_url | stylesheet_tag }}
+{{ 'component-placeholder.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.enable_quick_add -%}
+  <script src="{{ 'component-quick-add-to-cart-button.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<script src="{{ 'section-product-recommendations.js' | asset_url }}" defer="defer"></script>
+
+{%- capture flickity_options -%}
+{
+  "prevNextButtons": true,
+  "pageDots": false,
+  "wrapAround": false,
+  "contain": true,
+  "cellAlign": "left",
+  "watchCSS": true,
+  "dragThreshold": 8,
+  "groupCells": true,
+  "arrowShape": "m19.396765,50.965636l66.403248,0l0,-1.931267l-67.943033,0l22.134416,-22.209574l-1.347312,-1.351887l-23.866675,23.754587l-0.57742,0.772507l0.57742,0.772507l23.866675,23.754587l1.347312,-1.351887l-22.134416,-22.209574l0.57742,0l0.962366,0z"
+}
+{%- endcapture -%}
+
+{%- capture section_settings -%}
+{
+  "productId": {{ product.id | json }},
+  "sectionId": {{ section.id | json }},
+  "recommendationsCount": {{ section.settings.grid_items_count | json }},
+  "layout": {{ section.settings.layout_mode | json }},
+  "recommendationsType": {{ 'complementary' | json }}
+}
+{%- endcapture -%}
+
+{%- assign desktop_items_per_row = section.settings.grid_desktop_items_per_row -%}
+{%- assign mobile_items_per_row  = section.settings.grid_mobile_items_per_row | times: 1 -%}
+
+{%- assign item_count = section.settings.grid_items_count -%}
+<style type="text/css">
+  section-product-recommendations{
+    display: block;
+  }
+</style>
+<section-product-recommendations class="ProductRecommendations no-js-hidden Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }}"
+  style="border-top: 1px solid var(--tg-sys-color-outline);" data-section-id="{{ section.id }}" data-section-settings='{{ section_settings }}'>
+  {%- if section.settings.heading != blank -%}
+    <header class="SectionHeader Container Container--fluid SectionHeader--horizontal">
+      <div class="SectionHeader__Text">
+        <h2 class="SectionHeader__Heading CustomSize {{ section.settings.heading_font_size }}">{{ section.settings.heading }}</h2>
+      </div>
+    </header>
+  {%- endif -%}
+
+  <div class="ProductRecommendations__Body ProductListWrapper">
+    {%- if recommendations.performed and template.name != 'product' -%}
+      {%- if section.settings.layout_mode == 'carousel' -%}
+        <div class="ProductList ProductList--carousel Carousel ProductList--hasProduct" data-flickity-config='{{ flickity_options }}'>
+          {%- for recommendation in recommendations.products limit: item_count -%}
+            <div class="Carousel__Item 1/{{ mobile_items_per_row }}--small 1/{{ desktop_items_per_row }}--medium-up">
+              {% render 'product-card', product: recommendation, card_mobile_items_per_row: 1.47, show_rating: section.settings.show_rating, show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_swatches: section.settings.show_swatches, show_quick_add: section.settings.enable_quick_add %}
+            </div>
+          {%- else -%}
+            {%- comment -%}Hide the section if there is no recommendations to show{%- endcomment -%}
+            <style>
+              #shopify-section-{{ section.id }} {
+                display: none;
+              }
+            </style>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="ProductList ProductList--grid Grid ProductList--hasProduct">
+          {%- for recommendation in recommendations.products limit: item_count -%}
+            <div class="Grid__Item 1/{{ mobile_items_per_row }}--small 1/{{ desktop_items_per_row }}--medium-up">
+              {% render 'product-card', product: recommendation, show_rating: section.settings.show_rating, show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_swatches: section.settings.show_swatches, show_quick_add: section.settings.enable_quick_add %}
+            </div>
+          {%- else -%}
+            {%- comment -%}Hide the section if there is no recommendations to show{%- endcomment -%}
+            <style>
+              #shopify-section-{{ section.id }} {
+                display: none;
+              }
+            </style>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+    {%- else -%}
+      {%- if section.settings.layout_mode == 'grid' -%}
+        <div class="ProductList ProductList--grid Grid">
+          {%- for i in (1..section.settings.grid_items_count) -%}
+            <div class="Grid__Item 1/{{ mobile_items_per_row }}--small 1/{{ desktop_items_per_row }}--medium-up">
+              {% render 'placeholder-card' %}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="ProductList ProductList--carousel Carousel" data-flickity-config='{{ flickity_options }}'>
+          {%- for i in (1..section.settings.grid_items_count) -%}
+            <div class="Carousel__Item 1/{{ mobile_items_per_row }}--small 1/{{ desktop_items_per_row }}--medium-up">
+              {% render 'placeholder-card' %}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section-product-recommendations>
+
+{% schema %}
+{
+  "name": "Complementary products",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Medium"
+    },
+    {
+      "type": "paragraph",
+      "content": "To select complementary products, add the Search & Discovery app. [Learn more](https://shopify.dev/themes/product-merchandising/recommendations)"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "carousel"
+    },
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pairs well with"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_size",
+      "label": "Heading size",
+      "options": [
+        {
+          "value": "HeadlineSmall",
+          "label": "Small"
+        },
+        {
+          "value": "HeadlineMedium",
+          "label": "Medium"
+        },
+        {
+          "value": "HeadlineLarge",
+          "label": "Large"
+        }
+      ],
+      "default": "HeadlineMedium"
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "grid_items_count",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "label": "Maximum products to show",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "id": "grid_desktop_items_per_row",
+      "label": "Number of columns on desktop",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "id": "grid_mobile_items_per_row",
+      "label": "Number of columns on mobile",
+      "default": "2",
+      "info": "Visible when the Layout setting is set to Grid."
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_info",
+      "label": "Show product info",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show product rating",
+      "default": false,
+      "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#featured-collection-show-product-rating)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swatches",
+      "label": "Show swatch",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": false,
+      "label": "Enable quick add button"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Complementary products"
+    }
+  ],
+  "templates": [
+    "product"
+  ]
+}
+{% endschema %}

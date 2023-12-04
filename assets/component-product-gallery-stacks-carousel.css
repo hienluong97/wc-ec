@@ -1,0 +1,75 @@
+.ProductGallery--stackCarousel .ProductGallery__Carousel:after {
+  content: "flickity";
+  display: none; /* hide :after */
+}
+.ProductGallery--stackCarousel .MediaModalOpener {
+  width: 50%;
+}
+.ProductGallery--stackCarousel .MediaModalOpener:first-child {
+  width: 100%;
+}
+.ProductGallery--stackCarousel .MediaModalOpener--lastBig {
+  width: 100%;
+}
+.ProductGallery--stackCarousel .Product__ShortDescription {
+  order: 1;
+  width: 100%;
+}
+@media screen and (min-width: 1008px) {
+  .ProductGallery--stackCarousel .ProductGallery__Carousel .Carousel__Item:not(.Carousel__Item--fullWidth) {
+    width: 50%;
+  }
+  .ProductGallery--stackCarousel .MediaModalOpener:first-child {
+    width: 50%;
+  }
+  .ProductGallery--stackCarousel .MediaModalOpener:last-child:not(.MediaModalOpener--lastBig) {
+    border-left: 1px solid var(--tg-sys-color-outline);
+  }
+  .ProductGallery--stackCarousel .MediaModalOpener--lastBig {
+    width: 50%;
+  }
+  .ProductGallery--stackCarousel .ProductGallery__Carousel {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: none;
+    margin-right: -1px;
+    margin-left: 0;
+    margin-bottom: -1px;
+  }
+  .ProductGallery--stackCarousel .ProductGallery__Carousel .Carousel__Item {
+    border-left: none;
+    border-right: 1px solid var(--tg-sys-color-outline);
+    border-bottom: 1px solid var(--tg-sys-color-outline);
+  }
+  .ProductGallery--stackCarousel .ProductGallery__Carousel:after {
+    content: "";
+  }
+  .ProductGallery--stackCarousel .MediaModalOpener.MediaModalOpener--currentVariantImage {
+    -webkit-animation: CurrentVariantImageGlow 800ms ease-out 3 alternate;
+            animation: CurrentVariantImageGlow 800ms ease-out 3 alternate;
+  }
+  @-webkit-keyframes CurrentVariantImageGlow {
+    0% {
+      padding: 0.25rem;
+    }
+    100% {
+      padding: 0;
+    }
+  }
+  @keyframes CurrentVariantImageGlow {
+    0% {
+      padding: 0.25rem;
+    }
+    100% {
+      padding: 0;
+    }
+  }
+  .ProductGallery--stackCarousel .MediaModalOpener.Carousel__Item--fullWidth {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1007px) {
+  .ProductGallery--stackCarousel {
+    margin-bottom: 2rem;
+  }
+}

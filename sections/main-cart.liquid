@@ -1,0 +1,181 @@
+{%- capture section_settings -%}
+{
+  "itemCount": {{ cart.item_count }},
+  "freeShippingString": "{{ 'cart.general.free_shipping' | t }}",
+  "freeShippingAmountString": "{{ 'cart.general.free_shipping_remaining_html' | t: remaining_amount: 'remaining__amount' }}",
+  "freeShippingThreshold": {{ section.settings.cart_show_free_shipping_threshold }},
+  "freeShippingAmount": {{ section.settings.cart_free_shipping_threshold | times: 100 }}
+}
+{%- endcapture -%}
+
+{% render 'page-header' %}
+
+{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-items-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-cart.js' | asset_url }}" defer="defer"></script>
+
+<section-cart style="display: block;" class="Cart Container--spacing{{ section.settings.spacing_position }}" data-section-id="{{ section.id }}" data-section-settings='{{ section_settings }}'>
+  <div class="Cart__Content">
+    {%- if section.settings.announcement != blank -%}
+      <header class="Cart__Header"> 
+        <div class="Cart__ShippingNotice Alert Alert--info Container Container--fluid">
+          {{ section.settings.announcement }}
+        </div>
+      </header>
+    {%- endif -%}
+
+    {%- if section.settings.cart_show_free_shipping_threshold -%}
+      <header class="Cart__Header no-js-hidden"> 
+        <div class="Cart__ShippingAmountNotice Alert Alert--info no-js-hidden Container Container--fluid">
+          &nbsp;
+        </div>
+      </header>
+    {%- endif -%}
+
+    {%- if cart.item_count == 0 -%}
+      <div class="EmptyResult Container">
+          <h1 class="EmptyResult__Title">{{ 'cart.general.empty' | t }}</h1>
+          <a href="{{ routes.all_products_collection_url }}" class="EmptyResult__Action Button Button--primary" style="min-width: 280px;">{{ 'cart.general.empty_button' | t }}</a>
+      </div>
+    {%- else -%}
+      <div class="Cart__Body">
+        <form action="{{ routes.cart_url }}" method="POST" class="Form Form--cart" novalidate data-cart-currency-symbol="{{ cart.currency.symbol }}"  data-cart-total-price="{{ cart.total_price }}"> 
+          {% render 'cart-items' %}
+
+          <footer class="Cart__Summary Grid">
+            {%- if section.settings.cart_enable_notes -%}
+              <div class="Grid__Item 1/2--large">
+                <div class="Container Container--fluid Container--spacingMediumPadding">
+                  <div class="Form__Item Form__Item--floatingLabel">
+                    <textarea id="CartNote" class="Form__Input" placeholder="{{ 'cart.general.note_placeholder' | t }}" name="note" rows="5" style="height: auto;">{{ cart.note }}</textarea>
+                    <label for="CartNote">{{ 'cart.general.add_note' | t }}</label>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+
+            <div class="Grid__Item 1/2--large TextEnd CartSummary__Checkout {% unless section.settings.cart_enable_notes %}CartSummary__Checkout--withoutNotes{% endunless %}">
+              <div class="Container Container--fluid Container--spacingMediumPadding">
+                {%- if cart.cart_level_discount_applications != blank -%}
+                  {%- for discount_application in cart.cart_level_discount_applications -%}
+                    <p class="Cart__Discount">{%- render 'icons', icon: 'sale' -%}{{ 'cart.general.discount' | t }} ({{ discount_application.title }}): -<span>{{ discount_application.total_allocated_amount | money }}</span></p>
+                  {%- endfor -%}
+                {%- endif -%}
+
+                <p class="Cart__Total">{{ 'cart.general.total' | t }}: <span>{{ cart.total_price | money_with_currency }}</span></p>
+
+                <small class="Cart__Taxes TextMuted">
+                  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                    {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- elsif cart.taxes_included -%}
+                    {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+                  {%- elsif shop.shipping_policy.body != blank -%}
+                    {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                  {%- else -%}
+                    {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+                  {%- endif -%}
+                </small>
+
+                <button type="submit" name="checkout" class="Cart__Checkout Button Button--primary">{{ 'cart.general.checkout' | t }}</button>
+
+                {%- if additional_checkout_buttons -%}
+                  <div class="Cart__DynamicCheckoutButtons">
+                    {{ content_for_additional_checkout_buttons }}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          </footer>
+        </form>
+      </div>
+
+     
+      {%- if section.settings.show_shipping_estimator -%}
+        <div class="Cart__Footer Container--spacingTop">
+        {% render 'shipping-estimator' %}
+        </div>
+      {%- endif -%}
+      
+    {%- endif -%}
+  </div>
+</section-cart>
+
+{% schema %}
+{
+  "name": "Cart page",
+  "class": "shopify-section--main-cart",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Bottom"
+    },
+    {
+      "type": "header",
+      "content": "Cart information"
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_enable_notes",
+      "label": "Enable order notes",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement",
+      "label": "Announcement",
+      "default": "Make an announcement."
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_show_free_shipping_threshold",
+      "label": "Show free shipping minimum amount",
+      "info": "Make sure that you have properly configured your [shipping rates](/admin/settings/shipping).",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cart_free_shipping_threshold",
+      "label": "Free shipping minimum amount",
+      "info": "Use a number. Letters and special characters are not accepted.",
+      "default": "50"
+    },
+    {
+      "type": "header",
+      "content": "Shipping rates calculator"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_estimator",
+      "label": "Show shipping rates calculator",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shipping_estimator_default_country",
+      "label": "Default country to use",
+      "info": "If your customer is logged in, the country in their default shipping address will be preselected.",
+      "default": "United States"
+    }
+  ]
+}
+{% endschema %}

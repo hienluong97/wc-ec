@@ -1,0 +1,64 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Template Cart
+ * ----------------------------------------------------------------------------
+ */
+.Template--cart .Cart {
+  border-top: 1px solid var(--tg-sys-color-outline);
+}
+@media screen and (min-width: 641px) {
+  .Template--cart .Cart__Summary {
+    justify-content: flex-end;
+  }
+}
+.Template--cart .Cart__Summary .CartSummary__Checkout--withoutNotes {
+  width: 100%;
+}
+.Template--cart .Cart__Checkout {
+  min-width: 17rem;
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 640px) {
+  .Template--cart .Cart__Checkout {
+    width: 100%;
+  }
+}
+.Template--cart .Cart__DynamicCheckoutButtons {
+  margin-bottom: 1rem;
+}
+.Template--cart .Cart__DynamicCheckoutButtons [data-shopify-buttoncontainer] {
+  justify-content: flex-end;
+}
+.Template--cart .Cart__DynamicCheckoutButtons div[role=button] {
+  border-radius: var(--tg-compontent-button-border-radius) !important;
+}
+.Template--cart .Cart__DynamicCheckoutButtons div[role=button]:hover {
+  box-shadow: var(--tg-sys-shadow) !important;
+}
+.Template--cart .Cart__Discount {
+  margin-bottom: 0.25rem;
+  margin-top: 1rem;
+}
+.Template--cart .Cart__Discount .Icon--sale {
+  margin-right: 0.25rem;
+}
+.Template--cart .Cart__Header {
+  border-bottom: 1px solid var(--tg-component-drawer-outline);
+}
+.Template--cart .Cart__ShippingAmountNotice, .Template--cart .Cart__ShippingNotice {
+  margin-bottom: 0rem;
+  padding-right: calc(var(--tg-container-gutter-x) * 2);
+  padding-left: calc(var(--tg-container-gutter-x) * 2);
+}
+@media screen and (min-width: 641px) {
+  .Template--cart .Cart__ShippingAmountNotice, .Template--cart .Cart__ShippingNotice {
+    padding-right: calc(var(--tg-container-gutter-x) * 3);
+    padding-left: calc(var(--tg-container-gutter-x) * 3);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .Template--cart .Cart__ShippingAmountNotice, .Template--cart .Cart__ShippingNotice {
+    padding-right: calc(var(--tg-container-gutter-x) * 4);
+    padding-left: calc(var(--tg-container-gutter-x) * 4);
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/wao_kv2_ae0506b5-2540-411c-8238-ad1823783403.jpg",
+            "overlay_opacity": 0,
+            "overlay_opacity_mobile": 0,
+            "image_link": "",
+            "content_position": "middleLeft",
+            "subheading": "",
+            "heading": "WAOCON EC",
+            "heading_font_size": "DisplayMedium",
+            "description": "<p>思わずワオとおどろくご提案<\/p>",
+            "text_color": "#ffffff",
+            "text_color_mobile": "#ffffff",
+            "button_1_label": "",
+            "button_1_link": "",
+            "button_1_style": "underline",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_style": "underline"
+          }
+        },
+        "a8dc9c25-f6ab-461d-bb41-8e3e3a1ce70a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/wao_kv_eae9637a-442c-4a1e-b6f1-a993588cc332.jpg",
+            "overlay_opacity": 30,
+            "overlay_opacity_mobile": 0,
+            "image_link": "",
+            "content_position": "middleCenter",
+            "subheading": "",
+            "heading": "",
+            "heading_font_size": "DisplayMedium",
+            "description": "",
+            "text_color": "#ffffff",
+            "text_color_mobile": "#ffffff",
+            "button_1_label": "",
+            "button_1_link": "",
+            "button_1_style": "primary",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "slide-1",
+        "a8dc9c25-f6ab-461d-bb41-8e3e3a1ce70a"
+      ],
+      "settings": {
+        "spacing_position": "None",
+        "slide_height": "adaptImage",
+        "show_navigation_dots": true,
+        "show_navigation_arrows": true,
+        "controls_color": "#ffffff",
+        "autoplay": true,
+        "cycle_speed": 10,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "new-arrivals": {
+      "type": "featured-collection",
+      "settings": {
+        "spacing_position": "Medium",
+        "collection": "一般商品",
+        "layout_mode": "carousel",
+        "heading": "WAOCON goods",
+        "heading_font_size": "HeadlineMedium",
+        "button_label": "View all products",
+        "grid_items_count": 8,
+        "grid_desktop_items_per_row": 4,
+        "grid_mobile_items_per_row": "2",
+        "show_product_info": true,
+        "show_rating": false,
+        "show_vendor": false,
+        "show_swatches": false,
+        "enable_quick_add": false
+      }
+    },
+    "image-banner": {
+      "type": "banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "text": "crowdfunding",
+            "heading_font_size": "DisplaySmall",
+            "color": "#1c1b1b",
+            "link": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "text": "<p>応援してくれるサポーターを募集しています<\/p>",
+            "color": "#1c1b1b"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Now",
+            "link": "",
+            "style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "description",
+        "button"
+      ],
+      "settings": {
+        "spacing_position": "None",
+        "image": "shopify:\/\/shop_images\/wao_kv1_857bf56b-6709-4d94-90a2-e6fcfcfe9705.jpg",
+        "overlay_opacity": 0,
+        "image_link": "",
+        "content_position": "middleCenter"
+      }
+    },
+    "bestseller": {
+      "type": "featured-collection",
+      "settings": {
+        "spacing_position": "Medium",
+        "collection": "cloudfunding",
+        "layout_mode": "grid",
+        "heading": "crowdfunding",
+        "heading_font_size": "HeadlineMedium",
+        "button_label": "View all products",
+        "grid_items_count": 8,
+        "grid_desktop_items_per_row": 4,
+        "grid_mobile_items_per_row": "2",
+        "show_product_info": true,
+        "show_rating": false,
+        "show_vendor": false,
+        "show_swatches": false,
+        "enable_quick_add": false
+      }
+    },
+    "blog-posts": {
+      "type": "featured-blog",
+      "blocks": {
+        "blog": {
+          "type": "blog",
+          "settings": {
+            "blog": "news",
+            "grid_items_count": 3
+          }
+        }
+      },
+      "block_order": [
+        "blog"
+      ],
+      "disabled": true,
+      "settings": {
+        "spacing_position": "Medium",
+        "layout_mobile": "horizontal",
+        "heading": "Blog posts",
+        "heading_font_size": "HeadlineMedium",
+        "button_label": "View all articles",
+        "button_link": "",
+        "featured_image_size": "natural",
+        "card_align": "left",
+        "show_category": true,
+        "show_description": true,
+        "show_read_more": false
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "new-arrivals",
+    "image-banner",
+    "bestseller",
+    "blog-posts"
+  ]
+}

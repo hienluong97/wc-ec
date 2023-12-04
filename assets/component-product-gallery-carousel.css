@@ -1,0 +1,94 @@
+.ProductGallery__Carousel {
+  margin-left: -1px;
+}
+.ProductGallery__Carousel .Carousel__Item {
+  width: 50%;
+}
+.ProductGallery__Carousel .Carousel__Item--fullWidth {
+  width: 100%;
+}
+
+@media screen and (min-width: 641px) {
+  .ProductGallery__Carousel--cellAlignCenter:not(.ProductGallery__Carousel--fullWidthDesktop) {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 640px) {
+  .ProductGallery__Carousel--cellAlignCenter:not(.ProductGallery__Carousel--fullWidthMobile) {
+    margin-left: 0;
+  }
+}
+.ProductGallery--carousel {
+  margin-top: 2px;
+}
+
+.ProductGallery--carousel.ProductGallery--withModle .flickity-prev-next-button {
+  background-color: var(--tg-sys-color-background);
+  fill: var(--tg-sys-color-on-background);
+}
+
+.ProductGallery__Thumbs {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.ProductGallery__Thumbs .Carousel__Item {
+  margin-bottom: 0.5rem;
+}
+.ProductGallery__Thumbs .Carousel__Item:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.ProductGallery__Thumbs--left .flickity-slider, .ProductGallery__Thumbs--right .flickity-slider {
+  transform: none !important;
+  overflow: scroll !important;
+  height: 100% !important;
+}
+
+.ProductGallery__Thumbs--left .Carousel__Item,
+.ProductGallery__Thumbs--right .Carousel__Item {
+  width: 100%;
+  max-width: 100%;
+  cursor: pointer;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.ProductGallery__Thumbs .Carousel__Item:not(.is-nav-selected) {
+  opacity: 0.6;
+}
+
+.ProductGallery__Thumbs--left .flickity-viewport,
+.ProductGallery__Thumbs--right .flickity-viewport {
+  transform: none !important;
+  overflow: scroll !important;
+  height: 100% !important;
+}
+
+.ProductGallery__Thumbs--bottom .Carousel__Item {
+  width: 4rem;
+}
+
+.ProductGallery--carousel {
+  margin-top: 0;
+  top: 0;
+}
+
+.ProductGallery__Carousel {
+  margin-top: -1px;
+  border-top: 1px solid var(--tg-sys-color-outline);
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+.ProductGallery__Carousel .Carousel__Item {
+  padding: 0;
+  border-left: 1px solid var(--tg-sys-color-outline);
+}
+
+.ProductGallery__Carousel.flickity-ready.flickity-enabled .Carousel__Item {
+  height: 100%;
+}
+
+.ProductGallery__Thumbs .Carousel__Item {
+  border: 1px solid rgba(var(--tg-sys-color-outline-rgb), 0.8);
+}

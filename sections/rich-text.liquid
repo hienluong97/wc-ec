@@ -1,0 +1,193 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+{%- assign has_button = false -%}
+{%- assign has_two_buttons = false -%}
+
+<section class="Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }} RichText RichText--{{ section.settings.content_align }}" 
+ data-section-id="{{ section.id }}">
+  <div class="Container Container--fluid Container--spacingMediumPadding">
+    <header class="SectionHeader">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+            <h2 class="SectionHeader__Heading CustomSize {{ block.settings.heading_font_size }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</h2>
+          {%- when 'description' -%}
+            <div class="SectionHeader__Description RTE" {{ block.shopify_attributes }}>
+             {{ block.settings.text }}
+            </div>
+          {%- when 'button' -%}
+            {%- if has_button -%} 
+              {%- assign has_two_buttons = true -%}
+            {%- endif -%}
+            {%- assign has_button = true -%}
+            
+        {%- endcase -%}
+      {%- endfor -%}
+
+      {%- if has_button -%}
+        <div class="SectionHeader__ButtonWrapper">
+          <div class="ButtonGroup {% if has_two_buttons %}ButtonGroup--smallSize{% endif %}">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'button' -%}
+                  <a href="{{ block.settings.link }}" class="Button Button--{{ block.settings.style }} {{ block.shopify_attributes }}">{{ block.settings.label | escape }}</a>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </header>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Medium"
+    },
+    {
+      "type": "select",
+      "id": "content_align",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Talk about your brand"
+        },
+        {
+          "type": "select",
+          "id": "heading_font_size",
+          "label": "Heading size",
+          "options": [
+            {
+              "value": "HeadlineSmall",
+              "label": "Small"
+            },
+            {
+              "value": "HeadlineMedium",
+              "label": "Medium"
+            },
+            {
+              "value": "HeadlineLarge",
+              "label": "Large"
+            }
+          ],
+          "default": "HeadlineMedium"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "outline",
+              "label": "Outline"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            }
+          ],
+          "default": "primary"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "description"
+        },
+        {
+          "type": "button"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

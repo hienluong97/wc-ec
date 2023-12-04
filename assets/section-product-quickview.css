@@ -1,0 +1,24 @@
+.ProductQuickview__Summary {
+  padding: 1rem;
+}
+@media screen and (min-width: 641px) {
+  .ProductQuickview__Summary {
+    padding: 2rem;
+  }
+}
+
+.ProductQuickview__Body {
+  border-left: 1px solid var(--tg-sys-color-outline);
+}
+.ProductQuickview__Body .ProductForm__Checkout, .ProductQuickview__Body .Product__StoreAvailabilityContainer, .ProductQuickview__Body .Product__PayInstallments {
+  display: none;
+}
+
+.ProductQuickview__ViewMore {
+  margin-top: 1rem;
+}
+
+.ProductQuickview {
+  --tg-product-short-description-text-color: var(--tg-sys-color-on-surface);
+  --tg-product-short-description-background: var(--tg-sys-color-surface3);
+}

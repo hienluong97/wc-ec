@@ -1,0 +1,48 @@
+:root {
+  --tg-product-swatch-border-color: rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+  --tg-product-swatch-border-checked-color: var(--tg-sys-color-on-background);
+}
+
+.ImageSwatchList, .ColorSwatchList, .BlockSwatchList {
+  margin-bottom: -0.5rem;
+}
+.ImageSwatchList label, .ColorSwatchList label, .BlockSwatchList label {
+  border: 1px solid var(--tg-product-swatch-border-color);
+}
+.ImageSwatchList input:checked + label, .ColorSwatchList input:checked + label, .BlockSwatchList input:checked + label {
+  border: 1px solid var(--tg-product-swatch-border-checked-color);
+  box-shadow: 1px 1px var(--tg-product-swatch-border-checked-color) inset, -1px -1px var(--tg-product-swatch-border-checked-color) inset;
+}
+.ImageSwatchList li, .ColorSwatchList li, .BlockSwatchList li {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ImageSwatchList li {
+  width: 5rem;
+}
+.ImageSwatchList li .ImageSwatch {
+  cursor: pointer;
+  display: block;
+  background-size: cover;
+  background-position: center;
+}
+
+.ColorSwatchList li .ColorSwatch {
+  cursor: pointer;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+}
+.ColorSwatchList .ColorSwatch--white {
+  border: 1px solid var(--tg-sys-color-outline);
+}
+
+.BlockSwatchList li .BlockSwatch {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  text-align: center;
+  justify-content: center;
+  min-width: 3rem;
+}

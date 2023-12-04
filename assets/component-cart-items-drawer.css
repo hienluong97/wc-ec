@@ -1,0 +1,10 @@
+.Cart__ItemList--drawer .CartItem__ImageWrapper {
+  width: 40%;
+}
+.Cart__ItemList--drawer .CartItem__Info {
+  width: 60%;
+  padding-left: 1rem;
+}
+.Cart__ItemList--drawer .CartItem__QuantityWrapper {
+  margin-top: 1rem;
+}

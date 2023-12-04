@@ -1,0 +1,104 @@
+<div class="Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }} Container--spacingMediumPadding"
+  style="border-bottom: 1px solid var(--tg-sys-color-outline);border-top: 1px solid var(--tg-sys-color-outline);">
+  <div class="Container" style="text-align: {{ section.settings.content_align }};">
+    <h2 class="{{ section.settings.heading_font_size }}">
+        {%- if section.settings.page.title != blank -%}
+          {{ section.settings.page.title | escape }}
+        {%- else -%}
+          {{ 'page.title' | t }}
+        {%- endif -%}
+    </h2>
+    <div class="RTE">
+        {%- if section.settings.page.content != blank -%}
+          {{ section.settings.page.content }}
+        {%- else -%}
+          <div class="Ratio" style="--tg-aspect-ratio: 1.8;">
+            {{ 'page' | placeholder_svg_tag }}
+          </div>
+        {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Medium"
+    },
+    {
+      "type": "page",
+      "id": "page",
+      "label": "Page"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_size",
+      "label": "Heading size",
+      "options": [
+        {
+          "value": "HeadlineSmall",
+          "label": "Small"
+        },
+        {
+          "value": "HeadlineMedium",
+          "label": "Medium"
+        },
+        {
+          "value": "HeadlineLarge",
+          "label": "Large"
+        }
+      ],
+      "default": "HeadlineMedium"
+    },
+    {
+      "type": "select",
+      "id": "content_align",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page"
+    }
+  ]
+}
+{% endschema %}

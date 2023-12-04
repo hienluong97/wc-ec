@@ -1,0 +1,95 @@
+/**
+ * ----------------------------------------------------------------------------
+ * Template page
+ * ----------------------------------------------------------------------------
+ */
+.Page {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.PageLeft {
+  width: 100%;
+}
+
+.PageRight {
+  display: none;
+  position: relative;
+}
+
+@media screen and (min-width: 1008px) {
+  .PageLeft {
+    width: 50%;
+    flex-grow: 1;
+    margin-right: -1px;
+    border-right: 1px solid var(--tg-sys-color-outline);
+    position: relative;
+  }
+  .PageLeft--borderBottom {
+    border-bottom: 1px solid var(--tg-sys-color-outline);
+  }
+  .PageRight {
+    display: block;
+    width: 50%;
+    border-bottom: 1px solid var(--tg-sys-color-outline);
+  }
+}
+.PageRight__Inner,
+.PageLeft__Inner {
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(var(--tg-header-height, 0px) * var(--use-sticky-header, 0));
+}
+
+.Template--page .TextBanner {
+  border-radius: 0;
+}
+.Template--page .TextBanner__Title {
+  margin-bottom: 0.5rem;
+}
+.Template--page .TextBanner--center {
+  text-align: center;
+}
+.Template--page .Page {
+  border-top: 1px solid var(--tg-sys-color-outline);
+}
+.Template--page .ContactText {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -1px;
+  margin-right: -1px;
+  border-top: 1px solid var(--tg-sys-color-outline);
+}
+.Template--page .ContactText .ContactText__Item {
+  padding: 1rem;
+  width: 33.333333%;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  border-right: 1px solid var(--tg-sys-color-outline);
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+.Template--page .Page__Content,
+.Template--page .Page__TextBanner,
+.Template--page .Page__ContactForm,
+.Template--page .Page__Questions {
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+.Template--page .Page__Questions .Accordion__Collapse {
+  border-left: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+  border-right: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+  border-bottom: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+}
+.Template--page .Page__ContactForm .ContactForm__Description {
+  font-family: var(--tg-sys-typescale-body-large-font);
+  font-style: var(--tg-sys-typescale-body-large-style);
+  font-weight: var(--tg-sys-typescale-body-large-weight);
+  font-size: var(--tg-sys-typescale-body-large-size);
+  line-height: var(--tg-sys-typescale-body-large-line-height);
+  letter-spacing: var(--tg-sys-typescale-body-large-tracking);
+  margin-bottom: 2rem;
+}
+@media screen and (min-width: 641px) {
+  .Template--page .Page__ContactForm .ContactForm__Description {
+    margin-bottom: 1.5rem;
+  }
+}

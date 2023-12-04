@@ -1,0 +1,49 @@
+<div class="Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }} AppWrapper"
+  style="border-bottom: 1px solid var(--tg-sys-color-outline); border-top: 1px solid var(--tg-sys-color-outline);">
+  {%- for block in section.blocks -%}
+    {% render block %}
+  {%- endfor -%}
+</div> 
+
+{% schema %}
+{
+  "name": "App wrapper",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Medium"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "App wrapper"
+    }
+  ]
+}
+{% endschema %}

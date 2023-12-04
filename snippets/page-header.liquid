@@ -1,0 +1,60 @@
+{{ 'component-page-header.css' | asset_url | stylesheet_tag }}
+
+<div id="PageHeader" class="Container Container--fluid PageHeader">
+    <div class="PageHeaderWrapper">
+         <h1 class="PageHeader__Title">
+            {%- if template.name == 'product' -%}
+                {{- product.title -}}
+            {%- elsif template.name == 'collection' -%}
+                {{- collection.title -}}
+            {%- elsif template.name == 'list-collections' -%}
+                {{- section.settings.heading | default: page_title -}}
+            {%- elsif template.name == 'page' -%}
+                {{- page.title -}}
+            {%- elsif template.name == 'blog' -%}
+                {{- blog.title -}}
+            {%- elsif template.name == 'article' -%}
+                {{- article.title -}}
+            {%- else -%}
+                {{ page_title }}
+            {%- endif -%}
+        </h1>
+
+         <ul class="PageHeader__Breadcrumb Breadcrumb">
+            <li class="Breadcrumb__Item"><a href="{{ routes.root_url }}" class="" title="{{ 'general.breadcrumb.home' | t }}">{{ 'general.breadcrumb.home' | t }}</a></li>
+
+            {%- if template.name == 'product' -%}
+                {%- if collection -%}
+                    <li class="Breadcrumb__Item">{{- collection.title | link_to: collection.url -}}</li>
+                {%- elsif product.collections and product.collections.first -%}
+                    <li class="Breadcrumb__Item">{{- product.collections.first.title | link_to: product.collections.first.url -}}</li>
+                {%- endif -%}
+            {%- elsif template.name == 'collection' -%}
+                <li class="Breadcrumb__Item">{{- collection.title -}}</li>
+            {%- elsif template.name == 'page' -%}
+                <li class="Breadcrumb__Item">{{- page.title -}}</li>
+            {%- elsif template.name == 'search' -%}
+                <li class="Breadcrumb__Item">{{- 'search.general.title' | t -}}</li>
+            {%- elsif template.name == 'cart' -%}
+                <li class="Breadcrumb__Item">{{- 'cart.general.title' | t -}}</li>
+            {%- elsif template.name == 'blog' -%}
+                <li class="Breadcrumb__Item">{{- blog.title -}}</li>
+            {%- elsif template.name == 'article' -%}
+                <li class="Breadcrumb__Item">{{- blog.title | link_to: blog.url -}}</li>
+            {%- elsif template.name == 'list-collections' -%}
+                <li class="Breadcrumb__Item">{{- section.settings.heading | default: page_title -}}</li>
+            {%- elsif template.directory == 'customers' -%}  
+                {%- unless template.name == 'account' -%} 
+                    <li class="Breadcrumb__Item">{{- 'general.breadcrumb.account' | t | link_to: routes.account_url -}} </li>
+                {%- endunless -%}
+                    <li class="Breadcrumb__Item">{{- template.name -}}</li>
+            {%- else -%}
+                <li class="Breadcrumb__Item">{{ page_title }}</li>
+            {%- endif -%}
+        </ul>
+    </div>
+</div>
+
+<script>
+  document.documentElement.style.setProperty('--tg-page-header-height', document.getElementById('PageHeader').offsetHeight + 'px');
+</script>

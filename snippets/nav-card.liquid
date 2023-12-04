@@ -1,0 +1,39 @@
+<div class="NavCard">
+    {%- if block.settings.link_url != blank -%}
+      <a class="NavCard__Inner" href="{{ block.settings.link_url | default: '#' }}">
+    {%- else -%}
+      <div class="NavCard__Inner">
+    {%- endif -%}
+
+    {%- if block.settings.image != blank -%}
+      <div class="NavCard__ImageWrapper Ratio {% if section.settings.featured_image_size != 'natural' %} Ratio--{{ section.settings.featured_image_size }}{% endif %}" 
+        {% if section.settings.featured_image_size == 'natural' %}style="--tg-aspect-ratio: {{ block.settings.image.aspect_ratio }}"{% endif %}>
+        
+        {%- capture tg_sizes -%}(min-width: 641px) calc(100vw / {{ section.settings.grid_desktop_items_per_row }}), {% if section.settings.layout_mode == 'carousel' %}30vw{% else %}calc(100vw / {{ section.settings.grid_mobile_items_per_row }}){%- endif -%}{%- endcapture -%}
+        {{ block.settings.image | image_url: width: 2000 | image_tag:
+            loading: 'lazy',
+            decoding: 'async',
+            sizes: tg_sizes,
+            widths: '375, 550, 750, 1100, 1500, 1780, 2000',
+            class: 'NavCard__Image Image--fadeIn Image--lazyLoad'
+        }}
+
+        <span class="Image--loader"></span>
+
+      </div>
+    {%- else -%}
+      <div class="NavCard__ImageWrapper Ratio {% if section.settings.featured_image_size != 'natural' %} Ratio--{{ section.settings.featured_image_size }}{% endif %}"
+        {% if section.settings.featured_image_size == 'natural' %}style="--tg-aspect-ratio: 1;"{% endif %}>
+        {{ 'image' | placeholder_svg_tag: 'NavCard__Image SvgPlaceholder' }}
+      </div>
+    {%- endif -%}
+    
+    <div class="NavCard__Text">      
+      {%- if block.settings.heading != blank -%}
+        <h3 class="NavCard__Title CustomSize {{ block.settings.heading_font_size }}">{{ block.settings.heading }}</h3>
+      {%- endif -%}
+      
+    </div>
+
+  {%- if block.settings.link_url != blank -%}</a>{%- else -%}</div>{%- endif -%}
+</div>

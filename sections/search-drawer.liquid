@@ -1,0 +1,141 @@
+{%- liquid
+  assign predictive_search_enabled = section.settings.predictive_search_enabled
+-%}
+
+{%- if section.settings.enable_quick_add -%}
+  <script src="{{ 'component-quick-add-to-cart-button.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<div class="Drawer Drawer--top SearchDrawer {% if predictive_search_enabled %}PredictiveSearch{% endif %}" tabindex="-1" id="SearchDrawer" data-section-id="{{ section.id }}">
+  <div class="Drawer__Header">
+    <form action="{{ routes.search_url }}" name="GET" role="search" class="SearchDrawer__Form">
+      <div class="SearchDrawer__InputIconWrapper"><span>{%- render 'icons', icon: 'search' -%}</span></div>
+      <input id="SearchDrawerQueryString" type="search" class="SearchDrawer__Input Form__Input" name="q" placeholder="{{ 'search.general.input_placeholder' | t }}" aria-label="{{ 'search.general.input_placeholder' | t }}">
+      <label class="VisuallyHidden" for="SearchDrawerQueryString">{{ 'search.general.input_placeholder' | t }}</label>
+      <input type="hidden" name="options[prefix]" value="last">
+      {%- unless predictive_search_enabled -%}<button type="submit" class="Button Button--primary Form__Submit Button--small SearchDrawer__Submit">{{ 'search.general.title' | t }}</button>{%- endunless -%}
+      <button type="button" class="Button Button--icon" data-tg-dismiss="Drawer" aria-label="{{ 'general.drawer.close' | t }}">{% render 'icons', icon: 'close' %}</button>
+    </form>
+  </div>
+  {%- if predictive_search_enabled -%}
+  <div class="Drawer__Body SearchDrawer__Results PredictiveSearch__Body" tabindex="-1">
+    <div  class="PredictiveSearch__Summary Container Container--fluid LabelLarge" data-predictive-search-drawer-summary>
+      {%- if predictive_search.terms -%}
+        <a class="LabelLarge" href="{{ routes.search_url }}?q={{ predictive_search.terms }}&options[prefix]=last">
+          <span>{{ 'search.general.search_for' | t: terms: predictive_search.terms }}</span>
+        </a>
+        <a class="LabelLarge Button Button--underline" href="{{ routes.search_url }}?q={{ predictive_search.terms }}&options[prefix]=last">
+          <span>{{ 'search.general.view_all' | t }}</span>
+        </a>
+      {%- else -%}
+      <style>
+        .PredictiveSearch__Summary {
+          display: none;
+        }
+      </style>
+      {%- endif -%}
+    </div>
+    
+    <div class="PredictiveSearch__Status Loading" data-predictive-search-drawer-status style="position: relative; height: 50px;display: none;">
+      <div class="Image--loader"></div>
+    </div>
+    <div class="PredictiveSearch__Results" data-predictive-search-drawer-results>
+      {% render 'predictive-search-drawer', section: section %}
+    </div>
+   
+  </div>
+  {%- endif -%}
+</div>
+
+
+{% schema %}
+{
+  "name": "Search Drawer",
+  "class": "shopify-section--search-drawer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Search suggestions"
+    },
+    {
+      "type": "checkbox",
+      "id": "predictive_search_enabled",
+      "default": true,
+      "label": "Enable search suggestions"
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "paragraph",
+      "content": "Visible when search suggestions enabled."
+    },
+    {
+      "type": "range",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "id": "grid_desktop_items_per_row",
+      "label": "Number of columns on desktop",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "id": "grid_mobile_items_per_row",
+      "label": "Number of columns on mobile",
+      "default": "2",
+      "info": "Visible when the Layout setting is set to Grid."
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "paragraph",
+      "content": "Visible when search suggestions enabled."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_info",
+      "label": "Show product info",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show product rating",
+      "default": false,
+      "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#featured-collection-show-product-rating)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swatches",
+      "label": "Show swatch",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": false,
+      "label": "Enable quick add button"
+    }
+  ]
+}
+{% endschema %}

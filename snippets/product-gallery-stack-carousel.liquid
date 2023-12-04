@@ -1,0 +1,283 @@
+{%- comment -%}
+-------------------------------------------------------------------------------------
+Product Gallery Carousel
+-------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{{ 'component-flickity.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-gallery-carousel.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-gallery-stacks-carousel.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign initial_media_id = product.featured_media.id 
+  assign initial_media_index = 0 
+  assign has_model = false 
+  assign media_min_ratio = product.featured_media.preview_image.aspect_ratio 
+
+  for media in product.media 
+      if media.media_type == 'external_video' 
+          if media.aspect_ratio < media_min_ratio 
+            assign media_min_ratio = media.aspect_ratio 
+          endif 
+      else 
+          if media.preview_image.aspect_ratio < media_min_ratio 
+            assign media_min_ratio = media.preview_image.aspect_ratio 
+          endif 
+      endif 
+
+      if media.media_type == 'model' 
+        assign has_model = true 
+      endif 
+
+      if product.selected_variant and media.id == product.selected_variant.featured_media.id 
+          assign initial_media_index = forloop.index0 
+          assign initial_media_id = media.id 
+      endif 
+  endfor 
+
+  assign gallery_media_size = section.settings.gallery_media_size 
+  assign is_gallery_media_fit_cover = section.settings.gallery_media_fit_cover 
+  if gallery_media_size == 'natural'  
+      assign use_natural_size = true 
+  else 
+      assign use_natural_size = false 
+  endif 
+-%}
+
+<style>
+  .ProductGallery__Carousel .Carousel__Item:not(.Carousel__Item--fullWidth){
+    width: {{ section.settings.media_with_mobile }}%; 
+  }
+  @media screen and (min-width: 641px) {
+    .ProductGallery__Carousel .Carousel__Item:not(.Carousel__Item--fullWidth){
+      width: {{ section.settings.media_with }}%; 
+    }
+  }
+</style>
+<div class="ProductGallery ProductGallery--stackCarousel{% if has_model %} ProductGallery--withModle {% endif %} ProductGallery--carousel {% if section.settings.enable_image_zoom %}ProductGallery--zoom{% endif %}">
+  {%- liquid
+    assign media_size = product.media.size
+    assign gallery_media_centered = false
+
+    if section.settings.media_centered
+      assign gallery_media_centered = true 
+    endif 
+
+    if media_size < 3
+      assign gallery_media_centered = false 
+    endif 
+
+  -%}
+  {%- capture flickity_options -%}
+    {
+      "prevNextButtons": true,
+      "adaptiveHeight": true,
+      {% if has_model %}
+        "draggable": false,
+      {% endif %}
+      "dragThreshold": 8,
+      "watchCSS": true,
+      "pageDots": true,
+      "wrapAround": true,
+      "initialIndex": {{ initial_media_index }},
+      {% unless gallery_media_centered %}"cellAlign": "left",{% endunless %}
+      "arrowShape": "m19.396765,50.965636l66.403248,0l0,-1.931267l-67.943033,0l22.134416,-22.209574l-1.347312,-1.351887l-23.866675,23.754587l-0.57742,0.772507l0.57742,0.772507l23.866675,23.754587l1.347312,-1.351887l-22.134416,-22.209574l0.57742,0l0.962366,0z" 
+    }
+  {%- endcapture -%}
+
+  <div class="ProductGallery__Carousel Carousel{% if media_size == 1 or section.settings.media_with_mobile == 100 %} ProductGallery__Carousel--fullWidthMobile{% endif %}{% if gallery_media_centered %} ProductGallery__Carousel--cellAlignCenter{% endif %}"
+    data-flickity-config='{{ flickity_options }}'>
+      {%- liquid
+        assign even_image = false
+        assign image_size2 = product.media.size | modulo : 2
+        if product.media.size > 0 and image_size2 == 0 
+            assign even_image = true
+        endif 
+      -%}
+
+      {%- for media in product.media -%}
+
+        {%- case media.media_type -%}
+          {%- when 'image' -%}
+
+
+            <div class="Carousel__Item Carousel__Item--image {% if media_size == 1 %}Carousel__Item--fullWidth{% endif %} MediaModalOpener MediaModalOpener--image {% if even_image and forloop.last %}MediaModalOpener--lastBig{% endif %} {% if initial_media_id == media.id %}is-selected{% endif %}"
+              data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}" data-media-position="{{ media.position }}">
+                {%- if section.settings.enable_image_zoom -%}
+                  <div class="Product__ActionList">
+                      <div class="Product__ActionItem">
+                          <button class="Button Button--icon" type="button">
+                              <span class="VisuallyHidden">
+                                  {{ 'product.general.open_gallery_view' | t }}
+                              </span>
+                              {% render 'icons', icon: 'fullscreen' %}
+                          </button>
+                      </div>
+                  </div>
+                {%- endif -%}
+
+
+              <div class="Ratio{% unless use_natural_size %} Ratio--{{ gallery_media_size }}{% endunless %}{% unless is_gallery_media_fit_cover %} Ratio--contain{% endunless %}" {% if use_natural_size %}style="--tg-aspect-ratio: {{ media.preview_image.aspect_ratio }}"{% endif %}>
+                <img
+                  class="Image--fadeIn Image--lazyLoad"
+                  srcset="{%- if media.preview_image.width >= 550 -%}{{ media.preview_image | image_url: width: 550 }} 550w,{%- endif -%}
+                          {%- if media.preview_image.width >= 1100 -%}{{ media.preview_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                          {{ media.preview_image | image_url }} {{ media.preview_image.width }}w"
+                  sizes="(min-width: 1008px) calc(100vw / 1.5), 100vw"
+                  src="{{ media.preview_image | image_url: width: 1445 }}"
+                  alt="{{ media.alt | escape }}"
+                  {% unless forloop.first %}loading="lazy"{% endunless %}
+                  decoding="async"
+                  width="1100"
+                  height="{{ 1100 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+                  data-media-id="{{ media.id }}"
+                >
+                <span class="Image--loader"></span>
+              </div>
+            </div>
+
+          {%- when 'external_video' -%}
+            <div tabindex="-1" class="Carousel__Item Carousel__Item--video MediaModalOpener {% if media_size == 1 %}Carousel__Item--fullWidth{% endif %} {% if even_image and forloop.last %}MediaModalOpener--lastBig{% endif %} {% if initial_media_id == media.id %}is-selected{% endif %}"
+             data-media-type="external_video" data-media-id="{{ media.id }}" data-media-position="{{ media.position }}">
+              
+              <deferred-media class="DeferredMedia">
+                    
+                    <div id="Deferred-Cover-Modal-{{ media.id }}" class="DeferredMedia__CoverImageWrapper Ratio{% unless use_natural_size %} Ratio--{{ gallery_media_size }}{% endunless %}{% unless is_gallery_media_fit_cover %} Ratio--contain{% endunless %}"
+                    {% if use_natural_size %}style="--tg-aspect-ratio: {{ media.aspect_ratio }};"{% endif %}>
+                      <img class="DeferredMedia__CoverImage Product__Media Product__Media--externalVideo Image--fadeIn Image--lazyLoad"
+                        srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w,{% endif %}
+                                {% if media.preview_image.width >= 576 %}{{ media.preview_image | image_url: width: 576 }} 576w,{% endif %}
+                                {% if media.preview_image.width >= 550 %}{{ media.preview_image | image_url: width: 550 }} 550w,{% endif %}
+                                {% if media.preview_image.width >= 1100 %}{{ media.preview_image | image_url: width: 1100 }} 1100w,{% endif %}
+                                {{ media.preview_image | image_url }} {{ media.preview_image.width }}w"
+                        src="{{ media | image_url: width: 550, height: 550 }}"
+                        sizes="(min-width: 1008px) calc(100vw / 1.5), 100vw"
+                        {% unless forloop.first %}loading="lazy"{% endunless %}
+                        decoding="async"
+                        width="576"
+                        height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+                        alt="{{ media.preview_image.alt | escape }}"
+                      >
+                      <span class="Image--loader"></span> 
+                      <button class="Button Button--icon Button--play">{% render 'icons', icon: 'play-fill' %}</button>
+                    </div>
+
+                    <template>
+                        {%- liquid
+                            assign video_class = 'js-' | append: media.host
+                            if media.host == 'youtube'
+                                echo media | external_video_url: autoplay: true, loop: loop, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy"
+                            else
+                                echo media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: "lazy"
+                            endif
+                        -%}
+                    </template>
+
+                </deferred-media>
+
+
+            </div>
+
+          {%- when 'video' -%}
+            <div tabindex="-1" class="Carousel__Item Carousel__Item--video MediaModalOpener {% if media_size == 1 %}Carousel__Item--fullWidth{% endif %} {% if even_image and forloop.last %}MediaModalOpener--lastBig{% endif %} {% if initial_media_id == media.id %}is-selected{% endif %}"
+             data-media-type="video" data-media-id="{{ media.id }}" data-media-position="{{ media.position }}">
+              
+              <deferred-media class="DeferredMedia">
+                    
+                    <div id="Deferred-Cover-Modal-{{ media.id }}" class="DeferredMedia__CoverImageWrapper Ratio {% unless use_natural_size %} Ratio--{{ gallery_media_size }}{% endunless %}{% unless is_gallery_media_fit_cover %} Ratio--contain{% endunless %}" 
+                         {% if use_natural_size %}style="--tg-aspect-ratio: {{ media.preview_image.aspect_ratio }};"{% endif %}>
+                         <img class="DeferredMedia__CoverImage Product__Media Product__Media--video Image--fadeIn Image--lazyLoad"
+                          srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w,{% endif %}
+                                  {% if media.preview_image.width >= 576 %}{{ media.preview_image | image_url: width: 576 }} 576w,{% endif %}
+                                  {% if media.preview_image.width >= 550 %}{{ media.preview_image | image_url: width: 550 }} 550w,{% endif %}
+                                  {% if media.preview_image.width >= 1100 %}{{ media.preview_image | image_url: width: 1100 }} 1100w,{% endif %}
+                                  {{ media.preview_image | image_url }} {{ media.preview_image.width }}w"
+                          src="{{ media | image_url: width: 550, height: 550 }}"
+                          sizes="(min-width: 1008px) calc(100vw / 1.5), 100vw"
+                          {% unless forloop.first %}loading="lazy"{% endunless %}
+                          decoding="async"
+                          width="576"
+                          height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+                          alt="{{ media.preview_image.alt | escape }}"
+                        >
+                         <span class="Image--loader"></span> 
+                        <button class="Button Button--icon Button--play">{% render 'icons', icon: 'play-fill' %}</button> 
+                    </div>
+
+                    <template>
+                        {%- liquid
+                             echo media | media_tag: image_size: "2048x", autoplay: true, loop: loop, controls: true, preload: "none"
+                        -%}
+                    </template>
+
+                </deferred-media>
+
+            </div>
+
+          {%- when 'model' -%}
+            <div tabindex="-1" class="Carousel__Item Carousel__Item--model MediaModalOpener {% if media_size == 1 %}Carousel__Item--fullWidth{% endif %} {% if even_image and forloop.last %}MediaModalOpener--lastBig{% endif %} {% if initial_media_id == media.id %}is-selected{% endif %}"
+             data-media-type="model" data-media-id="{{ media.id }}" data-media-position="{{ media.position }}">
+              
+              <product-model class="DeferredMedia">
+
+                  <div id="Deferred-Cover-Modal-{{ media.id }}" class="DeferredMedia__CoverImageWrapper Ratio {% unless use_natural_size %} Ratio--{{ gallery_media_size }}{% endunless %}{% unless is_gallery_media_fit_cover %} Ratio--contain{% endunless %}" 
+                        {% if use_natural_size %}style="--tg-aspect-ratio: {{ media.preview_image.aspect_ratio }};"{% endif %}>
+                        <img class="DeferredMedia__CoverImage Product__Media Product__Media--model Image--fadeIn Image--lazyLoad"
+                          srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | image_url: width: 288 }} 288w,{% endif %}
+                                  {% if media.preview_image.width >= 576 %}{{ media.preview_image | image_url: width: 576 }} 576w,{% endif %}
+                                  {% if media.preview_image.width >= 550 %}{{ media.preview_image | image_url: width: 550 }} 550w,{% endif %}
+                                  {% if media.preview_image.width >= 1100 %}{{ media.preview_image | image_url: width: 1100 }} 1100w,{% endif %}
+                                  {{ media.preview_image | image_url }} {{ media.preview_image.width }}w"
+                          src="{{ media | image_url: width: 550, height: 550 }}"
+                          sizes="(min-width: 1008px) calc(100vw / 1.5), 100vw"
+                          {% unless forloop.first %}loading="lazy"{% endunless %}
+                          decoding="async"
+                          width="576"
+                          height="{{ 576 | divided_by: media.preview_image.aspect_ratio | ceil }}"
+                          alt="{{ media.preview_image.alt | escape }}"
+                        >
+
+                        <span class="Image--loader"></span> 
+                      <button class="Button Button--icon Button--play">{% render 'icons', icon: 'media-view-in-space' %}</button>
+                  </div>
+
+                  <template>
+                      {%- liquid
+                          echo media | media_tag: image_size: "2048x", toggleable: true
+                      -%}
+                  </template>
+
+              </product-model>
+
+               <button
+                        class="Button Button--full Button--primary Button--productXR "
+                        type="button"
+                        aria-label="{{ 'product.general.view_in_space' | t }}"
+                        data-shopify-xr
+                        data-shopify-model3d-id="{{ media.id }}"
+                        data-shopify-title="{{ product.title }}"
+                        data-shopify-xr-hidden
+                        >
+                        {% render 'icons', icon: 'media-view-in-space' %}
+                        {{ 'product.general.view_in_space' | t }}
+                    </button>
+
+            </div>
+        {%- endcase -%}
+
+      {%- endfor -%}
+  </div>
+
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'short_description' and block.settings.short_description_position == 'left'  and block.settings.content != blank -%}
+      <div class="Product__ShortDescription Product__ShortDescription--left RTE" {{ block.shopify_attributes }} 
+        {% if block.settings.short_description_background != blank  and block.settings.short_description_background != 'rgba(0,0,0,0)' %} 
+          style="--tg-product-short-description-background: {{ block.settings.short_description_background }}"
+        {% endif %}
+      >
+        {{ block.settings.content }}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+</div>

@@ -1,0 +1,137 @@
+/**
+  * ----------------------------------------------------------------------------
+  * Template account pages
+  * ----------------------------------------------------------------------------
+  */
+.Page {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.PageLeft {
+  width: 100%;
+}
+
+.PageRight {
+  display: none;
+  position: relative;
+}
+
+@media screen and (min-width: 1008px) {
+  .PageLeft {
+    width: 50%;
+    flex-grow: 1;
+    margin-right: -1px;
+    border-right: 1px solid var(--tg-sys-color-outline);
+    position: relative;
+  }
+  .PageLeft--borderBottom {
+    border-bottom: 1px solid var(--tg-sys-color-outline);
+  }
+  .PageRight {
+    display: block;
+    width: 50%;
+    border-bottom: 1px solid var(--tg-sys-color-outline);
+  }
+}
+.PageRight__Inner,
+.PageLeft__Inner {
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(var(--tg-header-height, 0px) * var(--use-sticky-header, 0));
+}
+
+.Template--customers .Form--login,
+.Template--customers .Form--recoverPassword,
+.Template--customers .Form--createCustomer,
+.Template--customers .Form--resetPassword,
+.Template--customers .Form--activateAccount {
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Template--customers .OrderItem__ImageAndImage {
+  display: flex;
+}
+.Template--customers .OrderItem__ImageAndImage .OrderItem__ImageWrapper {
+  width: 40%;
+}
+.Template--customers .OrderItem__ImageAndImage .OrderItem__Info {
+  width: 60%;
+  padding-left: 1rem;
+  align-self: center;
+}
+.Template--customers .Container--addresses .AddressAction {
+  text-align: right;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.Template--customers .AccountAddress span {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+@media screen and (max-width: 640px) {
+  .Template--customers .Modal--address {
+    height: 100%;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+  .Template--customers .Modal--address .Modal__Header {
+    margin-top: 2rem;
+  }
+}
+.Template--customers .OrderHeader {
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.Template--customers .OrderHeader .OrderHeader__Title {
+  margin-bottom: 0;
+}
+.Template--customers .OrderHeaderWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.Template--customers .Table {
+  margin-bottom: 0;
+}
+.Template--customers .Table th {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.Template--customers .Table th:first-child,
+.Template--customers .Table td:first-child {
+  padding-left: calc(var(--tg-container-gutter-x) * 2);
+}
+@media screen and (min-width: 641px) {
+  .Template--customers .Table th:first-child,
+.Template--customers .Table td:first-child {
+    padding-left: calc(var(--tg-container-gutter-x) * 3);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .Template--customers .Table th:first-child,
+.Template--customers .Table td:first-child {
+    padding-left: calc(var(--tg-container-gutter-x) * 4);
+  }
+}
+.Template--customers .Table th:last-child,
+.Template--customers .Table td:last-child {
+  padding-right: calc(var(--tg-container-gutter-x) * 2);
+}
+@media screen and (min-width: 641px) {
+  .Template--customers .Table th:last-child,
+.Template--customers .Table td:last-child {
+    padding-right: calc(var(--tg-container-gutter-x) * 3);
+  }
+}
+@media screen and (min-width: 1280px) {
+  .Template--customers .Table th:last-child,
+.Template--customers .Table td:last-child {
+    padding-right: calc(var(--tg-container-gutter-x) * 4);
+  }
+}

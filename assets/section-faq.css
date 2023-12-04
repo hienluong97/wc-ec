@@ -1,0 +1,17 @@
+/**
+ * ----------------------------------------------------------------------------
+ * FAQ
+ * ----------------------------------------------------------------------------
+ */
+.FAQSection {
+  border-top: 1px solid var(--tg-sys-color-outline);
+  border-bottom: 1px solid var(--tg-sys-color-outline);
+}
+.FAQSection .Accordion__Body {
+  --tg-component-accordion-body-background: var(--tg-sys-color-surface1);
+}
+.FAQSection .Accordion__Collapse {
+  border-left: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+  border-right: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+  border-bottom: 1px solid rgba(var(--tg-sys-color-on-background-rgb), 0.75);
+}

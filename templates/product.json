@@ -1,0 +1,126 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "text_size": "HeadlineMedium"
+          }
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size": "BodyMedium",
+            "price_color": "",
+            "sale_price_color": "",
+            "bold_font": false,
+            "show_taxes_included": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "color_image_swatch_dropdown"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {
+            "show_inventory_quantity": true,
+            "inventory_quantity_threshold": 18
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false,
+            "show_pickup_availability": true
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {}
+        },
+        "2fe593de-7527-462e-808f-b747ed07d3b9": {
+          "type": "shopify:\/\/apps\/crowdfunder\/blocks\/crowdfunder\/3bdd0fe8-5fc7-4d01-b35b-48bca1437d27",
+          "settings": {}
+        },
+        "description_collapsible": {
+          "type": "description_collapsible",
+          "settings": {
+            "heading": "ストーリー",
+            "open_collapsible_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "rating",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "share",
+        "2fe593de-7527-462e-808f-b747ed07d3b9",
+        "description_collapsible"
+      ],
+      "settings": {
+        "spacing_position": "Bottom",
+        "gallery_media_size": "1x1",
+        "gallery_media_fit_cover": true,
+        "enable_image_zoom": false,
+        "gallery_design": "stack_images",
+        "media_centered": true,
+        "media_with": 82,
+        "media_with_mobile": 100
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "spacing_position": "Medium",
+        "layout_mode": "carousel",
+        "heading": "You may also like",
+        "heading_font_size": "HeadlineMedium",
+        "grid_items_count": 8,
+        "grid_desktop_items_per_row": 4,
+        "grid_mobile_items_per_row": "2",
+        "show_product_info": true,
+        "show_rating": false,
+        "show_vendor": false,
+        "show_swatches": false,
+        "enable_quick_add": false
+      }
+    },
+    "product-recently-viewed": {
+      "type": "product-recently-viewed",
+      "settings": {
+        "spacing_position": "Medium",
+        "layout_mode": "carousel",
+        "heading": "Recently viewed",
+        "heading_font_size": "HeadlineMedium",
+        "grid_items_count": 8,
+        "grid_desktop_items_per_row": 4,
+        "grid_mobile_items_per_row": "2",
+        "show_product_info": true,
+        "show_rating": false,
+        "show_vendor": false,
+        "show_swatches": false,
+        "enable_quick_add": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-recommendations",
+    "product-recently-viewed"
+  ]
+}

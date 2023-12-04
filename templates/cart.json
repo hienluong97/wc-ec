@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {
+        "cart_enable_notes": true,
+        "announcement": "",
+        "show_shipping_estimator": true,
+        "shipping_estimator_default_country": "United States"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
