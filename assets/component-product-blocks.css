@@ -366,7 +366,10 @@ p:has(.cf-moneytotal) {
 .cf-meter-label {
     display: none !important;
 }
-
+.support-number {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
 .support-progress {
     background-color: aliceblue;
     border: 1px solid black;
@@ -376,4 +379,13 @@ p:has(.cf-moneytotal) {
 .progress-supported {
     height: 100%;
     background-color: black;
+}
+
+.target-percent {
+    font-weight: 600 !important;
+}
+
+.cf-time-left {
+    font-size: 1.6rem !important;
+    font-weight: 500 !important;
 }

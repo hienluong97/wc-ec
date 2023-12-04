@@ -174,7 +174,7 @@
             {% assign total_inventory_quantity = total_inventory_quantity | plus: product.inventory_quantity %}
             {% endfor %}
             {% comment %} 在庫数: {{ total_inventory_quantity }}個 {% endcomment %}
-            <p> サポート数： {{ support_goal | minus: total_inventory_quantity }}個</p>
+            <p> <span class="support-number">{{ support_goal | minus: total_inventory_quantity }}個</span> <br>サポート数</p>
 
             {% assign support_money_goal = product.metafields.custom.crowdfunder_currency %}
             {% assign unSupported_money = 0 %}
@@ -186,14 +186,14 @@
 
             {% comment %} サポートされてない金額: {{ unSupported_money }}　円 {% endcomment %}
             {% assign supported_money  = support_money_goal | minus: unSupported_money %}
-            サポートされた金額： {{ supported_money }}円<br>ゴール金額：{{ support_money_goal }}円</p>
-            {% assign target_percent = supported_money | divided_by: support_money_goal | times: 100 %} 
-            目標金額までのターゲット:  {{ target_percent }} %
+            <p> <span class="support-number">{{ supported_money }}円</span><br>サポートされた金額</p>
+            <p> <span class="support-number">{{ support_money_goal }}円</span><br>ゴール金額</p>
 
+            {% assign target_percent = supported_money | divided_by: support_money_goal | times: 100 %} 
             <div class="support-progress">
                 <div class="progress-supported" style="width:{{ target_percent }}%"></div>
             </div>
-            <br>
+            <p> 目標金額までのターゲット:  <span class="target-percent">{{ target_percent }}%</span></p>
         {%- endif -%}
 
         {%- when 'description' -%}
