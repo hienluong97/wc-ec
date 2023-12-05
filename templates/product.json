@@ -23,6 +23,10 @@
             "show_taxes_included": false
           }
         },
+        "cf29bb2a-aec2-4046-bd90-4b8174271baa": {
+          "type": "varianDesc",
+          "settings": {}
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -65,6 +69,7 @@
         "title",
         "rating",
         "price",
+        "cf29bb2a-aec2-4046-bd90-4b8174271baa",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",

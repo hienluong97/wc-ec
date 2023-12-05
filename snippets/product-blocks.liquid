@@ -186,15 +186,23 @@
 
             {% comment %} サポートされてない金額: {{ unSupported_money }}　円 {% endcomment %}
             {% assign supported_money  = support_money_goal | minus: unSupported_money %}
-            <p> <span class="support-number">{{ supported_money }}円</span><br>サポートされた金額</p>
+            <p> <span class="support-number">{{ supported_money | round }}円</span><br>サポートされた金額</p>
             <p> <span class="support-number">{{ support_money_goal }}円</span><br>ゴール金額</p>
 
             {% assign target_percent = supported_money | divided_by: support_money_goal | times: 100 %} 
             <div class="support-progress">
                 <div class="progress-supported" style="width:{{ target_percent }}%"></div>
             </div>
-            <p> 目標金額までのターゲット:  <span class="target-percent">{{ target_percent }}%</span></p>
+            <p> 目標金額までのターゲット:  <span class="target-percent">{{ target_percent | round: 2 }}%</span></p>
         {%- endif -%}
+
+        {%- when 'varianDesc' -%}
+            <div class="Product__Block Product__Block--varianDesc Product__varianDesc" {{ block.shopify_attributes }}>
+          	{% for variant in product.variants %}
+                    <div class="varian-desc" VarianDescription data-id="{{variant.id}}"data-variandescription="{{ variant.metafields.custom.description }}" style="display:none;"></div>
+            {% endfor %}
+            </div>
+          {% comment %} END variant description  on product page {% endcomment %}​
 
         {%- when 'description' -%}
             {%- if product.description != blank -%}
