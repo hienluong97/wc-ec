@@ -158,6 +158,16 @@
         {%- endif -%}
 
         {%- capture slideshow_content -%}
+
+          {%- if block.settings.slide_logo != blank -%}
+            <img class="Header__LogoImage--primary"
+            src="{{ block.settings.slide_logo | image_url: width: image_size }}"
+            loading="lazy"
+            width="200px"
+            height="200px"
+            alt="">
+          {%- endif -%}
+
           {%- if block.settings.subheading != blank -%}
             <h3 class="SectionHeader__Subheading">{{ block.settings.subheading }}</h3>
           {%- endif -%}
@@ -455,6 +465,11 @@
           "id": "heading",
           "label": "Heading",
           "default": "Image slide"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_logo",
+          "label": "Slide logo"
         },
         {
           "type": "select",
