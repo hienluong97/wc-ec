@@ -8,32 +8,34 @@
         "footer-text": {
           "type": "text",
           "settings": {
-            "heading": "OUR MISSION",
+            "heading": "ミッション",
+            "logo": "shopify:\/\/shop_images\/supakuru_white.svg",
             "logo_max_width": 140,
             "mobile_logo_max_width": 75,
-            "content": "<p>Share contact information, store details, and brand content with your customers.<\/p>",
+            "content": "<p>連絡先情報、店舗の詳細、ブランドコンテンツを顧客とご共有いたします。<\/p>",
+            "enable_follow_on_shop": true,
             "show_social_media": true
           }
         },
         "footer-link-1": {
           "type": "links",
           "settings": {
-            "heading": "SHOP",
+            "heading": "ストア",
             "menu": "footer"
           }
         },
         "footer-link-2": {
           "type": "links",
           "settings": {
-            "heading": "INFORMATION",
+            "heading": "情報",
             "menu": "footer"
           }
         },
         "footer-newsletter": {
           "type": "newsletter",
           "settings": {
-            "heading": "SUBSCRIBE TO OUR EMAILS",
-            "content": "<p>A short sentence describing what someone will receive by subscribing.<\/p>"
+            "heading": "弊社Eメールに登録",
+            "content": "<p>ニュースレターにご登録いた だくと、弊社製品の最新情報を E メールにてご案内します。<\/p>"
           }
         }
       },

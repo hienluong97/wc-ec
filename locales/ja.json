@@ -35,12 +35,12 @@
       "position": "Position."
     },
     "pickup_availability": {
-      "view_store_info": "Afficher les informations de la boutique",
-      "check_other_stores": "Vérifier la disponibilité dans d'autres boutiques",
-      "pick_up_available": "Service de retrait disponible",
-      "pick_up_currently_unavailable": "Service de retrait non disponible actuellement",
-      "pick_up_available_at_html": "Service de retrait disponible à <strong>{{ location_name }}<\/strong>",
-      "pick_up_unavailable_at_html": "Service de retrait non disponible actuellement à <strong>{{ location_name }}<\/strong>"
+      "view_store_info": "ストア情報を表示する",
+      "check_other_stores": "別のストアでの出品状況を確認する",
+      "pick_up_available": "受取が可能です",
+      "pick_up_currently_unavailable": "Pickup currently unavailable",
+      "pick_up_available_at_html": "<span class=\"color-foreground\">{{ location_name }}<\/span>での受取が可能です。",
+      "pick_up_unavailable_at_html": "<span class=\"color-foreground\">{{ location_name }}<\/span>での受取は現在できません。"
     }
   },
   "general": {
@@ -111,9 +111,9 @@
   },
   "footer": {
     "newsletter": {
-      "success": "Vous avez été inscrit à notre newsletter.",
-      "input": "Entrer votre Email",
-      "submit": "REJOINDRE"
+      "success": "登録に成功しました！",
+      "input": "あなたのメールアドレスをご入力ください",
+      "submit": "登録"
     }
   },
   "search": {
@@ -158,24 +158,24 @@
         "other": "{{ count }} éléments"
       },
       "now_show_product_count_html": {
-        "one": "AFFICHAGE MAINTENANT <strong>{{ count }}<\/strong> ARTICLE",
-        "other": "AFFICHAGE MAINTENANT <strong>{{ count }}<\/strong> ARTICLES"
+        "one": "{{ count }}商品",
+        "other": "{{ count }}商品"
       }
     },
     "filter": {
-      "title": "FILTRE",
+      "title": "絞り込み",
       "show_filter": "Afficher les filtres",
       "all": "Filtres",
-      "reset": "Réinitialiser",
-      "apply": "Appliquer",
-      "selected_filters": "Filtres sélectionnés :",
-      "price_from": "De",
-      "price_to": "À",
-      "clear_all": "Tout effacer"
+      "reset": "リセット",
+      "apply": "適用",
+      "selected_filters": "Selected Filters:",
+      "price_from": "から",
+      "price_to": "まで",
+      "clear_all": "すべてを削除する"
     },
     "sorting": {
-      "title": "Trier",
-      "show_sort": "Afficher trier par"
+      "title": "並び替え",
+      "show_sort": "Show sort by"
     },
     "layout": {
       "show_one_per_row": "Afficher un élément par ligne",
@@ -299,30 +299,30 @@
   },
   "cart": {
     "general": {
-      "title": "Panier",
-      "empty": "Votre panier est vide",
-      "empty_button": "Magasinez nos produits",
+      "title": "カート",
+      "empty": "カートは空です",
+      "empty_button": "買い物を続ける",
       "add_note": "注文メモを追加する",
       "edit_note": "注文メモを編集する",
       "save_note": "保存する",
       "note_placeholder": "コメントを手伝いますか?",
       "free_shipping": "Vous avez droit à la livraison gratuite !",
       "free_shipping_remaining_html": "Dépensez {{remaining_amount}} de plus et bénéficiez de la livraison gratuite !",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxes et <a href=\"&lt;span%20class='notranslate'&gt;%7B%7B%20link%20%7D%7D&lt;\/span&gt;\" class=\"Nav__Link Nav__Link--underline\">livraison<\/a> calculées à la caisse",
-      "taxes_included_but_shipping_at_checkout": "Taxes incluses et frais de port calculés à la caisse",
-      "taxes_included_and_shipping_policy_html": "Taxe inclu. <a href=\"&lt;span%20class='notranslate'&gt;%7B%7B%20link%20%7D%7D&lt;\/span&gt;\" class=\"Nav__Link Nav__Link--underline\">Frais<\/a> de port calculés à la caisse.",
-      "taxes_and_shipping_at_checkout": "Taxes et livraison calculées à la caisse",
+      "taxes_and_shipping_policy_at_checkout_html": "税、ディスカウント、および<a href=\"{{ link }}\">配送料<\/a>はチエックアウト時に計算されます",
+      "taxes_included_but_shipping_at_checkout": "税込みで、配送料とディスカウントはチェックアアウト時に計算されます",
+      "taxes_included_and_shipping_policy_html": "税込。<a href=\"{{ link }}\">配送料<\/a>とディスカウントはチエックアウト時に計算されます",
+      "taxes_and_shipping_at_checkout": "税、ディスカウント、および配送料はチェックアウト時に計算されます",
       "discount": "割引",
       "total": "合計",
       "checkout": "会計に進む",
       "view_cart": "カートを見る",
-      "close": "Fermer le panier"
+      "close": "閉じる"
     },
     "items": {
       "product": "製品",
       "quantity": "数量",
       "total": "合計",
-      "set_quantity": "Définir la quantité sur {{new_quantity}}",
+      "set_quantity": "Set quantity to {{new_quantity}}",
       "remove": "取り消す"
     },
     "shipping_estimator": {
@@ -349,26 +349,26 @@
     "labels": {
       "sold_out": "売り切れ",
       "on_sale": "セール中",
-      "quick_view": "Aperçu rapide"
+      "quick_view": "Quick view"
     },
     "slideshow": {
       "close": "Fermer (Esc)",
-      "previous": "Précédent (flèche gauche)",
-      "next": "Suivant (flèche droite)",
-      "image_loading_error": "Cette image n'a pas pu être chargée. Veuillez essayer de recharger la page."
+      "previous": "前のスライド",
+      "next": "次のスライド",
+      "image_loading_error": "This image could not be loaded. Please try to reload the page."
     },
     "price": {
-      "from_price_html": "{{ min_price }}〜",
-      "regular_price": "Prix habituel",
-      "sale_price": "Prix soldé",
-      "unit_price": "Prix unitaire"
+      "from_price_html": "{{ min_price }}から",
+      "regular_price": "通常価格",
+      "sale_price": "セール価格",
+      "unit_price": "単価"
     },
     "form": {
-      "variant_label": "Une variante",
-      "sku": "UGS",
-      "share": "Partager:",
-      "price": "Prix",
-      "quantity": "Quantité",
+      "variant_label": "バリエーション",
+      "sku": "SKU",
+      "share": "シェアする",
+      "price": "価格",
+      "quantity": "数量",
       "product_variants": "Variantes de produit",
       "inventory_quantity_count": {
         "one": "在庫数: {{count}}",
@@ -379,11 +379,11 @@
         "other": "在庫数: {{count}}"
       },
       "add_to_cart": "カートに追加する",
-      "choose_options": "Choisir des options",
+      "choose_options": "オプションを選択",
       "sold_out": "売り切れ",
-      "unavailable": "Indisponible",
-      "view_info": "Plus d'information",
-      "view_images": "Voir les photos",
+      "unavailable": "Unavailable",
+      "view_info": "もっと見る",
+      "view_images": "画像を見る",
       "custom_property_invalid_feedback": "Veuillez sélectionner un {{property_name}} .",
       "custom_property_input_invalid_feedback": "Veuillez saisir {{property_name}} ."
     },
@@ -437,19 +437,19 @@
     }
   },
   "page": {
-    "title": "Titre de la page"
+    "title": "ページタイトル"
   },
   "contact": {
     "form": {
-      "name": "Votre nom",
-      "email": "Votre e-mail",
-      "message": "Votre message",
-      "submit": "Envoyer le message",
-      "successfully_sent": "Merci de nous avoir contacté. Nous vous répondrons dès que possible."
+      "name": "名前",
+      "email": "メールアドレス",
+      "message": "メッセージ",
+      "submit": "送信",
+      "successfully_sent": "お問い合わせいただきありがとうございます。"
     }
   },
   "404": {
-    "title": "Cliquez sur le bouton ci-dessous pour voir notre collection complète."
+    "title": "ページが見つかりません"
   },
   "date_formats": {
     "month_day_year": "%B %d, %Y",

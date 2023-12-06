@@ -6,21 +6,25 @@
         "text_banner": {
           "type": "text_banner",
           "settings": {
-            "heading": "Tell your story",
+            "heading": "お問い合わせ",
             "heading_size": "HeadlineMedium",
-            "content": "<p>Add your own custom content to give more information.<\/p>"
+            "content": "<p>ご質問がございましたら遠慮なくお申し付けください。<\/p>"
           }
         },
         "contact_form": {
           "type": "contact_form",
-          "settings": {}
+          "settings": {
+            "description": ""
+          }
         }
       },
       "block_order": [
         "text_banner",
         "contact_form"
       ],
-      "settings": {}
+      "settings": {
+        "spacing_position": "Bottom"
+      }
     }
   },
   "order": [

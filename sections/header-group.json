@@ -22,6 +22,8 @@
         "header_background": "#fbfbfb",
         "header_text_color": "#1c1b1b",
         "header_text_color_transparent": "#fbfbfb",
+        "logo": "shopify:\/\/shop_images\/supakuru_white.svg",
+        "logo_black": "shopify:\/\/shop_images\/supakuru_black.svg",
         "logo_position": "middleLeft",
         "logo_position_mobile": "Left",
         "logo_max_width": 140,
