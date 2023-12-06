@@ -263,27 +263,8 @@
   
         });
       });
-        
-
-         let varianDescHash = document.querySelectorAll("[VarianDescription]");
-         console.log(varianDescHash);
-         if (newVariant) {
-           Array.from(varianDescHash).forEach((Selectedvariant) => {
-             if (Selectedvariant.dataset.id == newVariant.id) {
-               const varian_description = document.querySelector(
-                 `[data-id="${newVariant.id}"]`
-               );
-               varian_description.style.display = "block";
-               varian_description.innerHTML =
-                 Selectedvariant.dataset.variandescription;
-             } else {
-               const other_varian_description = document.querySelector(
-                 `[data-id="${Selectedvariant.dataset.id}"]`
-               );
-               other_varian_description.style.display = "none";
-             }
-           });
-    }}
+   
+   }
   
     _updateAddToCartButton(newVariant) {
       let addToCartButton = this.element.querySelector('.ProductForm__AddToCart'),

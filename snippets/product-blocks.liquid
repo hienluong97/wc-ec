@@ -166,44 +166,37 @@
                 </div>
             </div>
 
-        {%- if product.tags contains "crowdfunder" -%}
-            {% assign support_goal = product.metafields.custom.crowdfunder_units %}
-   
-            {% assign total_inventory_quantity = 0 %}
-            {% for product in product.variants %}
-            {% assign total_inventory_quantity = total_inventory_quantity | plus: product.inventory_quantity %}
-            {% endfor %}
-            {% comment %} 在庫数: {{ total_inventory_quantity }}個 {% endcomment %}
-            <p> <span class="support-number">{{ support_goal | minus: total_inventory_quantity }}個</span> <br>サポート数</p>
-
-            {% assign support_money_goal = product.metafields.custom.crowdfunder_currency %}
-            {% assign unSupported_money = 0 %}
-            {% assign money_of_each_prod = 0 %}
-            {% for product in product.variants %}
-            {% assign money_of_each_prod = product.inventory_quantity | times: product.price | times: 0.01 %}
-            {% assign unSupported_money = unSupported_money | plus: money_of_each_prod %}
-            {% endfor %}
-
-            {% comment %} サポートされてない金額: {{ unSupported_money }}　円 {% endcomment %}
-            {% assign supported_money  = support_money_goal | minus: unSupported_money %}
-            <p> <span class="support-number">{{ supported_money | round }}円</span><br>サポートされた金額</p>
-            <p> <span class="support-number">{{ support_money_goal }}円</span><br>ゴール金額</p>
-
-            {% assign target_percent = supported_money | divided_by: support_money_goal | times: 100 %} 
-            <div class="support-progress">
-                <div class="progress-supported" style="width:{{ target_percent }}%"></div>
+        {%- when 'crowdfunder-custom' -%}
+            <div>
+                {%- if product.tags contains "crowdfunder" -%}
+                {% assign support_goal = product.metafields.custom.crowdfunder_units %}
+       
+                {% assign total_inventory_quantity = 0 %}
+                {% for product in product.variants %}
+                {% assign total_inventory_quantity = total_inventory_quantity | plus: product.inventory_quantity %}
+                {% endfor %}
+     
+                <p> <span class="support-number">{{ support_goal | minus: total_inventory_quantity }}個</span> <br>サポート数</p>
+    
+                {% assign support_money_goal = product.metafields.custom.crowdfunder_currency %}
+                {% assign unSupported_money = 0 %}
+                {% assign money_of_each_prod = 0 %}
+                {% for product in product.variants %}
+                {% assign money_of_each_prod = product.inventory_quantity | times: product.price | times: 0.01 %}
+                {% assign unSupported_money = unSupported_money | plus: money_of_each_prod %}
+                {% endfor %}
+    
+                {% assign supported_money  = support_money_goal | minus: unSupported_money %}
+                <p> <span class="support-number">{{ supported_money | round }}円</span><br>サポートされた金額</p>
+                <p> <span class="support-number">{{ support_money_goal }}円</span><br>ゴール金額</p>
+    
+                {% assign target_percent = supported_money | divided_by: support_money_goal | times: 100 %} 
+                <div class="support-progress">
+                    <div class="progress-supported" style="width:{{ target_percent }}%"></div>
+                </div>
+                <p> 目標金額までのターゲット:  <span class="target-percent">{{ target_percent | round: 2 }}%</span></p>
+                {%- endif -%}
             </div>
-            <p> 目標金額までのターゲット:  <span class="target-percent">{{ target_percent | round: 2 }}%</span></p>
-        {%- endif -%}
-
-        {%- when 'varianDesc' -%}
-            <div class="Product__Block Product__Block--varianDesc Product__varianDesc" {{ block.shopify_attributes }}>
-          	{% for variant in product.variants %}
-                    <div class="varian-desc" VarianDescription data-id="{{variant.id}}"data-variandescription="{{ variant.metafields.custom.description }}" style="display:none;"></div>
-            {% endfor %}
-            </div>
-          {% comment %} END variant description  on product page {% endcomment %}​
-
         {%- when 'description' -%}
             {%- if product.description != blank -%}
                 <div class="Product__Block Product__Block--drawerTitle Product__Block--description ProductInfoDrawer__Title ProductInfoDrawer__Title--description" {{ block.shopify_attributes }}>

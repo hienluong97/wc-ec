@@ -371,12 +371,12 @@
       "quantity": "Quantité",
       "product_variants": "Variantes de produit",
       "inventory_quantity_count": {
-        "one": "{{count}} pièce en stock.",
-        "other": "{{count}} pièces en stock"
+        "one": "在庫数: {{count}}",
+        "other": "在庫数: {{count}}"
       },
       "low_inventory_quantity_count": {
-        "one": "Seulement {{count}} pièce en stock !",
-        "other": "Seulement {{count}} pièces en stock !"
+        "one": "在庫数: {{count}}",
+        "other": "在庫数: {{count}}"
       },
       "add_to_cart": "カートに追加する",
       "choose_options": "Choisir des options",

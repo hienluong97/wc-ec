@@ -389,3 +389,17 @@ p:has(.cf-moneytotal) {
     font-size: 1.6rem !important;
     font-weight: 500 !important;
 }
+
+.Accordion__Body h4 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.RTE li::marker {
+    font-size: 0.8rem;
+}
+
+
+.ProductForm__QuantityWrapper {
+   display: none !important;
+}

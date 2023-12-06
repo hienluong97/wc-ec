@@ -23,10 +23,6 @@
             "show_taxes_included": false
           }
         },
-        "cf29bb2a-aec2-4046-bd90-4b8174271baa": {
-          "type": "varianDesc",
-          "settings": {}
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -35,10 +31,9 @@
         },
         "quantity_selector": {
           "type": "quantity_selector",
-          "disabled": true,
           "settings": {
             "show_inventory_quantity": true,
-            "inventory_quantity_threshold": 18
+            "inventory_quantity_threshold": 0
           }
         },
         "buy_buttons": {
@@ -51,6 +46,10 @@
         },
         "share": {
           "type": "share",
+          "settings": {}
+        },
+        "8fb96e6c-df37-4677-9b77-1607f39bdab3": {
+          "type": "crowdfunder-custom",
           "settings": {}
         },
         "2fe593de-7527-462e-808f-b747ed07d3b9": {
@@ -69,11 +68,11 @@
         "title",
         "rating",
         "price",
-        "cf29bb2a-aec2-4046-bd90-4b8174271baa",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "share",
+        "8fb96e6c-df37-4677-9b77-1607f39bdab3",
         "2fe593de-7527-462e-808f-b747ed07d3b9",
         "description_collapsible"
       ],
