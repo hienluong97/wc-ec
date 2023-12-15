@@ -18,7 +18,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  height: 800px;
   padding-top: calc(var(--tg-header-height) * var(--section-is-first, 0) * var(--header-is-transparent) - 1rem * var(--section-is-first, 0) * var(--header-is-transparent) * var(--header-has-no-bottom-border));
 }
 .TextOnImage::before {

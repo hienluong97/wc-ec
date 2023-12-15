@@ -1,0 +1,76 @@
+/**
+  * ----------------------------------------------------------------------------
+  * Logo text
+  * ----------------------------------------------------------------------------
+  */
+.logoText {
+  /* border-bottom: 1px solid var(--tg-sys-color-outline); */
+  border-top: 1px solid var(--tg-sys-color-outline);
+}
+
+.logoText.logoText--center .SectionHeader {
+  align-items: center;
+  text-align: center;
+}
+
+.logoText .SectionHeader__Letter {
+    width: 100%;
+}
+
+.logoText .letter_left {
+   text-align: left;
+}
+
+.logoText .letter_center {
+   text-align: center;
+}
+
+.logoText .letter_right {
+   text-align: right;
+}
+
+.SectionHeader__Letter {
+    font-family: AB-DON;
+    font-size: 128px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-color, #1C1B1B);
+}
+
+.logoText .text_image {
+    font-family: AB-DON;
+}
+
+.logoText .SectionHeader__Heading {
+    margin-top: 60px;
+    color: var(--text-color, #1C1B1B);
+    text-align: center;
+    font-family: VDL-LogoG;
+    font-size: 56.913px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 5.691px;
+}
+
+.logoText .SectionHeader__Description { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.logoText .SectionHeader__Description p { 
+    max-width: 1267px;
+    color: #D9D9D9;
+    text-align: center;
+    font-family: CRENZO;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1.6px;
+}
+
+
+

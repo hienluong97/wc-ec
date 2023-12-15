@@ -16,7 +16,7 @@
       "type": "header",
       "settings": {
         "enable_sticky_header": false,
-        "enable_transparent_header": true,
+        "enable_transparent_header": false,
         "enable_transparent_header_group": false,
         "show_header_border": true,
         "header_background": "#fbfbfb",

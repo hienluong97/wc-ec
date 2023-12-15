@@ -14,7 +14,7 @@
     "product_color_image_swatch": true,
     "product_badge_corner_radius": 0,
     "cart_type": "drawer",
-    "favicon": "shopify:\/\/shop_images\/supakuru_black.svg",
+    "favicon": "shopify:\/\/shop_images\/Union.svg",
     "price_currency_format": "money_without_trailing_zeros",
     "sections": {
       "cart-drawer": {

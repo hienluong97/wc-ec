@@ -67,6 +67,6 @@
   .Carousel--insideDots .flickity-page-dots {
     bottom: 1.5rem;
     right: 2rem;
-    left: auto;
+    /* left: auto; */
   }
 }

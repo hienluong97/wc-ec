@@ -68,7 +68,7 @@
 }
 .Header--middleLeft .Header__Main .Header__MainMenu {
   padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-right: 3.5rem;
 }
 @media screen and (min-width: 1008px) {
   .Header--middleCenter .Header__Main {
@@ -345,18 +345,18 @@
 
 @media screen and (min-width: 1008px) {
   .Header.Header--middleLeft .Header__LogoWrapper {
-    width: 25%;
-    width: calc(25% - var(--tg-container-gutter-x) * 3 - 1.5rem);
+    /* width: 25%; */
+    /* width: calc(25% - var(--tg-container-gutter-x) * 3 - 1.5rem); */
     justify-content: left;
   }
   .Header .Header__MainMenu {
     flex-grow: 1;
-    justify-content: left;
+    justify-content: center;
   }
 }
 @media screen and (min-width: 1280px) {
   .Header.Header--middleLeft .Header__LogoWrapper {
-    width: calc(25% - var(--tg-container-gutter-x) * 4 - 1.5rem);
+    /* width: calc(25% - var(--tg-container-gutter-x) * 4 - 1.5rem); */
   }
 }
 .Header #Header__CartTrigger.Button--icon {

@@ -1,18 +1,137 @@
 {
   "sections": {
+    "7ccde71b-a229-45bb-a0a4-7d2b7b765122": {
+      "type": "banner",
+      "blocks": {
+        "template--21540746690839__7ccde71b-a229-45bb-a0a4-7d2b7b765122-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "共創型のクラウドファンディング",
+            "heading_font_size": "DisplaySmall",
+            "color": "#ffffff",
+            "link": ""
+          }
+        },
+        "b8008d4d-9f53-413e-a942-a64aa9a576ec": {
+          "type": "subheading",
+          "settings": {
+            "text": "プラットフォーム",
+            "color": "#ffffff"
+          }
+        },
+        "template--21540746690839__7ccde71b-a229-45bb-a0a4-7d2b7b765122-description-1": {
+          "type": "description",
+          "settings": {
+            "text": "<p>面倒な会員登録不要<br\/>ECサイト感覚で夢を応援できる<\/p>",
+            "color": "#ffffff"
+          }
+        },
+        "template--21540746690839__7ccde71b-a229-45bb-a0a4-7d2b7b765122-button-1": {
+          "type": "button",
+          "settings": {
+            "label": "夢を応援する！",
+            "link": "",
+            "style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "template--21540746690839__7ccde71b-a229-45bb-a0a4-7d2b7b765122-heading-1",
+        "b8008d4d-9f53-413e-a942-a64aa9a576ec",
+        "template--21540746690839__7ccde71b-a229-45bb-a0a4-7d2b7b765122-description-1",
+        "template--21540746690839__7ccde71b-a229-45bb-a0a4-7d2b7b765122-button-1"
+      ],
+      "custom_css": [
+        ".SectionHeader__Heading {color: #fff; font-family: YuGothic; font-size: 36px; font-weight: 700;}",
+        ".SectionHeader__Subheading {color: #fff; font-family: YuGothic; font-size: 36px; font-weight: 700;}",
+        ".SectionHeader__Description p {margin-top: 30px; color: #fff; font-family: YuGothic; font-size: 20px; font-weight: 500; line-height: 32px;}",
+        ".SectionHeader__ButtonWrapper .Button {margin-top: 30px; background: transparent; border: 1px solid #fff; text-align: center; font-family: YuGothic; font-size: 20px; font-weight: 500; line-height: 32px;}"
+      ],
+      "settings": {
+        "spacing_position": "None",
+        "image": "shopify:\/\/shop_images\/top-banner.webp",
+        "overlay_opacity": 30,
+        "image_link": "",
+        "content_position": "middleLeft"
+      }
+    },
+    "71bfecc6-313f-41b3-b084-fe1cd0191862": {
+      "type": "logo-text",
+      "blocks": {
+        "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-letter-1": {
+          "type": "letter",
+          "settings": {
+            "letter": "Mission",
+            "letter_image": "shopify:\/\/shop_images\/Mission.svg",
+            "letter_positon": "letter_left"
+          }
+        },
+        "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Union.svg"
+          }
+        },
+        "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "超かっこいいアイデアを輝かせる！"
+          }
+        },
+        "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-description-1": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Supercool ideas ignite a spark that sparkles brilliantly<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-letter-1",
+        "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-image-1",
+        "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-heading-1",
+        "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-description-1"
+      ],
+      "custom_css": [
+        ".Container--spacingMediumPadding {padding-top: 18px;}"
+      ],
+      "settings": {
+        "spacing_position": "Medium",
+        "content_align": "center"
+      }
+    },
+    "bestseller": {
+      "type": "featured-collection",
+      "settings": {
+        "spacing_position": "Medium",
+        "collection": "cloudfunding",
+        "layout_mode": "grid",
+        "heading": "crowdfunding",
+        "heading_font_size": "HeadlineMedium",
+        "button_label": "すべてを表示する",
+        "grid_items_count": 8,
+        "grid_desktop_items_per_row": 4,
+        "grid_mobile_items_per_row": "2",
+        "show_product_info": true,
+        "show_rating": false,
+        "show_vendor": false,
+        "show_swatches": false,
+        "enable_quick_add": false
+      }
+    },
     "slideshow": {
       "type": "slideshow",
       "blocks": {
         "slide-1": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/wao_kv2_ae0506b5-2540-411c-8238-ad1823783403.jpg",
+            "image": "shopify:\/\/shop_images\/slide1.png",
             "overlay_opacity": 0,
             "overlay_opacity_mobile": 0,
             "image_link": "",
             "content_position": "middleLeft",
             "subheading": "",
-            "heading": "すぱくる",
+            "heading": "",
+            "slide_logo": "shopify:\/\/shop_images\/square-white.svg",
             "heading_font_size": "DisplayMedium",
             "description": "<p>思わずワオとおどろくご提案<\/p>",
             "text_color": "#ffffff",
@@ -28,8 +147,30 @@
         "a8dc9c25-f6ab-461d-bb41-8e3e3a1ce70a": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/wao_kv_eae9637a-442c-4a1e-b6f1-a993588cc332.jpg",
+            "image": "shopify:\/\/shop_images\/slide2.png",
             "overlay_opacity": 30,
+            "overlay_opacity_mobile": 0,
+            "image_link": "",
+            "content_position": "middleCenter",
+            "subheading": "",
+            "heading": "",
+            "heading_font_size": "DisplayMedium",
+            "description": "",
+            "text_color": "#ffffff",
+            "text_color_mobile": "#ffffff",
+            "button_1_label": "",
+            "button_1_link": "",
+            "button_1_style": "primary",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_style": "primary"
+          }
+        },
+        "50cc9ec9-2888-4c47-b606-39c1913e8a1c": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/slide3.png",
+            "overlay_opacity": 0,
             "overlay_opacity_mobile": 0,
             "image_link": "",
             "content_position": "middleCenter",
@@ -50,7 +191,8 @@
       },
       "block_order": [
         "slide-1",
-        "a8dc9c25-f6ab-461d-bb41-8e3e3a1ce70a"
+        "a8dc9c25-f6ab-461d-bb41-8e3e3a1ce70a",
+        "50cc9ec9-2888-4c47-b606-39c1913e8a1c"
       ],
       "settings": {
         "spacing_position": "None",
@@ -59,27 +201,8 @@
         "show_navigation_arrows": true,
         "controls_color": "#ffffff",
         "autoplay": true,
-        "cycle_speed": 10,
+        "cycle_speed": 4,
         "accessibility_info": "Slideshow about our brand"
-      }
-    },
-    "new-arrivals": {
-      "type": "featured-collection",
-      "settings": {
-        "spacing_position": "Medium",
-        "collection": "一般商品",
-        "layout_mode": "carousel",
-        "heading": "WAOCON goods",
-        "heading_font_size": "HeadlineMedium",
-        "button_label": "すべてを表示する",
-        "grid_items_count": 8,
-        "grid_desktop_items_per_row": 4,
-        "grid_mobile_items_per_row": "2",
-        "show_product_info": true,
-        "show_rating": false,
-        "show_vendor": false,
-        "show_swatches": false,
-        "enable_quick_add": false
       }
     },
     "image-banner": {
@@ -115,31 +238,13 @@
         "description",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "spacing_position": "None",
         "image": "shopify:\/\/shop_images\/wao_kv1_857bf56b-6709-4d94-90a2-e6fcfcfe9705.jpg",
         "overlay_opacity": 0,
         "image_link": "",
         "content_position": "middleCenter"
-      }
-    },
-    "bestseller": {
-      "type": "featured-collection",
-      "settings": {
-        "spacing_position": "Medium",
-        "collection": "cloudfunding",
-        "layout_mode": "grid",
-        "heading": "crowdfunding",
-        "heading_font_size": "HeadlineMedium",
-        "button_label": "View all products",
-        "grid_items_count": 8,
-        "grid_desktop_items_per_row": 4,
-        "grid_mobile_items_per_row": "2",
-        "show_product_info": true,
-        "show_rating": false,
-        "show_vendor": false,
-        "show_swatches": false,
-        "enable_quick_add": false
       }
     },
     "blog-posts": {
@@ -170,13 +275,83 @@
         "show_description": true,
         "show_read_more": false
       }
+    },
+    "852f4928-e477-4e8f-b63c-083387af6902": {
+      "type": "logo-text",
+      "blocks": {
+        "template--21540746690839__852f4928-e477-4e8f-b63c-083387af6902-letter-1": {
+          "type": "letter",
+          "settings": {
+            "letter": "Creative",
+            "letter_image": "shopify:\/\/shop_images\/Creative.svg",
+            "letter_positon": "letter_left"
+          }
+        },
+        "template--21540746690839__852f4928-e477-4e8f-b63c-083387af6902-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/59241beaccfc0649c713eae242f7d6b0.svg"
+          }
+        },
+        "template--21540746690839__852f4928-e477-4e8f-b63c-083387af6902-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "WAOCON Designersが作成した<br>\nカジュアルウェアのラインナップです。<br><br>\nデザイン・着心地の良い布選びと形・コストバランスの<br>\n 全てをフルプロデュースさせて頂きます。<br><br>\n「すぱくる」なオリジナルウェアが欲しい方の<br>\nご依頼をお待ちしております。<br>"
+          }
+        },
+        "template--21540746690839__852f4928-e477-4e8f-b63c-083387af6902-description-1": {
+          "type": "description",
+          "settings": {
+            "text": "<p>This is a lineup of casual wear created by WAOCON Designers. They specialize in fully producing designs with a focus on comfortable fabric selection, appealing aesthetics, and a balanced combination of form and cost. They are currently open to requests from those who desire unique and original 'SUPAKURU' casual wear.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--21540746690839__852f4928-e477-4e8f-b63c-083387af6902-letter-1",
+        "template--21540746690839__852f4928-e477-4e8f-b63c-083387af6902-image-1",
+        "template--21540746690839__852f4928-e477-4e8f-b63c-083387af6902-heading-1",
+        "template--21540746690839__852f4928-e477-4e8f-b63c-083387af6902-description-1"
+      ],
+      "custom_css": [
+        ".logoText {border: none !important; margin-top: 0;}",
+        ".Container--spacingMediumPadding {padding-top: 20px;}",
+        ".logo_image {margin-top: 50px;}",
+        ".SectionHeader__Heading {font-size: 20px; font-weight: 400; letter-spacing: 1px;}",
+        ".SectionHeader__Description {margin-top: 60px; font-size: 14px; font-weight: 400; letter-spacing: 1.4px;}"
+      ],
+      "settings": {
+        "spacing_position": "Medium",
+        "content_align": "center"
+      }
+    },
+    "new-arrivals": {
+      "type": "featured-collection",
+      "settings": {
+        "spacing_position": "Medium",
+        "collection": "一般商品",
+        "layout_mode": "carousel",
+        "heading": "WAOCON goods",
+        "heading_font_size": "HeadlineMedium",
+        "button_label": "すべてを表示する",
+        "grid_items_count": 8,
+        "grid_desktop_items_per_row": 4,
+        "grid_mobile_items_per_row": "2",
+        "show_product_info": true,
+        "show_rating": false,
+        "show_vendor": false,
+        "show_swatches": false,
+        "enable_quick_add": false
+      }
     }
   },
   "order": [
-    "slideshow",
-    "new-arrivals",
-    "image-banner",
+    "7ccde71b-a229-45bb-a0a4-7d2b7b765122",
+    "71bfecc6-313f-41b3-b084-fe1cd0191862",
     "bestseller",
-    "blog-posts"
+    "slideshow",
+    "image-banner",
+    "blog-posts",
+    "852f4928-e477-4e8f-b63c-083387af6902",
+    "new-arrivals"
   ]
 }
