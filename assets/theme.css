@@ -1095,9 +1095,12 @@ html.no-js .no-js-hidden {
 }
 
 .TitleMedium {
-  font-family: var(--tg-sys-typescale-title-medium-font);
+  /* font-family: var(--tg-sys-typescale-title-medium-font); 
   font-style: var(--tg-sys-typescale-title-medium-style);
-  font-weight: var(--tg-sys-typescale-title-medium-weight);
+  font-weight: var(--tg-sys-typescale-title-medium-weight);*/
+
+  font-family: YuGothic;
+  font-weight: 500;
   font-size: var(--tg-sys-typescale-title-medium-size);
   line-height: var(--tg-sys-typescale-title-medium-line-height);
   letter-spacing: var(--tg-sys-typescale-title-medium-tracking);
@@ -1113,9 +1116,10 @@ html.no-js .no-js-hidden {
 }
 
 .LabelLarge {
-  font-family: var(--tg-sys-typescale-label-large-font);
-  font-style: var(--tg-sys-typescale-label-large-style);
-  font-weight: var(--tg-sys-typescale-label-large-weight);
+  /* font-family: var(--tg-sys-typescale-label-large-font);
+  font-style: var(--tg-sys-typescale-label-large-style);*/
+  font-family: YuGothic;
+  font-weight: 500;
   font-size: var(--tg-sys-typescale-label-large-size);
   line-height: var(--tg-sys-typescale-label-large-line-height);
   letter-spacing: var(--tg-sys-typescale-label-large-tracking);

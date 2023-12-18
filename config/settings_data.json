@@ -12,7 +12,7 @@
     "product_image_size": "2x3",
     "product_show_secondary_image": true,
     "product_color_image_swatch": true,
-    "product_badge_corner_radius": 0,
+    "product_badge_corner_radius": 4,
     "cart_type": "drawer",
     "favicon": "shopify:\/\/shop_images\/Union.svg",
     "price_currency_format": "money_without_trailing_zeros",

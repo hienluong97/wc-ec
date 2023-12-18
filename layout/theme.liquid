@@ -72,6 +72,8 @@
     {%- endif -%}
 
     {{ 'custom.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-fonts.css' | asset_url | stylesheet_tag }}
+
     
     {%- if settings.custom_code_css != blank -%}
       <style>

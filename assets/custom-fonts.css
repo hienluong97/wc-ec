@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "YuGothic";
+  src: url("https://cdn.shopify.com/s/files/1/0842/2693/3015/files/yu-gothic-bold.woff?v=1702866747") format("woff");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "YuGothic";
+  src: url("https://cdn.shopify.com/s/files/1/0842/2693/3015/files/yu-gothic-medium-regular.woff?v=1702866747") format("woff");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "YuGothic";
+  src: url("https://cdn.shopify.com/s/files/1/0842/2693/3015/files/yu-gothic-regular.woff?v=1702866747") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "YuGothic";
+  src: url("https://cdn.shopify.com/s/files/1/0842/2693/3015/files/yu-gothic-light-regular.woff?v=1702866747") format("woff");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "CRENZO";
+  src: url("https://cdn.shopify.com/s/files/1/0842/2693/3015/files/CRENZO.woff?v=1702873077") format("woff");
+  font-weight: 400;
+}
