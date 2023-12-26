@@ -58,6 +58,7 @@
         },
         "description_collapsible": {
           "type": "description_collapsible",
+          "disabled": true,
           "settings": {
             "heading": "ストーリー",
             "open_collapsible_tab": true

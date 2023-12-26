@@ -72,6 +72,37 @@
         </div>
       </div>
   </div>
+     <div class="ProductDescription">
+          {%- if product.description != blank -%}
+                    <div class="Accordion__Item Product__Block Product__Block--collapsibleInfoJS Product__Block--descriptionCollapsible no-js-hidden" {{ block.shopify_attributes }}>
+                        <div class="Accordion__Header">
+                            <button class="Accordion__Button {% unless block.settings.open_collapsible_tab %}Collapsed{% endunless %}" type="button" data-tg-toggle="Collapse" {% if block.settings.open_collapsible_tab %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} data-tg-target="#ProductBlockAccordion-{{ block.id }}">
+                                {% assign default_description_drawer_title = 'product.general.description' | t %}
+                               ストーリー
+                            </button>
+                        </div>
+                        <div id="ProductBlockAccordion-{{ block.id }}" class="Accordion__Collapse Collapse {% if block.settings.open_collapsible_tab %}Show{% endif %}">
+                            <div class="Accordion__Body RTE">
+                                {{ product.description }}
+                            </div>
+                        </div>
+                    </div>
+    
+                    <noscript>
+                        <details class="Product__Block Product__Block--collapsibleInfo Product__Block--descriptionCollapsible"{% if block.settings.open_collapsible_tab %} open{% endif %} {{ block.shopify_attributes }}>
+                            {% assign default_description_drawer_title = 'product.general.description' | t %}
+                            <summary class="ProductInfoCollapsible__Title" role="button">
+                                {{ block.settings.heading | default: default_description_drawer_title }}
+                            </summary>
+                            <div class="Product__BlockContainer">
+                                <div class="RTE">
+                                    {{ product.description }}
+                                </div>
+                            </div>
+                        </details>
+                    </noscript>
+                {%- endif -%}
+     </div>
 </section-product>
 
 {%- if section.settings.enable_image_zoom -%}
@@ -870,3 +901,29 @@
   ]
 }
 {% endschema %}
+
+
+<style>
+
+    .ProductDescription .Accordion__Item.Product__Block.Product__Block--collapsibleInfoJS.Product__Block--descriptionCollapsible {
+        margin-top: unset;
+    }
+
+    .ProductDescription .Accordion__Item  {
+        margin-right: unset;
+    }
+    .ProductDescription .Product__Block--collapsibleInfoJS .Accordion__Button {
+        padding-left: 2rem;
+    }
+
+     .ProductDescription .Product__Block--collapsibleInfoJS .Accordion__Collapse {
+        padding-left: 4rem;
+        padding-right: 2rem;
+    }
+
+    .Accordion__Header .Accordion__Button {
+        font-size: 18px;
+        font-weight: 500 !important;
+        font-family: YuGothic;
+    }
+</style>

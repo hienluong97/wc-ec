@@ -390,9 +390,11 @@ p:has(.cf-moneytotal) {
     font-weight: 500 !important;
 }
 
-.Accordion__Body h4 {
+.Accordion__Body h4 span {
     font-size: 1rem;
     font-weight: 600;
+    background-color: #e6e6e6;
+    padding: 2px 6px;
 }
 
 .RTE li::marker {
