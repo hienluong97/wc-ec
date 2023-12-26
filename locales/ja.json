@@ -98,9 +98,9 @@
       "title": "Navigation principale",
       "sidebar_title": "Navigation dans la barre latérale",
       "open_sidebar": "Ouvrir la navigation",
-      "account": "COMPTE",
-      "search": "RECHERCHE",
-      "cart": "PANIER",
+      "account": "アカウント",
+      "search": "検索",
+      "cart": "カート",
       "open_cart": "Ouvrir le panier",
       "skip_to_content": "Aller au contenu",
       "cart_count": {
@@ -123,39 +123,39 @@
       "pages": "Pages"
     },
     "general": {
-      "title": "Recherche",
-      "content": "Entrez un mot pour rechercher nos produits :",
-      "input_placeholder": "Recherche...",
-      "view_all": "Tout afficher",
-      "no_results": "Aucun résultat n'a pu être trouvé",
-      "no_results_with_terms": "Aucun résultat trouvé pour « {{ terms }} ». Vérifiez l'orthographe ou utilisez un autre mot ou une autre expression.",
+      "title": "検索",
+      "content": "商品名や商品の特徴など、手がかりとなるキーワードを入力して検索できます。",
+      "input_placeholder": "検索...",
+      "view_all": "すべてを表示する",
+      "no_results": "検索結果が見つかりませんでした",
+      "no_results_with_terms": "「{{ terms }}」 一致する結果が見つかりません。スペルを確認するか、他のキーワードを入力してみてください。",
       "results_count": {
-        "zero": "Articles",
-        "one": "1 article",
-        "other": "{{count}} éléments"
+        "zero": "アイテム",
+        "one": "1 アイテム",
+        "other": "{{count}} アイテム"
       },
-      "search_for": "Rechercher « {{ terms }} »"
+      "search_for": "検索 « {{ terms }} »"
     }
   },
   "collection_list": {
     "general": {
-      "title": "Toutes les collections",
+      "title": "すべてのコレクション",
       "empty_title": "Aucune collecte",
-      "empty_button": "Retour à la page d'accueil"
+      "empty_button": "ホームに戻る"
     }
   },
   "collection": {
     "general": {
-      "all_products": "Tous les produits",
-      "no_products": "Désolé, nous n'avons trouvé aucun produit",
-      "empty": "La collection {{collection_title}} est vide",
-      "empty_button": "Retour à la page d'accueil",
-      "reset": "Réinitialiser les filtres",
-      "view_products": "Voir les produits",
-      "filter_sorting": "FILTRER ET TRIER",
+      "all_products": "すべての商品",
+      "no_products": "申し訳ございません。商品が見つかりませんでした。",
+      "empty": "コレクション{{collection_title}}は空です",
+      "empty_button": "ホームに戻る",
+      "reset": "リセットする",
+      "view_products": "商品を見る",
+      "filter_sorting": "並べ替え\/フィルタ",
       "product_count": {
-        "one": "{{ count }} élément",
-        "other": "{{ count }} éléments"
+        "one": "{{ count }} 商品",
+        "other": "{{ count }} 商品"
       },
       "now_show_product_count_html": {
         "one": "{{ count }}商品",
@@ -165,7 +165,7 @@
     "filter": {
       "title": "絞り込み",
       "show_filter": "Afficher les filtres",
-      "all": "Filtres",
+      "all": "すべて",
       "reset": "リセット",
       "apply": "適用",
       "selected_filters": "Selected Filters:",
@@ -188,34 +188,34 @@
   },
   "customer": {
     "account": {
-      "title": "Mon compte",
-      "welcome": "Bienvenue à nouveau, {{first_name}} !",
-      "logout": "Se déconnecter",
-      "back_to_account": "Retour au compte",
-      "no_orders_title": "Mes commandes",
+      "title": "アカウント",
+      "welcome": "こんにちは, {{first_name}} !",
+      "logout": "ログアウト",
+      "back_to_account": "アカウントの詳細に戻る",
+      "no_orders_title": "注文",
       "no_orders_content": "Vous n'avez pas encore passé de commande",
       "no_addresses_title": "Aucune adresse",
       "no_addresses_content": "Aucune adresse n'est actuellement enregistrée",
-      "default_address": "Adresse principale",
-      "edit_addresses": "Modifier les adresses",
+      "default_address": "デフォルトの住所",
+      "edit_addresses": "住所を編集する",
       "manage_addresses": "Gérer les adresses"
     },
     "login": {
-      "title": "Connexion",
+      "title": "ログイン",
       "description": "Veuillez saisir votre e-mail et votre mot de passe.",
-      "email": "E-mail",
-      "password": "Mot de passe",
-      "forgot": "mot de passe oublié?",
-      "submit": "Connexion",
-      "register_label": "Vous n'avez pas de compte ?",
-      "register_link": "Créer une"
+      "email": "メール",
+      "password": "パスワード",
+      "forgot": "パスワードをお忘れですか?",
+      "submit": "送信",
+      "register_label": "アカウントを作成する",
+      "register_link": "作成"
     },
     "orders": {
-      "order_number": "Ordre",
-      "date": "Date",
-      "payment_status": "Statut de paiement",
-      "fulfillment_status": "État d'exécution",
-      "total": "Total"
+      "order_number": "注文ID",
+      "date": "注文日",
+      "payment_status": "決済状況",
+      "fulfillment_status": "発送状況",
+      "total": "合計"
     },
     "order": {
       "title": "Commandez {{order_number}}",
@@ -245,56 +245,56 @@
       "decline": "Déclin"
     },
     "recover_password": {
-      "title": "Récupérer mot de passe",
-      "description": "Veuillez saisir votre e-mail :",
-      "email": "E-mail",
-      "submit": "Récupérer",
-      "success": "Nous vous avons envoyé un e-mail avec des instructions pour réinitialiser votre mot de passe.",
-      "login_label": "Rappelez-vous votre mot de passe ?",
-      "login_link": "Retour connexion"
+      "title": "パスワードをリセットする",
+      "description": "パスワードをリセットするためのメールを送信します",
+      "email": "メールアドレス",
+      "submit": "送信",
+      "success": "パスワードを更新するためのリンクが記載されたメールを送信しました。",
+      "login_label": "ログインする?",
+      "login_link": "ログイン"
     },
     "reset_password": {
-      "title": "Réinitialiser le mot de passe",
-      "description": "Veuillez saisir un nouveau mot de passe :",
-      "password": "Mot de passe",
-      "password_confirmation": "Confirmez le mot de passe",
-      "submit": "Réinitialiser"
+      "title": "アカウントのパスワードをリセットする",
+      "description": "新しいパスワードを入力してください",
+      "password": "パスワード",
+      "password_confirmation": "パスワードを確認する",
+      "submit": "パスワードをリセットする"
     },
     "addresses": {
-      "title": "Vos adresses",
+      "title": "あなたの住所",
       "empty": "Aucune adresse n'a encore été enregistrée",
-      "edit": "Modifier",
-      "delete": "Supprimer",
-      "add_address": "ajouter une nouvelle adresse",
-      "edit_address": "Modifier une adresse",
-      "form_subtitle": "Veuillez remplir les informations ci-dessous.",
-      "default_address_label": "Adresse par défaut",
-      "address_label": "Adresse {{position}}",
-      "first_name": "Prénom",
-      "last_name": "Nom de famille",
-      "company": "Entreprise",
-      "address1": "Adresse",
-      "address2": "Appartement, suite, etc.",
-      "city": "Ville",
-      "country": "Pays",
-      "province": "Province",
-      "zip": "Code postal",
-      "phone": "Téléphoner",
-      "set_default": "Définir comme adresse par défaut",
-      "table_col_addreses_label": "Nom",
-      "table_col_addreses_content": "Contenu",
-      "table_col_addreses_action": "Action"
+      "edit": "編集",
+      "delete": "削除",
+      "add_address": "新しいアドレスを追加する",
+      "edit_address": "住所編集",
+      "form_subtitle": "新しいアドレスを追加する",
+      "default_address_label": "デフォルトの住所",
+      "address_label": "住所 {{position}}",
+      "first_name": "名",
+      "last_name": "姓",
+      "company": "会社",
+      "address1": "住所1",
+      "address2": "建物名、部屋番号など",
+      "city": "市",
+      "country": "国\/地域",
+      "province": "都道府県",
+      "zip": "郵便番号",
+      "phone": "電話番号",
+      "set_default": "デフォルトの住所として設定する",
+      "table_col_addreses_label": "順",
+      "table_col_addreses_content": "コンテンツ",
+      "table_col_addreses_action": "アクション"
     },
     "register": {
-      "title": "S'inscrire",
-      "description": "Veuillez remplir les informations ci-dessous.",
-      "first_name": "Prénom",
-      "last_name": "Nom de famille",
-      "email": "E-mail",
-      "password": "Mot de passe",
-      "submit": "Créer mon compte",
-      "have_account": "Vous avez déjà un compte?",
-      "login": "Allez vous connecter"
+      "title": "アカウントを作成する",
+      "description": "以下の情報をご記入ください。",
+      "first_name": "名",
+      "last_name": "姓",
+      "email": "メール",
+      "password": "パスワード",
+      "submit": "作成する",
+      "have_account": "すでにアカウントをお持ちですか？",
+      "login": "ログインする"
     }
   },
   "cart": {
@@ -326,14 +326,14 @@
       "remove": "取り消す"
     },
     "shipping_estimator": {
-      "title": "Estimation des frais de port",
-      "country": "Pays",
-      "province": "Province",
-      "zip_code": "Code postal",
-      "estimate": "Estimation",
-      "one_result_title": "1 choix disponible :",
-      "more_results_title": "{{count}} options disponibles :",
-      "no_results_title": "Aucune expédition n'a pu être trouvée"
+      "title": "配送料金の目安",
+      "country": "国\/地域",
+      "province": "都道府県",
+      "zip_code": "郵便番号",
+      "estimate": "概算",
+      "one_result_title": "1つのオプションが利用可能です。",
+      "more_results_title": "{{count}}つのオプションが利用可能です。",
+      "no_results_title": "配送オプションが見つかりませんでした"
     }
   },
   "product": {

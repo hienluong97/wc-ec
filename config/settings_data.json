@@ -30,7 +30,7 @@
         "type": "menu-drawer",
         "settings": {
           "primary_menu": "main-menu",
-          "secondary_menu": "footer",
+          "secondary_menu": "",
           "show_social_media": true,
           "logo": "shopify:\/\/shop_images\/supakuru_black.svg",
           "logo_max_width": 80,

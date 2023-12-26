@@ -62,7 +62,7 @@
           "type": "letter",
           "settings": {
             "letter": "Mission",
-            "letter_image": "shopify:\/\/shop_images\/Mission.svg",
+            "letter_image": "shopify:\/\/shop_images\/Mission_Stroke.svg",
             "letter_positon": "letter_left"
           }
         },
@@ -92,8 +92,10 @@
         "template--21540746690839__71bfecc6-313f-41b3-b084-fe1cd0191862-description-1"
       ],
       "custom_css": [
-        ".Container--spacingMediumPadding {padding-top: 18px;}",
-        "@media screen and (max-width: 640px) {.logo_image img {margin-top: 20px; width: 80%; } .SectionHeader__Heading {font-size: 20px; letter-spacing: 1px; } .SectionHeader__Description p {font-size: 14px; letter-spacing: 1px; }}"
+        ".Container--spacingMediumPadding {padding-top: 18px; padding-bottom: 18px;}",
+        ".text_image img {width: 35vw;}",
+        ".logo_image img {margin-top: -20px;}",
+        "@media screen and (max-width: 640px) {.text_image img {width: 50vw; } .logo_image img {margin-top: 20px; width: 80%; } .SectionHeader__Heading {font-size: 20px; letter-spacing: 1px; } .SectionHeader__Description p {font-size: 14px; letter-spacing: 1px; }}"
       ],
       "settings": {
         "spacing_position": "Medium",
@@ -287,7 +289,7 @@
           "type": "letter",
           "settings": {
             "letter": "Creative",
-            "letter_image": "shopify:\/\/shop_images\/Creative.svg",
+            "letter_image": "shopify:\/\/shop_images\/Creative_Stroke.svg",
             "letter_positon": "letter_left"
           }
         },
@@ -318,11 +320,12 @@
       ],
       "custom_css": [
         ".logoText {border: none !important; margin-top: 0;}",
-        ".Container--spacingMediumPadding {padding-top: 20px;}",
+        ".Container--spacingMediumPadding {padding-top: 20px; padding-bottom: 18px;}",
+        ".text_image img {width: 35vw;}",
         ".logo_image {margin-top: 50px;}",
         ".SectionHeader__Heading {font-size: 20px; font-weight: 400; letter-spacing: 1px;}",
-        ".SectionHeader__Description p {margin-top: 60px; font-size: 14px; font-weight: 400; letter-spacing: 1.4px;}",
-        "@media screen and (max-width: 640px) {.logo_image img {width: 80%; } .SectionHeader__Heading {font-size: 16px; letter-spacing: 1px; } .SectionHeader__Description p {letter-spacing: 1px; }}"
+        ".SectionHeader__Description p {font-size: 14px; font-weight: 400; letter-spacing: 1.4px;}",
+        "@media screen and (max-width: 640px) {.text_image img {width: 50vw; } .logo_image img {width: 80%; } .SectionHeader__Heading {font-size: 16px; letter-spacing: 1px; }}"
       ],
       "settings": {
         "spacing_position": "Medium",
@@ -332,7 +335,7 @@
     "new-arrivals": {
       "type": "featured-collection",
       "custom_css": [
-        ".Container--spacingMedium {margin-bottom: 0 ;}"
+        ".Container--spacingMedium {margin-bottom: 0;}"
       ],
       "settings": {
         "spacing_position": "Medium",

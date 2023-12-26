@@ -1074,6 +1074,10 @@ html.no-js .no-js-hidden {
   font-size: var(--tg-sys-typescale-headline-medium-size);
   line-height: var(--tg-sys-typescale-headline-medium-line-height);
   letter-spacing: var(--tg-sys-typescale-headline-medium-tracking);
+  font-family: 'Roboto';
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1;
 }
 
 .HeadlineSmall {
@@ -2858,7 +2862,7 @@ textarea.Form__Input {
 }
 @media screen and (min-width: 641px) {
   .SectionHeader {
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
   }
 }
 .SectionHeader .SectionHeader__Text {
