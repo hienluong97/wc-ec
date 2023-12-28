@@ -218,9 +218,9 @@
   content: "";
   position: absolute;
   width: 0;
-  height: 2px;
+  height: 3px;
   display: block;
-  bottom: 0;
+  bottom: -4px;
   background: var(--tg-header-text-color);
   left: 0;
 }
@@ -351,7 +351,7 @@
   }
   .Header .Header__MainMenu {
     flex-grow: 1;
-    justify-content: center;
+    justify-content: left;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -390,3 +390,59 @@
 .Header__Localization {
   margin-left: 0.5rem;
 }
+
+
+/* custom header */
+
+.Header__TopWrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Header__TopWrapper .Header__storeName {
+    width: 60vw ;
+}
+
+.storeName__text {
+    color: #000;
+    font-family: Rift;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 3.2px;
+}
+
+.Header--middleLeft .Header__Main .Header__MainMenu {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.Header__MainMenu .Nav .Nav__Item:first-child .Nav__Link {
+    margin-left: 0;
+}
+
+.Header__MainMenu .Nav__Link.Nav__Link--levelOne.Active {
+    border-bottom: 3px solid #000000;
+}
+
+.header__search__text {
+    margin-right: 60px;
+    color:  #999;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2px;
+}
+
+@media screen and (max-width: 1007px) { 
+    .sp_display_none {
+    display: none !important;
+}
+}
+

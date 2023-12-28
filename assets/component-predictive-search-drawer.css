@@ -1,7 +1,7 @@
 .SearchDrawer {
   height: auto;
   bottom: unset;
-  top: calc(var(--tg-header-height, 0px) + var(--tg-announcement-bar-height, 0px) + var(--tg-search-drawer-top-other-elements-height, 0px) - 1px);
+  top: calc(var(--tg-header-height, 0px) + var(--tg-announcement-bar-height, 0px) + var(--tg-search-drawer-top-other-elements-height, 0px) - 140px);
   border-bottom: none;
 }
 .SearchDrawer.Drawer--top {

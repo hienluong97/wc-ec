@@ -9,10 +9,10 @@
           "type": "text",
           "settings": {
             "heading": "ミッション",
-            "logo": "shopify:\/\/shop_images\/supakuru_white.svg",
+            "logo": "shopify:\/\/shop_images\/square-black.svg",
             "logo_max_width": 140,
             "mobile_logo_max_width": 75,
-            "content": "<p>連絡先情報、店舗の詳細、ブランドコンテンツを顧客とご共有いたします。<\/p>",
+            "content": "<p>〒150-0043 <br\/>東京都渋谷区道玄坂一丁目10番8号 <br\/>渋谷道玄坂東急ビル2F<\/p><p>OPEN 11:00 ～ CLOSE 20:00<br\/>TEL 03-4405-3988<\/p>",
             "enable_follow_on_shop": true,
             "show_social_media": true
           }
@@ -20,30 +20,14 @@
         "footer-link-1": {
           "type": "links",
           "settings": {
-            "heading": "ストア",
-            "menu": "footer"
-          }
-        },
-        "footer-link-2": {
-          "type": "links",
-          "settings": {
-            "heading": "情報",
-            "menu": "footer"
-          }
-        },
-        "footer-newsletter": {
-          "type": "newsletter",
-          "settings": {
-            "heading": "弊社Eメールに登録",
-            "content": "<p>ニュースレターにご登録いた だくと、弊社製品の最新情報を E メールにてご案内します。<\/p>"
+            "heading": "STORE",
+            "menu": "main-menu"
           }
         }
       },
       "block_order": [
         "footer-text",
-        "footer-link-1",
-        "footer-link-2",
-        "footer-newsletter"
+        "footer-link-1"
       ],
       "settings": {
         "footer_width": "full_width",

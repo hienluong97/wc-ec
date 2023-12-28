@@ -1,0 +1,132 @@
+/* custom css for FeaturedCollection */
+
+.FeaturedCollection {
+    margin-top: 25px !important;
+    margin-bottom: 20px !important;
+}
+
+/* custom css for Slideshow */
+
+#section-template--21540746690839__7eea2238-1d38-4ea2-ac5f-e61d23bdb014 {
+    margin-top: 25px;
+    padding-left: calc(100% - 100% / 1920 * 1820) !important;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+.Slideshow_left_wrapper {
+    width: 33%;
+    padding: 30px 30px 30px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#section-template--21540746690839__7eea2238-1d38-4ea2-ac5f-e61d23bdb014 .Carousel {
+  width: 67%; 
+}
+
+.Slideshow_left_wrapper .flex-grow {
+   flex-grow: 1;
+}
+
+.Slideshow_left_wrapper .Slideshow_heading,
+.Slideshow_left_wrapper .Slideshow_subHeading {
+    color:  #1A1A1A;
+    font-family: Lato;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.Slideshow_left_wrapper .Slideshow_subHeading {
+    color:  #999;
+    display: block;
+    /* flex-grow: 1; */
+}
+.Slideshow_left_wrapper .Slideshow_desc {
+    /* flex-grow: 1; */
+    color: #000;
+    text-align: justify;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+}
+
+
+.Slideshow_heading { 
+    position: relative;
+}
+
+.Slideshow_subHeading { 
+    position: relative;
+}
+
+.Slideshow_heading::after {
+  content: "|";
+   position: absolute;
+   bottom: 1px;
+   color: orange;
+   font-weight: bold;
+   animation:  blink .8s infinite;
+}
+
+.Slideshow_subHeading::after {
+  content: "|";
+   position: absolute;
+   bottom: 1px;
+   color: orange;
+   font-weight: bold;
+   animation:  blink .8s infinite;
+}
+
+.without-after-element:after {
+  content: none;
+}
+
+@keyframes blink {
+  50% {
+    color: transparent;
+  }
+}
+
+
+@media screen and (max-width: 950px) { 
+  #section-template--21540746690839__7eea2238-1d38-4ea2-ac5f-e61d23bdb014 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Slideshow_left_wrapper {
+    width: 100%;
+    padding: 30px 30px 30px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#section-template--21540746690839__7eea2238-1d38-4ea2-ac5f-e61d23bdb014 .Carousel {
+    width: 100%; 
+}
+}
+/* custom css for WAOCON Designers */
+
+#shopify-section-template--21540746690839__f917d87e-0670-414c-a4ab-41c342dd8200 .SectionBody__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ProductCollectionList {
+    width: 33%;
+}
+
+#shopify-section-template--21540746690839__f917d87e-0670-414c-a4ab-41c342dd8200 .SectionBody.FeaturedCollection__Body.ProductListWrapper {
+    width: 66%;
+
+}

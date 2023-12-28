@@ -44,8 +44,17 @@
   width: auto;
   margin: 0;
   bottom: 1rem;
-  left: 1.5rem;
+  right: 1.5rem;
+  left: unset;
 }
+
+.Carousel--insideDots .flickity-page-dots .dot {
+  width: 25px !important;
+  height: 3px !important;
+  border-radius: unset !important;
+  background-color: #FFFFFF;
+}
+
 .Carousel--insideDots .flickity-page-dots .dot {
   border-color: currentColor;
 }
@@ -67,6 +76,6 @@
   .Carousel--insideDots .flickity-page-dots {
     bottom: 1.5rem;
     right: 2rem;
-    /* left: auto; */
+    left: auto;
   }
 }

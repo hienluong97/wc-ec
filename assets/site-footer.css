@@ -5,7 +5,7 @@
 
 .Footer {
   margin-top: -1px;
-  border-top: 1px solid var(--tg-sys-color-outline);
+  /* border-top: 1px solid var(--tg-sys-color-outline); */
 }
 
 .Footer, .Footer .Form__Submit {
@@ -156,7 +156,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border-top: 1px solid #fff;
+  border-top: 1px solid #1A1A1A;
   padding-top: 1rem;
   margin-top: 1.5rem;
 }
@@ -234,3 +234,70 @@
 .FooterBlock__FollowOnShop {
   margin-top: 0.5rem;
 }
+
+.Footer__storeName__wrapper {
+    margin-top: 180px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.FooterBlocks .Nav.Nav--vertical {
+   flex-direction: row;
+}
+
+.FooterBlocks .Nav.Nav--vertical a {
+   margin-left: 40px;
+   color:  #1A1A1A;
+    font-family: Lato;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.FooterBlocks .Nav.Nav--vertical li:first-child a {
+   margin-left: 0;
+}
+
+.FooterBlock__Content p {
+    color:  #1A1A1A;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2;
+    letter-spacing: 1.6px;
+}
+
+@media screen and (max-width: 1080px) { 
+  .FooterBlocks {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
+
+  .FooterBlock.FooterBlock--links .Nav.Nav--vertical{
+     justify-content: center;
+     align-items: center;
+  }
+  .FooterBlocks .Nav.Nav--vertical a {
+   margin-left: 30px !important;
+}
+   .FooterBlocks .Nav.Nav--vertical li:first-child a {
+   margin-left: 0 !important;
+}
+
+.Footer__storeName__wrapper {
+    margin-top: 80px;
+}
+
+}
+
+@media screen and (max-width: 640px) {  
+
+
+}
+
+

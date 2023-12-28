@@ -435,7 +435,7 @@ body {
   margin: 0;
   color: var(--tg-sys-color-on-background);
   background: var(--tg-sys-color-background);
-  border: 1px solid var(--tg-sys-color-outline);
+  /* border: 1px solid var(--tg-sys-color-outline); */
   font-family: var(--tg-sys-typescale-body-medium-font);
   font-style: var(--tg-sys-typescale-body-medium-style);
   font-weight: var(--tg-sys-typescale-body-medium-weight);
@@ -1074,7 +1074,7 @@ html.no-js .no-js-hidden {
   font-size: var(--tg-sys-typescale-headline-medium-size);
   line-height: var(--tg-sys-typescale-headline-medium-line-height);
   letter-spacing: var(--tg-sys-typescale-headline-medium-tracking);
-  font-family: 'Roboto';
+  font-family: 'Lato';
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 1;
@@ -1099,15 +1099,14 @@ html.no-js .no-js-hidden {
 }
 
 .TitleMedium {
-  /* font-family: var(--tg-sys-typescale-title-medium-font); 
-  font-style: var(--tg-sys-typescale-title-medium-style);
-  font-weight: var(--tg-sys-typescale-title-medium-weight);*/
-
-  font-family: YuGothic;
-  font-weight: 500;
-  font-size: var(--tg-sys-typescale-title-medium-size);
-  line-height: var(--tg-sys-typescale-title-medium-line-height);
-  letter-spacing: var(--tg-sys-typescale-title-medium-tracking);
+   color: var(--main, #1A1A1A);
+    font-family: Lato;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2px;
+    color: var(--main, #1A1A1A)
 }
 
 .TitleSmall {
@@ -1122,7 +1121,7 @@ html.no-js .no-js-hidden {
 .LabelLarge {
   /* font-family: var(--tg-sys-typescale-label-large-font);
   font-style: var(--tg-sys-typescale-label-large-style);*/
-  font-family: YuGothic;
+  font-family: Lato;
   font-weight: 500;
   font-size: var(--tg-sys-typescale-label-large-size);
   line-height: var(--tg-sys-typescale-label-large-line-height);
@@ -1636,6 +1635,15 @@ textarea.Form__Input {
   margin-right: auto;
   margin-left: auto;
 }
+
+.Container--custom { 
+  width: 100%;
+  padding-left: calc(100% - 100% / 1920 * 1820) !important;
+  padding-right: calc(100% - 100% / 1920 * 1820) !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 @media screen and (min-width: 641px) {
   .Container {
     padding-right: calc(var(--tg-container-gutter-x) * 3);
@@ -1781,6 +1789,7 @@ textarea.Form__Input {
   width: 100%;
   border-right: 1px solid var(--tg-sys-color-outline);
   border-bottom: 1px solid var(--tg-sys-color-outline);
+  padding: 45px 30px;
 }
 
 .Grid--spacing {

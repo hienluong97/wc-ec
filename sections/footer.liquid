@@ -1,5 +1,16 @@
 {{ 'site-footer.css' | asset_url | stylesheet_tag }}
 
+<!-- store_name --> 
+{%- capture store_name -%}
+        <img class=""
+            src="{{ section.settings.store_name | image_url: width: image_size }}"
+            srcset="{{ section.settings.store_name | image_url: width: image_size }} 1x"
+            loading="lazy"
+            width="1038"
+            height="236"
+            alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+{%- endcapture -%}
+
 <footer class="Footer {% unless section.blocks.size > 0 %}Footer--withNoMainContent{% endunless %}"
 style="{% if section.settings.background_color != blank and section.settings.background_color != 'rgba(0,0,0,0)' %}--tg-footer-background: {{ section.settings.background_color }};{% endif %}
  {% if section.settings.text_color != blank and section.settings.text_color != 'rgba(0,0,0,0)' %}--tg-footer-text-color: {{ section.settings.text_color }};{% endif %}">
@@ -73,7 +84,7 @@ style="{% if section.settings.background_color != blank and section.settings.bac
                             {%- if block.settings.heading != blank -%}
                                 {{ block.settings.heading | escape }}
                             {%- else -%}
-                                {{ linklist.title | escape }} 
+                                {% comment %} {{ linklist.title | escape }}  {% endcomment %}
                             {%- endif -%}
                           </h3>
                           <ul class="Nav Nav--vertical">
@@ -150,6 +161,13 @@ style="{% if section.settings.background_color != blank and section.settings.bac
       </div>
     </div>
 
+
+    <div class="Footer__storeName__wrapper Container--custom">
+        <div class="Footer__storeName"> 
+            {{ store_name }}
+        </div>
+    </div> 
+
   </div><!-- container -->
 
 </footer>
@@ -221,6 +239,12 @@ style="{% if section.settings.background_color != blank and section.settings.bac
       "id": "enable_language_selector",
       "label": "Enable language selector",
       "default": true
+    },
+     {
+      "type": "image_picker",
+      "id": "store_name",
+      "label": "Store name",
+      "info": "1039 x 237px .svg recommended."
     }
   ],
   "blocks": [

@@ -89,6 +89,17 @@
  {%- endif -%}
 </style>
 
+<!-- store_name --> 
+{%- capture store_name -%}
+        <img class=""
+            src="{{ section.settings.store_name | image_url: width: image_size }}"
+            srcset="{{ section.settings.store_name | image_url: width: image_size }} 1x"
+            loading="lazy"
+            width="1038"
+            height="236"
+            alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+{%- endcapture -%}
+
 
 <!-- Logo --> 
 {%- capture header_logo -%}
@@ -307,7 +318,8 @@
   <ul class="Nav Nav--icons"><!-- icon -->
     <li>
         <a href="{{ routes.search_url }}" class="Nav__Link Button Button--icon" id="Header__SearchTrigger" data-tg-toggle="Drawer" data-tg-target="#SearchDrawer" aria-label="{{ 'header.navigation.search' | t }}">
-          {%- render 'icons', icon: 'search' -%}
+          {%- render 'icons', icon: 'search' -%} &nbsp;&nbsp;
+            <span class="header__search__text sp_display_none">SEARCH</span>
         </a>
     </li>
 
@@ -385,17 +397,27 @@
   style="{% if section.settings.header_background != blank and section.settings.header_background != 'rgba(0,0,0,0)' %}--tg-header-background-color: {{ section.settings.header_background }};{% endif %}
   {% if section.settings.header_text_color != blank and section.settings.header_text_color != 'rgba(0,0,0,0)' %}--tg-header-text-color: {{ section.settings.header_text_color }};{% endif %}">
 
-  <div class="Header__Main Container Container--fluid" style="{% if section.settings.logo != blank %}--header-min-height-mobile: {{ header_main_min_height_mobile }}px; --header-min-height: {{ header_main_min_height }}px ;{% endif %}">
+    <div class="Header__TopWrapper Container--custom">
+        <div class="Header__storeName"><!-- store_name --> 
+            {{ store_name }}
+            <p class="storeName__text">WAOCON Inc,</p>
+        </div>
+        <div class="Header__Logo"><!-- Logo --> 
+            {{ header_logo }}
+        </div>
+    </div> 
 
-    <div class="Header__LogoWrapper">
+  <div class="Header__Main Container--fluid Container--custom" style="{% if section.settings.logo != blank %}--header-min-height-mobile: {{ header_main_min_height_mobile }}px; --header-min-height: {{ header_main_min_height }}px ;{% endif %}">
+
+   <div class="Header__LogoWrapper">
       <div class="Header__MenuTrigger HiddenLarge no-js-hidden">
           <button class="Button Button--icon" id="Header__MenuTrigger" data-tg-toggle="Drawer" data-tg-target="#MenuDrawer" role="button" aria-label="{{ 'header.navigation.open_sidebar' | t }}">{%- render 'icons', icon: 'justify' -%}</button> 
       </div>
 
-      <div class="Header__Logo"><!-- Logo --> 
+      {% comment %} <div class="Header__Logo"><!-- Logo --> 
         {{ header_logo }}
-      </div>
-    </div>
+      </div> {% endcomment %}
+    </div> 
 
     <div class="Header__MainMenu HiddenMediumDown"><!-- Main Menu -->
         {{ header_main_menu }}
@@ -499,17 +521,23 @@
       "type": "header",
       "content": "Logo"
     },
+     {
+      "type": "image_picker",
+      "id": "store_name",
+      "label": "Store name",
+      "info": "1039 x 237px .svg recommended."
+    },
     {
       "type": "image_picker",
       "id": "logo",
       "label": "Image",
-      "info": "200 x 60px .png recommended."
+      "info": "200 x 60px .svg recommended."
     },
     {
       "type": "image_picker",
       "id": "logo_black",
       "label": "Image logo black",
-      "info": "200 x 60px .png recommended."
+      "info": "200 x 60px .svg recommended."
     },
     {
       "type": "select",
