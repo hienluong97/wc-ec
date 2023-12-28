@@ -1,0 +1,204 @@
+{%- if section.settings.enable_quick_add -%}
+  <script src="{{ 'component-quick-add-to-cart-button.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<script src="{{ 'section-featured-collection.js' | asset_url }}" defer="defer"></script>
+
+{%- capture section_settings -%}
+{
+  "layout": {{ section.settings.layout_mode | json }}
+}
+{%- endcapture -%}
+
+{%- assign desktop_items_per_row = section.settings.grid_desktop_items_per_row -%}
+{%- assign mobile_items_per_row  = section.settings.grid_mobile_items_per_row | times: 1 -%}
+
+{%- assign collection = section.settings.collection -%}
+
+{%- assign item_count = section.settings.grid_items_count -%}
+
+<style type="text/css">
+  section-featured-collection{
+    display: block;
+  }
+</style>
+
+<section-featured-collection class="Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }} FeaturedCollection"
+  style="border-top: 1px solid var(--tg-sys-color-outline);" data-section-id="{{ section.id }}" data-section-settings='{{ section_settings }}'>
+
+  {%- if section.settings.heading != blank or section.settings.button_label != blank -%}
+    <header class="SectionHeader Container Container--fluid SectionHeader--horizontal">
+      <div class="SectionHeader__Text">
+        {%- if section.settings.heading != blank -%}
+            <h2 class="SectionHeader__Heading CustomSize {{ section.settings.heading_font_size }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.button_label != blank -%} 
+        <div class="SectionHeader__Button"> 
+          <a href="{{ collection.url }}" class="SectionHeader__Button Button Button--underline">{{ section.settings.button_label | escape }}</a>        
+        </div>
+      {%- endif -%}
+    </header>
+  {%- endif -%}
+
+    <div class="SectionBody__wrapper">
+        <div class="ProductCollectionList">
+                {% for collection in collections %}
+                <p>{{- collection.title }}</p>
+                {% endfor %}
+        </div>
+    
+      <div class="SectionBody FeaturedCollection__Body ProductListWrapper">
+        {%- if collection != blank and collection != empty -%}
+    
+          {%- if collection.products_count < item_count -%}
+            {%- assign item_count = collection.products_count -%}
+          {%- endif -%}
+    
+            <div class="ProductList ProductList--grid Grid">
+              {%- for product in collection.products limit: item_count -%}
+                <div class="Grid__Item 1/{{ mobile_items_per_row }}--small 1/{{ desktop_items_per_row }}--medium-up">
+                  {% render 'product-card', product: product, show_rating: section.settings.show_rating, show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_swatches: section.settings.show_swatches, show_quick_add: section.settings.enable_quick_add %}
+                </div>
+              {%- endfor -%}
+            </div>
+        {%- else -%}
+    
+        {%- endif -%}
+    
+      </div>
+    </div>
+</section-featured-collection>
+
+{% schema %}
+{
+  "name": "Product custom",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_position",
+      "label": "Spacing position",
+      "options": [
+        {
+          "value": "None",
+          "label": "None"
+        },
+        {
+          "value": "Top",
+          "label": "Top"
+        },
+        {
+          "value": "Bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "Medium",
+          "label": "Top and Bottom"
+        }
+      ],
+      "default": "Medium"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "View all products"
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "grid_items_count",
+      "min": 2,
+      "max": 24,
+      "step": 1,
+      "label": "Maximum products to show",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "id": "grid_desktop_items_per_row",
+      "label": "Number of columns on desktop",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "id": "grid_mobile_items_per_row",
+      "label": "Number of columns on mobile",
+      "default": "2",
+      "info": "Visible when the ‘Layout’ setting is set to Grid."
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_info",
+      "label": "Show product info",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show product rating",
+      "default": false,
+      "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#featured-collection-show-product-rating)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swatches",
+      "label": "Show swatch",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": false,
+      "label": "Enable quick add button"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product custom"
+    }
+  ]
+}
+{% endschema %}

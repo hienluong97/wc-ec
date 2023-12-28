@@ -43,8 +43,8 @@
 }
 
 .ProductCard__Info {
-  margin-top: 0;
-  padding: 1rem;
+  margin-top: 30px;
+  /* padding: 1rem; */
 }
 .ProductCard__Info.ProductCard__Info--left {
   text-align: start;

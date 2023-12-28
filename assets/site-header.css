@@ -44,7 +44,7 @@
 
 .Header__Main {
   display: flex;
-  min-height: calc(var(--header-min-height-mobile) + 1rem);
+  /* min-height: calc(var(--header-min-height-mobile) + 1rem); */
   justify-content: space-between;
   align-items: center;
   padding-top: 0.75rem;
@@ -52,7 +52,7 @@
 }
 @media screen and (min-width: 641px) {
   .Header__Main {
-    min-height: calc(var(--header-min-height) + 2rem);
+    /* min-height: calc(var(--header-min-height) + 2rem); */
   }
 }
 .Header__Main .Header__SecondaryMenu {

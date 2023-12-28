@@ -121,8 +121,6 @@
         assign header_main_min_height = logo_image_width | divided_by: section.settings.logo.aspect_ratio
         assign header_main_min_height_mobile = logo_image_width_mobile | divided_by: section.settings.logo.aspect_ratio 
       -%}
-
-      {%- if template == 'index' and section.settings.enable_transparent_header -%}
         <img class="Header__LogoImage Header__LogoImage--primary"
             src="{{ section.settings.logo | image_url: width: image_size }}"
             srcset="{{ section.settings.logo | image_url: width: image_size }} 1x, {{ section.settings.logo | image_url: width: image_size_2x }} 2x"
@@ -130,16 +128,6 @@
             width="{{ section.settings.logo.width }}"
             height="{{ section.settings.logo.height }}"
             alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
-        {%- else -%}
-
-        <img class="Header__LogoImage Header__LogoImage--primary"
-            src="{{ section.settings.logo_black | image_url: width: image_size }}"
-            srcset="{{ section.settings.logo_black | image_url: width: image_size }} 1x, {{ section.settings.logo_black | image_url: width: image_size_2x }} 2x"
-            loading="lazy"
-            width="{{ section.settings.logo.width }}"
-            height="{{ section.settings.logo.height }}"
-            alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
-        {%- endif -%}
     {%- else -%}
       <span class="Header__LogoText">{{ shop.name }}</span>
     {%- endif -%}
@@ -531,13 +519,7 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Image",
-      "info": "200 x 60px .svg recommended."
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_black",
-      "label": "Image logo black",
-      "info": "200 x 60px .svg recommended."
+      "info": "200 x 160px .svg recommended."
     },
     {
       "type": "select",

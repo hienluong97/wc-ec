@@ -8,7 +8,7 @@
         "footer-text": {
           "type": "text",
           "settings": {
-            "heading": "ミッション",
+            "heading": "Address",
             "logo": "shopify:\/\/shop_images\/square-black.svg",
             "logo_max_width": 140,
             "mobile_logo_max_width": 75,
@@ -20,7 +20,7 @@
         "footer-link-1": {
           "type": "links",
           "settings": {
-            "heading": "STORE",
+            "heading": "",
             "menu": "main-menu"
           }
         }
@@ -31,11 +31,12 @@
       ],
       "settings": {
         "footer_width": "full_width",
-        "background_color": "#1c1b1b",
-        "text_color": "#fbfbfb",
+        "background_color": "#f2f2f2",
+        "text_color": "#1a1a1a",
         "show_payment_methods": true,
         "enable_country_selector": false,
-        "enable_language_selector": false
+        "enable_language_selector": false,
+        "store_name": "shopify:\/\/shop_images\/1.svg"
       }
     }
   },

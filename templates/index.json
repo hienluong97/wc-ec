@@ -85,7 +85,7 @@
         "show_navigation_arrows": true,
         "controls_color": "#ffffff",
         "autoplay": true,
-        "cycle_speed": 10,
+        "cycle_speed": 5,
         "accessibility_info": ""
       }
     },
