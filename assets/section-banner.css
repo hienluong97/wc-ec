@@ -8,8 +8,8 @@
 }
 
 .Banner {
-  border-top: 1px solid var(--tg-sys-color-outline);
-  border-bottom: 1px solid var(--tg-sys-color-outline);
+  /* border-top: 1px solid var(--tg-sys-color-outline);
+  border-bottom: 1px solid var(--tg-sys-color-outline); */
 }
 .Banner .SectionHeader {
   margin-bottom: 1.5rem;

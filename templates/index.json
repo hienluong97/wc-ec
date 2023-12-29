@@ -174,7 +174,7 @@
       "type": "featured-collection-custom",
       "settings": {
         "spacing_position": "Medium",
-        "collection": "一般商品",
+        "collection": "all",
         "heading": "PRODUCTS",
         "button_label": "",
         "grid_items_count": 6,

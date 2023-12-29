@@ -24,7 +24,7 @@
 </style>
 
 <section-featured-collection class="Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }} FeaturedCollection"
-  style="border-top: 1px solid var(--tg-sys-color-outline);" data-section-id="{{ section.id }}" data-section-settings='{{ section_settings }}'>
+   data-section-id="{{ section.id }}" data-section-settings='{{ section_settings }}'>
 
   {%- if section.settings.heading != blank or section.settings.button_label != blank -%}
     <header class="SectionHeader Container Container--fluid SectionHeader--horizontal">
@@ -43,22 +43,12 @@
   {%- endif -%}
 
     <div class="SectionBody__wrapper">
-        {% comment %} <div class="ProductCollectionList">
-                {% for collection in collections %}
-                <p>{{- collection.title }}</p>
-                {% endfor %}
-        </div> {% endcomment %}
-
-         {% comment %} {% for tag in collection.all_tags %}
-            {{ tag | link_to_tag: tag }}
-            {% unless forloop.last %}, {% endunless %}
-        {% endfor %} {% endcomment %}
-
-        {% comment %} {% for product in collections.all.products %}
-                {% if product.tags contains 'テストタグ' %}
-                    {{ product.tags }}
-                {% endif %}
-        {% endfor %} {% endcomment %}
+        <div class="ProductTagList Container" id="ProductTagList">
+            <span class="ProductTag_btn active" onclick="filterSelection('all')"> All</span> <br class="sp_br_display_none">
+            {% for tag in collection.all_tags %}
+           <span class="ProductTag_btn" onclick="filterSelection('{{ tag }}')">{{ tag }}</span>  <br class="sp_br_display_none">
+        {% endfor %} 
+        </div> 
     
       <div class="SectionBody FeaturedCollection__Body ProductListWrapper">
         {%- if collection != blank and collection != empty -%}
@@ -69,7 +59,7 @@
     
             <div class="ProductList ProductList--grid Grid">
               {%- for product in collection.products limit: item_count -%}
-                <div class="Grid__Item 1/{{ mobile_items_per_row }}--small 1/{{ desktop_items_per_row }}--medium-up">
+                <div class="Grid__Item 1/{{ mobile_items_per_row }}--small 1/{{ desktop_items_per_row }}--medium-up filterDiv {{ product.tags }}">
                   {% render 'product-card', product: product, show_rating: section.settings.show_rating, show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_swatches: section.settings.show_swatches, show_quick_add: section.settings.enable_quick_add %}
                 </div>
               {%- endfor -%}
@@ -213,3 +203,54 @@
   ]
 }
 {% endschema %}
+
+
+<script>
+filterSelection("all");
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+  for (i = 0; i < x.length; i++) {
+    removeClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
+  }
+}
+
+// Show filtered elements
+function addClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {
+      element.className += " " + arr2[i];
+    }
+  }
+}
+
+// Hide elements that are not selected
+function removeClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current control button (highlight it)
+var btnContainer = document.getElementById("ProductTagList");
+var btns = btnContainer.getElementsByClassName("ProductTag_btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>

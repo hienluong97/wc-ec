@@ -1792,6 +1792,13 @@ textarea.Form__Input {
   padding: 45px 30px;
 }
 
+@media screen and (max-width: 950px) {  
+.Grid__Item {
+  padding: 25px 15px;
+}
+
+}
+
 .Grid--spacing {
   border: none;
   margin-top: calc(var(--tg-grid-gutter-y) * -0.5);
