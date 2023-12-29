@@ -1,0 +1,200 @@
+{%- liquid
+    assign color_label = 'color,colour,couleur,colore,farbe,färg,farve,kleur,barva,väri,색상,색,色,farge,kolor,cor,สี,renk,màu sắc,颜色,顏色' | split: ','
+
+    assign products_sort_by = search.sort_by | default: search.default_sort_by 
+    assign products_sort_options = search.sort_options
+    assign products_filters = search.filters
+    assign products_results_count = search.results_count
+
+    if template.name == 'index'
+        assign products_sort_by = collection.sort_by | default: collection.default_sort_by
+         assign products_sort_options = collection.sort_options
+        assign products_filters = collection.filters
+        assign products_results_count = collection.products_count
+    endif 
+-%}
+{{ 'component-collection-filter-item.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-aside.css' | asset_url | stylesheet_tag }}
+
+<div class="CollectionAside" tabindex="-1" {{ block.shopify_attributes }}>
+    <div class="CollectionAside__Body">
+        {% if products_results_count > 0 %}
+            <div class="CollectionAside__ProductCount">
+                {{ 'collection.general.now_show_product_count_html' | t: count: products_results_count }}
+            </div>
+        {% endif %}
+        <div class="Accordion">
+            {%- if enable_sorting -%}
+                <div class="Accordion__Item Accordion__Item--Sorting">
+                    <div class="Accordion__Header">
+                        <button class="Accordion__Button Collapsed" type="button" data-tg-toggle="Collapse" data-tg-target="#AsideFilterSorting" aria-expanded="false">
+                            {{ 'collection.sorting.title' | t }} 
+                        </button>
+                    </div>
+                    <div id="AsideFilterSorting" class="Accordion__Collapse Collapse">
+                        <ul class="List List--unstyle Accordion__Body">
+                            {%- for option in products_sort_options -%}
+                                <li class="List__Item {% if option.value == products_sort_by -%}Active{%- endif %}" data-value="{{ option.value }}" data-filter-from="aside" data-tg-action="change-sort">{{ option.name }}</li>
+                            {%- endfor -%}
+                        </ul>
+                    </div>
+                </div> 
+            {%- endif -%}
+
+            {%- if enable_filtering -%}
+                <form class="FilterProducts__Form FilterProducts__Form--aside">
+                    {%- if template.name == 'index' -%}
+                        <input type="hidden" name="q" value="{{ search.terms }}">
+                    {%- endif -%}
+                    
+                    {%- for filter in products_filters -%}
+                        {% liquid
+                            assign downcase_filter_label = filter.label | downcase
+                            case filter.presentation
+                              when 'swatch'
+                                assign has_visual_display = true
+                              else
+                                assign has_visual_display = false
+                            endcase
+                        %}
+                        <div class="Accordion__Item">
+                            <div class="Accordion__Header">
+                                <button class="Accordion__Button" type="button" data-tg-toggle="Collapse" data-tg-target="#AsideFilter-{{ forloop.index }}" aria-expanded="true">
+                                    {{ filter.label }} {% if filter.type == 'price_range' -%}({{ cart.currency.iso_code }}){%- endif -%}
+                                </button>
+                            </div>
+                            {%- case filter.type -%}
+                                {%- when 'boolean', 'list' -%}
+                                    <div id="AsideFilter-{{ forloop.index }}" class="Accordion__Collapse Collapse Show">
+                                        <ul class="List List--unstyle Accordion__Body">
+                                            {% assign parent_forloop = forloop.index %}
+                                            {%- for filter_value in filter.values -%}
+                                                {%- if filter_value.label contains '__label' -%}
+                                                    {%- continue -%}
+                                                {%- endif -%}
+                                                <li class="List__Item ProductFilters__Item {% if filter_value.active -%}Active{%- endif %}" data-filter-from="aside">
+                                                    <label for="Filter-aside-{{ filter.param_name }}-{{ forloop.index }}">
+                                                        {%- render 'icons', icon: 'checkbox-checked' -%}
+                                                        {%- render 'icons', icon: 'checkbox-unchecked' -%}
+                                                        {%- if has_visual_display -%}
+                                                            {%- case filter_value.display.type -%}
+                                                                {%- when 'colors' -%}
+                                                                    {% liquid
+                                                                        assign size_limit = filter_value.display.value.size | at_most: 4
+                                                                        assign rotation = '0deg'
+                                                                        if size_limit == 2
+                                                                          assign rotation = '45deg'
+                                                                        endif
+                                                                
+                                                                        assign angle_increment = 360 | divided_by: size_limit
+                                                                        assign angle = 0
+                                                                      %}
+                                                                      {%- capture conic_gradient -%}
+                                                                        {%- for color in filter_value.display.value limit: size_limit -%}
+                                                                          {{ color }} {{ angle }}deg{%- assign angle = angle | plus: angle_increment %} {{ angle }}deg{%- unless forloop.last %}, {%- endunless -%}
+                                                                        {%- endfor -%}
+                                                                      {%- endcapture -%}
+                                                                    <span class="FilterProductsColorSwatch FilterProductsColorSwatch--metaobjectColors" title="{{ filter_value.display.label | escape }}" style="background: conic-gradient({{ conic_gradient }}); transform: rotateZ({{ rotation }});">&nbsp;</span>
+                                                                {%- when 'image' -%}
+                                                                    <span class="FilterProductsColorSwatch FilterProductsColorSwatch--metaobjectImage" title="{{ filter_value.display.label | escape }}" style="{% if filter_value.display.value != blank %}background-image: url({{ filter_value.display.value | image_url: width: 64, height: 64 }}){% endif %}">&nbsp;</span>
+                                                                {%- else -%}
+                                                                <div class="VisuallyHidden"></div>
+                                                            {%- endcase -%}
+                                                        {%- elsif color_label contains downcase_filter_label and show_filter_color_swatch -%}
+                                                            {%- liquid
+                                                                assign downcase_value = filter_value.value | downcase
+                                                                assign color_swatch_name = filter_value.value | handle | append: '.jpg'
+                                                                assign color_swatch_image = images[color_swatch_name] 
+
+                                                                if color_swatch_image == blank
+                                                                    assign color_swatch_name = filter_value.value | handle | append: '.png'
+                                                                    assign color_swatch_image = images[color_swatch_name]
+                                                                endif 
+                                                            -%}
+                                                            <span class="FilterProductsColorSwatch {% if downcase_value == 'white' and color_swatch_image == blank %}FilterProductsColorSwatch--white{% endif %}" title="{{ filter_value.value | escape }}" style="background-color: {{ filter_value.value | replace: ' ', '' | downcase }}; {% if color_swatch_image != blank %}background-image: url({{ color_swatch_image | image_url: width: 64, height: 64 }}){% endif %}">&nbsp;</span>
+                                                        {%- endif -%}
+                                                        <input type="checkbox" 
+                                                            name="{{ filter_value.param_name }}"
+                                                            value="{{ filter_value.value }}"
+                                                            id="Filter-aside-{{ filter.param_name }}-{{ forloop.index }}"
+                                                            {% if filter_value.active -%}checked{%- endif %}
+                                                            {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}
+                                                            style="margin-right: 6px;"
+                                                        >{{ filter_value.label }}
+                                                    </label>
+                                                    <span id="ProductFilters__ItemCount--aside{{ parent_forloop }}--{{ forloop.index }}" class="ProductFilters__ItemCount">{{ filter_value.count }}</span>
+                                                </li>
+                                            {%- endfor -%}
+                                        </ul>
+                                    </div>
+                                {%- when 'price_range' -%}
+                                    {{ 'nouislider.css' | asset_url | stylesheet_tag }}
+                                    <script src="{{ 'nouislider.js' | asset_url }}" defer></script>
+                                    {% liquid
+                                        assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
+                                        assign uses_comma_decimals = false
+                                        if currencies_using_comma_decimals contains cart.currency.iso_code
+                                          assign uses_comma_decimals = true
+                                        endif
+                                    %}
+
+                                    <div id="AsideFilter-{{ forloop.index }}" class="Accordion__Collapse Accordion__Collapse--price Collapse Show">
+                                        <div class="Accordion__Body Accordion__Body--priceRange">
+                                            <div class="Form__Item Form__Item--floatingLabel" style="display: none;">
+
+                                                <input name="{{ filter.min_value.param_name }}" class="Form__Input Form__Input--price Form__Input--priceMin"
+                                                id="Filter-Aside-Min-Price"
+                                                {% if filter.min_value.value %}
+                                                    {% if uses_comma_decimals %}value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{% else %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                {% endif %}
+                                                type="number"
+                                                placeholder="0"
+                                                min="0"
+                                                {% if uses_comma_decimals %}max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{% else %}max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                step="0.01"
+                                                >
+
+                                                <label class="Form__Label" for="Filter-Aside-Min-Price">{{ 'collection.filter.price_from' | t }} {{ cart.currency.symbol }}</label>
+                                            </div>
+                                            <div class="Form__Item Form__Item--floatingLabel" style="display: none;">
+
+                                                <input name="{{ filter.max_value.param_name }}" class="Form__Input Form__Input--price Form__Input--priceMax"
+                                                id="Filter-Aside-Max-Price"
+                                                {% if filter.max_value.value %}
+                                                    {% if uses_comma_decimals %}value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{% else %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                {% endif %}
+                                                type="number"
+                                                min="0"
+                                                step="0.01" 
+                                                {% if uses_comma_decimals %} 
+                                                    placeholder="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}" 
+                                                    max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                                                {% else %}
+                                                    placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                                    max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                                {% endif %}
+                                                >
+
+                                                <label class="Form__Label" for="Filter-Aside-Max-Price">{{ 'collection.filter.price_to' | t }} {{ cart.currency.symbol }}</label>
+                                            </div>
+
+                                            <div id="Aside-Price-Slider" style="margin-bottom: 1rem;" 
+                                                {% if uses_comma_decimals %}
+                                                    data-tg-max-price="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                                                {% else %}
+                                                    data-tg-max-price="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                                {% endif %} 
+                                            ></div>
+
+                                            <button class="Button Button--primary Button--small" type="button" data-filter-from="aside" data-tg-action="apply-price">{{ 'collection.filter.apply' | t }}</button>
+                                        </div>
+                                    </div>
+                            {%- endcase -%}
+                        </div>
+                    {%- endfor -%}
+
+                </form>
+            {%- endif -%}
+        </div>
+    </div>
+</div>

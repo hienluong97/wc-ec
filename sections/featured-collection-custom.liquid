@@ -43,11 +43,22 @@
   {%- endif -%}
 
     <div class="SectionBody__wrapper">
-        <div class="ProductCollectionList">
+        {% comment %} <div class="ProductCollectionList">
                 {% for collection in collections %}
                 <p>{{- collection.title }}</p>
                 {% endfor %}
-        </div>
+        </div> {% endcomment %}
+
+         {% comment %} {% for tag in collection.all_tags %}
+            {{ tag | link_to_tag: tag }}
+            {% unless forloop.last %}, {% endunless %}
+        {% endfor %} {% endcomment %}
+
+        {% comment %} {% for product in collections.all.products %}
+                {% if product.tags contains 'テストタグ' %}
+                    {{ product.tags }}
+                {% endif %}
+        {% endfor %} {% endcomment %}
     
       <div class="SectionBody FeaturedCollection__Body ProductListWrapper">
         {%- if collection != blank and collection != empty -%}
