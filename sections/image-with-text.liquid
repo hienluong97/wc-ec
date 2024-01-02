@@ -14,12 +14,12 @@
   endfor 
 -%}
 
-<div id="section-{{ section.id }}" class="Container Container--custom Container--fluid Container--spacing{{ section.settings.spacing_position }} FeaturedRow FeaturedRow--image{{ section.settings.image_position }} FeaturedRow--mobileImage{{ section.settings.image_position_mobile }}">
+<div id="section-{{ section.id }}" class="Container Container--fluid Container--spacing{{ section.settings.spacing_position }} FeaturedRow FeaturedRow--image{{ section.settings.image_position }} FeaturedRow--mobileImage{{ section.settings.image_position_mobile }}">
   
     <div class="FeaturedRow__Body">
       <div class="FeatureRow__ContentWrapper FeatureRow__ContentWrapper--content{{ section.settings.desktop_text_position }}">
         <div class="FeatureRow__Content FeatureRow__Content--align{{ section.settings.text_align }}">
-            <div class="SectionHeader Container Container--custom">
+            <div class="SectionHeader">
               {%- for block in section.blocks -%}
                 {%- case block.type -%}
                   {%- when 'heading' -%}
@@ -29,7 +29,7 @@
 
                   {%- when 'subheading' -%}
                     <h3 class="SectionHeader__Subheading" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</h3>
-                    
+
                   {%- when 'description' -%}
                     <div class="SectionHeader__Description RTE" {{ block.shopify_attributes }}>
                       {{ block.settings.text }}

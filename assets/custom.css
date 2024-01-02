@@ -5,6 +5,10 @@
     margin-bottom: 20px !important;
 }
 
+/* .SectionBody.FeaturedCollection__Body.ProductListWrapper {
+    margin-right: 1px;
+} */
+
 /* custom css for Slideshow */
 
 #section-template--21540746690839__7eea2238-1d38-4ea2-ac5f-e61d23bdb014 {
@@ -103,6 +107,16 @@
     display: flex;
     flex-direction: column;
   }
+#section-template--21540746690839__7eea2238-1d38-4ea2-ac5f-e61d23bdb014 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#section-template--21540746690839__7eea2238-1d38-4ea2-ac5f-e61d23bdb014 .Slideshow_left_wrapper {
+    padding-left: calc(var(--tg-container-gutter-x) * 2) !important;
+    padding-right: calc(var(--tg-container-gutter-x) * 2) !important;
+}
+
 
   .Slideshow_left_wrapper {
     width: 100%;
@@ -153,6 +167,7 @@
 .ProductTag_btn {
     padding: 4px 14px;
     background-color: #e2e2e2;
+    background-color: #f1f1f1;
     border-radius: 8px;
     margin-top: 16px;
     display: inline-block;
@@ -160,7 +175,8 @@
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 1.5px;
-    transition: all 0.3s;
+    transition: all 0.25s;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
 .ProductTag_btn:hover { 
@@ -179,23 +195,46 @@
 }
 
 
-.Grid__Item.filterDiv {
-    display: none;
-}
-
 .Grid__Item.filterDiv.show {
   display: block;
 }
 
-.view-more-btn {
-    margin-top: 30px;
-    padding: 4px 12px;
-    background-color: #666;
-    color: white;
-    cursor: pointer;
+.pagination {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.pagination button {
+    border: none !important;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 10px;
     display: inline-block;
+    margin:0 8px;
+    cursor: pointer;
 }
 
+.pagination button:hover {
+    background-color: #9d9d9d;
+    color:#fff;
+}
+
+button.active {
+    background-color: #9d9d9d;
+    color:#fff;
+}
+
+button.cursor-not-allowed {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+
+button.cursor-not-allowed:hover {
+    color:#000;
+    background-color: white;
+}
 
 @media screen and (max-width: 950px) {  
     #shopify-section-template--21540746690839__f917d87e-0670-414c-a4ab-41c342dd8200 .SectionBody__wrapper {
