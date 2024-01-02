@@ -70,6 +70,7 @@
     
       </div>
     </div>
+    
 </section-featured-collection>
 
 {% schema %}
@@ -206,16 +207,18 @@
 
 
 <script>
+    
+
 filterSelection("all");
-function filterSelection(c) {
-  var x, i;
-  x = document.getElementsByClassName("filterDiv");
-  if (c == "all") c = "";
+function filterSelection(selectedTag) {
+  var listEl, i;
+  listEl = document.getElementsByClassName("filterDiv");
+  if (selectedTag == "all") selectedTag = "";
   // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
-  for (i = 0; i < x.length; i++) {
-    removeClass(x[i], "show");
-    if (x[i].className.indexOf(c) > -1) addClass(x[i], "show");
-  }
+  for (i = 0; i < listEl.length; i++) {
+    removeClass(listEl[i], "show");
+  if (listEl[i].className.indexOf(selectedTag) > -1) addClass(listEl[i], "show"); 
+}
 }
 
 // Show filtered elements
@@ -253,4 +256,5 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+
 </script>
