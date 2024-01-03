@@ -77,7 +77,7 @@
 
 {% schema %}
 {
-  "name": "Product custom",
+  "name": "Products list custom",
   "settings": [
     {
       "type": "select",
@@ -201,7 +201,7 @@
   ],
   "presets": [
     {
-      "name": "Product custom"
+      "name": "Products list custom"
     }
   ]
 }
@@ -215,12 +215,10 @@ const items = Array.from(document.querySelectorAll(".filterDiv"))
 let filteredItems = items;
 let currPage = 1;
 
-function handleChangeFilterTag(type) {
-    // const type = document.querySelector("select[name=type]").value
-
-   if (type) {
+function handleChangeFilterTag(tag) {
+   if (tag) {
     filteredItems = items.filter(el => {
-      return el.classList.contains(type)
+      return el.classList.contains(tag)
     })
   } else {
     filteredItems = items
@@ -319,7 +317,12 @@ function setHTML(items) {
             </button>`
 
   nav.innerHTML = paginationHTML
-  pagination.append(nav)
+
+  if (totalItems <= pageSize ) {
+     pagination.append('');
+  } else {
+      pagination.append(nav);
+  }
 
   const start = (currentPage - 1) * pageSize, end = currentPage * pageSize;
   items.slice(start, end).forEach(el => {

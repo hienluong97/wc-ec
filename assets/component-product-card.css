@@ -182,7 +182,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    /* padding-bottom: 1rem; */
+    padding-bottom: 1rem;
     margin-bottom: -1rem;
   }
   .ProductList--carousel .Carousel__Item {

@@ -1789,14 +1789,6 @@ textarea.Form__Input {
   width: 100%;
   border-right: 1px solid var(--tg-sys-color-outline);
   border-bottom: 1px solid var(--tg-sys-color-outline);
-  padding: 45px 30px;
-}
-
-@media screen and (max-width: 950px) {  
-.Grid__Item {
-  padding: 25px 15px;
-}
-
 }
 
 .Grid--spacing {

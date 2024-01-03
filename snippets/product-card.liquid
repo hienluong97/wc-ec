@@ -152,9 +152,19 @@
               </div>
             {%- endif -%}
 
+            {%- if template == 'index' -%}
+                <div>
+                    {% for tag in product.tags limit: 1 -%} 
+                        {%- if tag !=blank -%}
+                          <span class="product__tag">  {{ tag }}</span>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </div>
+            {%- endif -%}
+
             <div class="ProductCard__Meta">
                 {%- render 'product-price-card', product: product -%}
-                {%- render 'icon-arrow' -%}
+                <a href="{{ product.url | within: collection | default: '#' }}">{%- render 'icon-arrow' -%}</a>
             </div>
 
             {%- render 'product-card-color-swatch', product: product, show_swatches: show_swatches -%}

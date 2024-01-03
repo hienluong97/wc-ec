@@ -98,9 +98,9 @@
       "title": "Navigation principale",
       "sidebar_title": "Navigation dans la barre latérale",
       "open_sidebar": "Ouvrir la navigation",
-      "account": "アカウント",
-      "search": "検索",
-      "cart": "カート",
+      "account": "LOGIN",
+      "search": "SEARCH",
+      "cart": "CART",
       "open_cart": "Ouvrir le panier",
       "skip_to_content": "Aller au contenu",
       "cart_count": {

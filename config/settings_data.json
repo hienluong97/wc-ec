@@ -14,6 +14,9 @@
     "product_color_image_swatch": true,
     "product_badge_corner_radius": 4,
     "cart_type": "drawer",
+    "social_twitter": "#",
+    "social_facebook": "#",
+    "social_instagram": "#",
     "favicon": "shopify:\/\/shop_images\/Union.svg",
     "price_currency_format": "money_without_trailing_zeros",
     "sections": {
@@ -30,9 +33,9 @@
         "type": "menu-drawer",
         "settings": {
           "primary_menu": "main-menu",
-          "secondary_menu": "",
+          "secondary_menu": "footer",
           "show_social_media": true,
-          "logo": "shopify:\/\/shop_images\/supakuru_black.svg",
+          "logo": "shopify:\/\/shop_images\/logo.svg",
           "logo_max_width": 80,
           "enable_country_selector": true,
           "enable_language_selector": true

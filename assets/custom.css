@@ -1,4 +1,6 @@
-/* custom css for FeaturedCollection */
+/* custom css for Top page */
+
+/* FeaturedCollection */
 
 .FeaturedCollection {
     margin-top: 25px !important;
@@ -9,8 +11,10 @@
     margin-right: 1px;
 } */
 
-/* custom css for Slideshow */
+/* FeaturedCollection end */
 
+
+/* Slideshow */
 #section-template--21540746690839__7eea2238-1d38-4ea2-ac5f-e61d23bdb014 {
     margin-top: 25px;
     padding-left: calc(100% - 100% / 1920 * 1820) !important;
@@ -129,7 +133,11 @@
     width: 100%; 
 }
 }
-/* custom css for top PRODUCTS list*/
+
+/* Slideshow end*/
+
+
+/* PRODUCTS list*/
 
 #shopify-section-template--21540746690839__f917d87e-0670-414c-a4ab-41c342dd8200 {
     margin-bottom: 100px !important;
@@ -270,7 +278,7 @@ button.cursor-not-allowed:hover {
 
 }
 
-.SectionHeader.SectionHeader--horizontal {
+#shopify-section-template--21540746690839__f917d87e-0670-414c-a4ab-41c342dd8200 .SectionHeader.SectionHeader--horizontal {
    border-bottom: unset;
 }
 
@@ -278,16 +286,40 @@ button.cursor-not-allowed:hover {
     margin-top: 20px;
     border-top: 1px solid var(--tg-sys-color-outline);
 }
-
-
 }
 
-/* custom css for product cart */
+/* PRODUCTS list end */
+
+/* product card */
+
+#shopify-section-template--21540746690839__bestseller .Grid__Item,
+#shopify-section-template--21540746690839__f917d87e-0670-414c-a4ab-41c342dd8200 .Grid__Item,
+#shopify-section-template--21540746658071__product-recommendations .Carousel__Item .ProductCard,
+#shopify-section-template--21540746658071__product-recently-viewed .Carousel__Item .ProductCard,
+#shopify-section-template--21540746625303__main .Grid__Item {
+      padding: 45px 30px;
+}
+
+@media screen and (max-width: 950px) {  
+#shopify-section-template--21540746690839__bestseller .Grid__Item,
+#shopify-section-template--21540746690839__f917d87e-0670-414c-a4ab-41c342dd8200 .Grid__Item,
+#shopify-section-template--21540746658071__product-recommendations .Carousel__Item .ProductCard,
+#shopify-section-template--21540746658071__product-recently-viewed .Carousel__Item .ProductCard,
+#shopify-section-template--21540746625303__main .Grid__Item {
+       padding: 25px 15px;
+}
+
+}
+ 
 .ProductCard__Meta {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.product__tag {
+    text-decoration: underline;
 }
 
 
@@ -297,5 +329,7 @@ button.cursor-not-allowed:hover {
 
     transform: scale(0.6);
 }
- 
 }
+
+/* product card end */
+
