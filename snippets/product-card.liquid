@@ -153,7 +153,7 @@
             {%- endif -%}
 
             {%- if template == 'index' -%}
-                <div>
+                <div class="product__tag--wrapper">
                     {% for tag in product.tags limit: 1 -%} 
                         {%- if tag !=blank -%}
                           <span class="product__tag">  {{ tag }}</span>

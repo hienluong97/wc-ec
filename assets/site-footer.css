@@ -249,7 +249,7 @@
 .FooterBlocks .Nav.Nav--vertical a {
    margin-left: 40px;
    color:  #1A1A1A;
-    font-family: Lato;
+    font-family:'Lato', 'Noto Sans JP';
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -264,7 +264,7 @@
 
 .FooterBlock__Content p {
     color:  #1A1A1A;
-    font-family: Lato;
+    font-family:'Lato', 'Noto Sans JP';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

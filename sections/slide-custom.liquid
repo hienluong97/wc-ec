@@ -128,9 +128,17 @@
 
   <div class="Slideshow_left_wrapper">
 
-    <p class="Slideshow_heading" id="Slideshow_heading" >
+    <p class="Slideshow_heading_l1">
+        {{ section.settings.heading_line1 }}
     </p>
-    <p class="Slideshow_subHeading" id="Slideshow_subHeading">  
+     <p class="Slideshow_heading_l2">
+        {{ section.settings.heading_line2 }}
+    </p>
+     <p class="Slideshow_heading_l3" >
+        {{ section.settings.heading_line3 }}
+    </p>
+    <p class="Slideshow_heading_l4"> 
+        {{ section.settings.heading_line4 }}
     </p>
     <div class="flex-grow">
 
@@ -193,12 +201,13 @@
               alt="">
           {%- endif -%}
 
-          {%- if block.settings.subheading != blank -%}
-            <h3 class="SectionHeader__Subheading">{{ block.settings.subheading }}</h3>
-          {%- endif -%}
 
           {%- if block.settings.heading != blank -%}
             <h2 class="SectionHeader__Heading CustomSize {{ block.settings.heading_font_size }}">{{ block.settings.heading }}</h2>
+          {%- endif -%}
+
+            {%- if block.settings.subheading != blank -%}
+            <h3 class="SectionHeader__Subheading">{{ block.settings.subheading }}</h3>
           {%- endif -%}
 
           {%- if block.settings.description != blank -%}
@@ -275,15 +284,27 @@
     "settings": [
             {
                 "type": "textarea",
-                "id": "heading",
-                "default": "Supercool ideas ignite a spark that",
-                "label": "Slideshow heading"
+                "id": "heading_line1",
+                "default": "Supercool ideas",
+                "label": "Slideshow heading line 1"
             },
             {
                 "type": "textarea",
-                "id": "subHeading",
-                "default": "sparkles brilliantly",
-                "label": "Slideshow subheading"
+                "id": "heading_line2",
+                "default": "ignite a spark that",
+                "label": "Slideshow heading line 2"
+            },
+            {
+                "type": "textarea",
+                "id": "heading_line3",
+                "default": "sparkles",
+                "label": "Slideshow heading line 3"
+            },
+            {
+                "type": "textarea",
+                "id": "heading_line4",
+                "default": "brilliantly",
+                "label": "Slideshow heading line 4"
             },
             {
                 "type": "textarea",
@@ -602,34 +623,3 @@
     ]
   }
 {% endschema %}
-
-
-<script>
-var i = 0;
-var z = 0;
-var txt = '{{ section.settings.heading }}';
-var txt2 = '{{ section.settings.subHeading }}';
-var speed = 100;
-
-const  Slideshow_heading =  document.getElementById("Slideshow_heading");
-const  Slideshow_subHeading = document.getElementById("Slideshow_subHeading");
-
-
-function typeWriter() {
-  if (i < txt.length) {
-    Slideshow_subHeading.classList.add('without-after-element');
-    Slideshow_heading.innerHTML += txt.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  } else {
-  Slideshow_heading.classList.add('without-after-element');
-  Slideshow_subHeading.classList.remove('without-after-element');
-    if (z < txt2.length) {
-        Slideshow_subHeading.innerHTML += txt2.charAt(z);
-        z++;
-        setTimeout(typeWriter, speed);
-    }
-  }
-}
-typeWriter();
-</script>
