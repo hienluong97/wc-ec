@@ -129,6 +129,18 @@ style="{% if section.settings.background_color != blank and section.settings.bac
         </div>
       </div>
     {%- endif -%}
+
+    <div class="Footer--link--bottom">
+        <ul class="Nav Nav--vertical ">                
+            <li>
+                <a href="https://waocon.com/privacy/" target="_blank" class="Nav__Link">PRIVACY</a>
+            </li>
+            <li>
+                <a href="https://waocon.com/legal/" target="_blank" class="Nav__Link">LEGAL INFORMATION</a>
+            </li>               
+        </ul> 
+    </div>
+
     <div class="Footer__Bottom">
       {%- if shop.enabled_payment_types.size > 0 and section.settings.show_payment_methods -%}
           <div class="Footer__Payments">
@@ -157,7 +169,7 @@ style="{% if section.settings.background_color != blank and section.settings.bac
 
       <div class="Footer__Copyright">
           <a href="{{ routes.root_url }}" class="Footer__StoreName">© {{ shop.name }}</a>
-          <p class="Footer__ThemeAuthor">{{ powered_by_link }}</p>
+          <p class="Footer__ThemeAuthor">STORE</p>
       </div>
     </div>
 

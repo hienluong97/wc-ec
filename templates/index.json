@@ -76,8 +76,10 @@
         "104976c9-fbbe-428a-b35d-02c5e423db90"
       ],
       "settings": {
-        "heading": "",
-        "subHeading": "",
+        "heading_line1": "Supercool ideas",
+        "heading_line2": "ignite a spark that",
+        "heading_line3": "sparkles",
+        "heading_line4": "brilliantly",
         "description": "\"すぱくる\"は、非常にクールなアイデアを生み出し、輝き続ける場所を提供するプラットフォームです。ここでは、創造的で革新的なプロジェクトが集まり、それぞれが輝く成果を生み出す過程で新たな火花が飛び散ります。参加者一人ひとりが、自身のアイデアを輝かせ、共に素晴らしいプロジェクトを築くことができる環境を整えています。\"すぱくる\"で、クールなアイデアが輝くスパークを灯し続けましょう。",
         "spacing_position": "None",
         "slide_height": "adaptImage",
@@ -94,7 +96,7 @@
       "custom_css": [],
       "settings": {
         "spacing_position": "Medium",
-        "collection": "一般商品",
+        "collection": "cloudfunding",
         "layout_mode": "grid",
         "heading": "",
         "heading_font_size": "HeadlineMedium",
@@ -174,10 +176,29 @@
       "type": "featured-collection-custom",
       "settings": {
         "spacing_position": "Medium",
-        "collection": "all",
+        "collection": "一般商品",
         "heading": "PRODUCTS",
         "button_label": "",
         "grid_items_count": 24,
+        "grid_desktop_items_per_row": 3,
+        "grid_mobile_items_per_row": "2",
+        "show_product_info": true,
+        "show_rating": false,
+        "show_vendor": false,
+        "show_swatches": false,
+        "enable_quick_add": false
+      }
+    },
+    "949fa78e-763f-4994-8f31-650c2c0ea335": {
+      "type": "featured-collection",
+      "settings": {
+        "spacing_position": "Medium",
+        "collection": "events",
+        "layout_mode": "grid",
+        "heading": "EVENTS",
+        "heading_font_size": "HeadlineMedium",
+        "button_label": "",
+        "grid_items_count": 6,
         "grid_desktop_items_per_row": 3,
         "grid_mobile_items_per_row": "2",
         "show_product_info": true,
@@ -193,6 +214,7 @@
     "bestseller",
     "7ccde71b-a229-45bb-a0a4-7d2b7b765122",
     "77765a34-8739-46ab-8331-4683e5d54b39",
-    "f917d87e-0670-414c-a4ab-41c342dd8200"
+    "f917d87e-0670-414c-a4ab-41c342dd8200",
+    "949fa78e-763f-4994-8f31-650c2c0ea335"
   ]
 }

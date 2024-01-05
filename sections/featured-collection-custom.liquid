@@ -48,8 +48,10 @@
              <span class="ProductTag_title sp_br_display_none">Category</span> <br class="sp_br_display_none">
            <span class="ProductTag_btn active" onclick="handleChangeFilterTag('all')"> All</span> <br class="sp_br_display_none">
                  {% for tag in collection.all_tags %}
-                <span class="ProductTag_btn" onclick="handleChangeFilterTag('{{ tag }}')">{{ tag }}</span>  <br class="sp_br_display_none">
-                {% endfor %}  
+                    {% if tag != '通常商品' %}
+                      <span class="ProductTag_btn" onclick="handleChangeFilterTag('{{ tag }}')">{{ tag }}</span>  <br class="sp_br_display_none">
+                    {% endif %}
+                {% endfor %} 
         </div> 
     
       <div class="SectionBody FeaturedCollection__Body ProductListWrapper">

@@ -19,15 +19,16 @@
                 </ul>
               </div>
             {%- endif -%}
-    
-            <div class="Form__Item Form__Item--floatingLabel">
-                <input id="CreateCustomerFormFirstName--{{ section.id }}" type="text" class="Form__Input" name="customer[first_name]" aria-label="{{ 'customer.register.first_name' | t }}" placeholder="{{ 'customer.register.first_name' | t }}" autofocus>
-                <label class="Form__Label" for="CreateCustomerFormFirstName--{{ section.id }}">{{ 'customer.register.first_name' | t }}</label>
-            </div>
 
             <div class="Form__Item Form__Item--floatingLabel">
                 <input id="CreateCustomerFormLastName--{{ section.id }}" type="text" class="Form__Input" name="customer[last_name]" aria-label="{{ 'customer.register.last_name' | t }}" placeholder="{{ 'customer.register.last_name' | t }}">
                 <label class="Form__Label" for="CreateCustomerFormLastName--{{ section.id }}">{{ 'customer.register.last_name' | t }}</label>
+            </div>
+
+    
+            <div class="Form__Item Form__Item--floatingLabel">
+                <input id="CreateCustomerFormFirstName--{{ section.id }}" type="text" class="Form__Input" name="customer[first_name]" aria-label="{{ 'customer.register.first_name' | t }}" placeholder="{{ 'customer.register.first_name' | t }}" autofocus>
+                <label class="Form__Label" for="CreateCustomerFormFirstName--{{ section.id }}">{{ 'customer.register.first_name' | t }}</label>
             </div>
 
             <div class="Form__Item Form__Item--floatingLabel">

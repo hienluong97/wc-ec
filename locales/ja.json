@@ -189,7 +189,7 @@
   "customer": {
     "account": {
       "title": "アカウント",
-      "welcome": "こんにちは, {{first_name}} !",
+      "welcome": "こんにちは, {{first_name}}さん!",
       "logout": "ログアウト",
       "back_to_account": "アカウントの詳細に戻る",
       "no_orders_title": "注文",

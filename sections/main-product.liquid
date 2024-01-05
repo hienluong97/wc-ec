@@ -76,12 +76,12 @@
           {%- if product.description != blank -%}
                     <div class="Accordion__Item Product__Block Product__Block--collapsibleInfoJS Product__Block--descriptionCollapsible no-js-hidden" {{ block.shopify_attributes }}>
                         <div class="Accordion__Header">
-                            <button class="Accordion__Button {% unless block.settings.open_collapsible_tab %}Collapsed{% endunless %}" type="button" data-tg-toggle="Collapse" {% if block.settings.open_collapsible_tab %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} data-tg-target="#ProductBlockAccordion-{{ block.id }}">
+                            <button class="Accordion__Button {% unless section.settings.open_collapsible_tab %}Collapsed{% endunless %}" type="button" data-tg-toggle="Collapse" {% if section.settings.open_collapsible_tab %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} data-tg-target="#ProductBlockAccordion-{{ section.id }}">
                                 {% assign default_description_drawer_title = 'product.general.description' | t %}
                                ストーリー
                             </button>
                         </div>
-                        <div id="ProductBlockAccordion-{{ block.id }}" class="Accordion__Collapse Collapse {% if block.settings.open_collapsible_tab %}Show{% endif %}">
+                        <div id="ProductBlockAccordion-{{ section.id }}" class="Accordion__Collapse Collapse {% if section.settings.open_collapsible_tab %}Show{% endif %}">
                             <div class="Accordion__Body RTE">
                                 {{ product.description }}
                             </div>
@@ -89,7 +89,7 @@
                     </div>
     
                     <noscript>
-                        <details class="Product__Block Product__Block--collapsibleInfo Product__Block--descriptionCollapsible"{% if block.settings.open_collapsible_tab %} open{% endif %} {{ block.shopify_attributes }}>
+                        <details class="Product__Block Product__Block--collapsibleInfo Product__Block--descriptionCollapsible"{% if section.settings.open_collapsible_tab %} open{% endif %} {{ block.shopify_attributes }}>
                             {% assign default_description_drawer_title = 'product.general.description' | t %}
                             <summary class="ProductInfoCollapsible__Title" role="button">
                                 {{ block.settings.heading | default: default_description_drawer_title }}
@@ -239,6 +239,12 @@
       "label": "Mobile media width",
       "default": 100,
       "info": "Visible when the ‘Desktop layout’ setting is set to Carousel."
+    },
+    {
+        "type": "checkbox",
+        "id": "open_collapsible_tab",
+        "default": true,
+        "label": "Open collapsible tab"
     }
   ],
   "blocks": [

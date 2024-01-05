@@ -63,7 +63,7 @@
             <h2 class="Widget__Title LabelLarge">{{ 'customer.account.default_address' | t }}</h2>
 
             <div class="Widget__Content">
-              {{ customer.default_address | format_address | replace: '<p>', '<p class="AccountAddress"><span>' | replace_first: '<br>', '</span><br>' }}
+              {{ customer.default_address | format_address | replace: '<p>', '<p class="AccountAddress"><span>' | replace_first: '<br>', '</span><br>' | remove: '<br>日本'  }}
               <div class="Widget__ButtonWrapper">
                 <a href="{{ routes.account_addresses_url }}" class="Button Button--underline">{{ 'customer.account.edit_addresses' | t }}</a>
               </div>

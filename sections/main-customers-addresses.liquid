@@ -33,7 +33,7 @@
                                         <h2 class="LabelLarge">{{ 'customer.addresses.address_label' | t: position: position }}</h2>
                                     {%- endif -%}
                                 </td>
-                                <td>{{ address | format_address | replace: '<p>', '<p><span>' | replace_first: '<br>', '</span><br>' }}</a></td>
+                                <td>{{ address | format_address | replace: '<p>', '<p><span>' | replace_first: '<br>', '</span><br>'  | remove: '<br>日本' }}</a></td>
                                 <td class="TextEnd">
                                     <button class="Button Button--underline" data-tg-toggle="Modal" data-tg-target="#Modal-{{ address.id }}">{{ 'customer.addresses.edit' | t }}</button>
                                     <button class="Button Button--underline" onclick="Shopify.CustomerAddress.destroy({{ address.id }}); return false">{{ 'customer.addresses.delete' | t }}</button>
@@ -61,15 +61,15 @@
   
             <div class="Modal__Body">
                 {% form 'customer_address', customer.new_address, class: 'Form Form--newAddress' %}
+
+                    <div class="Form__Item Form__Item--floatingLabel">
+                        <input id="CustomerAddressFormLastName--{{ section.id }}" type="text" class="Form__Input" name="address[last_name]" value="{{ form.last_name }}" placeholder="{{ 'customer.addresses.last_name' | t }}" aria-label="{{ 'customer.addresses.last_name' | t }}">
+                        <label class="Form__Label" for="CustomerAddressFormLastName--{{ section.id }}">{{ 'customer.addresses.last_name' | t }}</label>
+                    </div>
                     
                     <div class="Form__Item Form__Item--floatingLabel">
                         <input id="CustomerAddressFormFirstName--{{ section.id }}" type="text" class="Form__Input" name="address[first_name]" value="{{ form.first_name }}" placeholder="{{ 'customer.addresses.first_name' | t }}" aria-label="{{ 'customer.addresses.first_name' | t }}" autofocus>
                         <label class="Form__Label" for="CustomerAddressFormFirstName--{{ section.id }}">{{ 'customer.addresses.first_name' | t }}</label>
-                    </div>
-    
-                    <div class="Form__Item Form__Item--floatingLabel">
-                        <input id="CustomerAddressFormLastName--{{ section.id }}" type="text" class="Form__Input" name="address[last_name]" value="{{ form.last_name }}" placeholder="{{ 'customer.addresses.last_name' | t }}" aria-label="{{ 'customer.addresses.last_name' | t }}">
-                        <label class="Form__Label" for="CustomerAddressFormLastName--{{ section.id }}">{{ 'customer.addresses.last_name' | t }}</label>
                     </div>
         
                     <div class="Form__Item Form__Item--floatingLabel">
@@ -81,23 +81,8 @@
                         <input id="CustomerAddressFormPhone--{{ section.id }}" type="text" class="Form__Input" name="address[phone]" value="{{ form.phone }}" placeholder="{{ 'customer.addresses.phone' | t }}" aria-label="{{ 'customer.addresses.phone' | t }}">
                         <label class="Form__Label" for="CustomerAddressFormPhone--{{ section.id }}">{{ 'customer.addresses.phone' | t }}</label>
                     </div>
-        
-                    <div class="Form__Item Form__Item--floatingLabel">
-                        <input id="CustomerAddressFormAddress1--{{ section.id }}" type="text" class="Form__Input" name="address[address1]" value="{{ form.address1 }}" placeholder="{{ 'customer.addresses.address1' | t }}" aria-label="{{ 'customer.addresses.address1' | t }}">
-                        <label class="Form__Label" for="CustomerAddressFormAddress1--{{ section.id }}">{{ 'customer.addresses.address1' | t }}</label>
-                    </div>
-        
-                    <div class="Form__Item Form__Item--floatingLabel">
-                        <input id="CustomerAddressFormAddress2--{{ section.id }}" type="text" class="Form__Input" name="address[address2]" value="{{ form.address2 }}" placeholder="{{ 'customer.addresses.address2' | t }}" aria-label="{{ 'customer.addresses.address2' | t }}">
-                        <label class="Form__Label" for="CustomerAddressFormAddress2--{{ section.id }}">{{ 'customer.addresses.address2' | t }}</label>
-                    </div>
-        
-                    <div class="Form__Item Form__Item--floatingLabel">
-                        <input id="CustomerAddressFormCity--{{ section.id }}" type="text" class="Form__Input" name="address[city]" value="{{ form.city }}" placeholder="{{ 'customer.addresses.city' | t }}" aria-label="{{ 'customer.addresses.city' | t }}">
-                        <label class="Form__Label" for="CustomerAddressFormCity--{{ section.id }}">{{ 'customer.addresses.city' | t }}</label>
-                    </div>
-        
-                    <div class="Form__ItemGroup">
+
+                     <div class="Form__ItemGroup">
                         <div class="Form__Item Form__Item--floatingLabel">
                             <select id="CustomerAddressFormCountry--{{ section.id }}" name="address[country]" class="Form__Select" title="{{ 'customer.addresses.country' | t }}">{{ all_country_option_tags }}</select>
                             <label class="Form__Label" for="CustomerAddressFormCountry--{{ section.id }}">{{ 'customer.addresses.country' | t }}</label>    
@@ -114,6 +99,21 @@
                             <select id="CustomerAddressFormProvince--{{ section.id }}" name="address[province]" class="Form__Select" title="{{ 'customer.addresses.province' | t }}"></select>
                             <label class="Form__Label" for="CustomerAddressFormProvince--{{ section.id }}">{{ 'customer.addresses.province' | t }}</label>
                         </div>
+                    </div>
+
+                    <div class="Form__Item Form__Item--floatingLabel">
+                        <input id="CustomerAddressFormCity--{{ section.id }}" type="text" class="Form__Input" name="address[city]" value="{{ form.city }}" placeholder="{{ 'customer.addresses.city' | t }}" aria-label="{{ 'customer.addresses.city' | t }}">
+                        <label class="Form__Label" for="CustomerAddressFormCity--{{ section.id }}">{{ 'customer.addresses.city' | t }}</label>
+                    </div>
+        
+                    <div class="Form__Item Form__Item--floatingLabel">
+                        <input id="CustomerAddressFormAddress1--{{ section.id }}" type="text" class="Form__Input" name="address[address1]" value="{{ form.address1 }}" placeholder="{{ 'customer.addresses.address1' | t }}" aria-label="{{ 'customer.addresses.address1' | t }}">
+                        <label class="Form__Label" for="CustomerAddressFormAddress1--{{ section.id }}">{{ 'customer.addresses.address1' | t }}</label>
+                    </div>
+        
+                    <div class="Form__Item Form__Item--floatingLabel">
+                        <input id="CustomerAddressFormAddress2--{{ section.id }}" type="text" class="Form__Input" name="address[address2]" value="{{ form.address2 }}" placeholder="{{ 'customer.addresses.address2' | t }}" aria-label="{{ 'customer.addresses.address2' | t }}">
+                        <label class="Form__Label" for="CustomerAddressFormAddress2--{{ section.id }}">{{ 'customer.addresses.address2' | t }}</label>
                     </div>
         
                     <div class="Form__Item">
@@ -149,15 +149,15 @@
         
                     <div class="Modal__Body">
                         {% form 'customer_address', address, class: 'Form Form--editAddress' %}
+
+                            <div class="Form__Item Form__Item--floatingLabel">
+                                <input id="CustomerAddressFormLastName--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[last_name]" value="{{ form.last_name }}" placeholder="{{ 'customer.addresses.last_name' | t }}" aria-label="{{ 'customer.addresses.last_name' | t }}">
+                                <label class="Form__Label" for="CustomerAddressFormLastName--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.last_name' | t }}</label>
+                            </div>
                           
                             <div class="Form__Item Form__Item--floatingLabel">
                                 <input id="CustomerAddressFormFirstName--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[first_name]" value="{{ form.first_name }}" placeholder="{{ 'customer.addresses.first_name' | t }}" aria-label="{{ 'customer.addresses.first_name' | t }}" autofocus>
                                 <label class="Form__Label" for="CustomerAddressFormFirstName--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.first_name' | t }}</label>
-                            </div>
-        
-                            <div class="Form__Item Form__Item--floatingLabel">
-                                <input id="CustomerAddressFormLastName--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[last_name]" value="{{ form.last_name }}" placeholder="{{ 'customer.addresses.last_name' | t }}" aria-label="{{ 'customer.addresses.last_name' | t }}">
-                                <label class="Form__Label" for="CustomerAddressFormLastName--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.last_name' | t }}</label>
                             </div>
             
                             <div class="Form__Item Form__Item--floatingLabel">
@@ -169,22 +169,7 @@
                                 <input id="CustomerAddressFormPhone--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[phone]" value="{{ form.phone }}" placeholder="{{ 'customer.addresses.phone' | t }}" aria-label="{{ 'customer.addresses.phone' | t }}">
                                 <label class="Form__Label" for="CustomerAddressFormPhone--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.phone' | t }}</label>
                             </div>
-            
-                            <div class="Form__Item Form__Item--floatingLabel">
-                                <input id="CustomerAddressFormAddress1--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[address1]" value="{{ form.address1 }}" placeholder="{{ 'customer.addresses.address1' | t }}" aria-label="{{ 'customer.addresses.address1' | t }}">
-                                <label class="Form__Label" for="CustomerAddressFormAddress1--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.address1' | t }}</label>
-                            </div>
-            
-                            <div class="Form__Item Form__Item--floatingLabel">
-                                <input id="CustomerAddressFormAddress2--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[address2]" value="{{ form.address2 }}" placeholder="{{ 'customer.addresses.address2' | t }}" aria-label="{{ 'customer.addresses.address2' | t }}">
-                                <label class="Form__Label" for="CustomerAddressFormAddress2--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.address2' | t }}</label>
-                            </div>
-            
-                            <div class="Form__Item Form__Item--floatingLabel">
-                                <input id="CustomerAddressFormCity--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[city]" value="{{ form.city }}" placeholder="{{ 'customer.addresses.city' | t }}" aria-label="{{ 'customer.addresses.city' | t }}">
-                                <label class="Form__Label" for="CustomerAddressFormCity--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.city' | t }}</label>
-                            </div>
-            
+
                             <div class="Form__ItemGroup">
                                 <div class="Form__Item Form__Item--floatingLabel">
                                     <select id="CustomerAddressFormCountry--{{ section.id }}-{{ address.id }}" name="address[country]" class="Form__Select" title="{{ 'customer.addresses.country' | t }}" data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
@@ -202,6 +187,21 @@
                                     <select id="CustomerAddressFormProvince--{{ section.id }}-{{ address.id }}" name="address[province]" class="Form__Select" title="{{ 'customer.addresses.province' | t }}" data-default="{{ form.province }}"></select>
                                     <label class="Form__Label" for="CustomerAddressFormProvince--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.province' | t }}</label>
                                 </div>
+                            </div>
+
+                            <div class="Form__Item Form__Item--floatingLabel">
+                                <input id="CustomerAddressFormCity--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[city]" value="{{ form.city }}" placeholder="{{ 'customer.addresses.city' | t }}" aria-label="{{ 'customer.addresses.city' | t }}">
+                                <label class="Form__Label" for="CustomerAddressFormCity--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.city' | t }}</label>
+                            </div>
+            
+                            <div class="Form__Item Form__Item--floatingLabel">
+                                <input id="CustomerAddressFormAddress1--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[address1]" value="{{ form.address1 }}" placeholder="{{ 'customer.addresses.address1' | t }}" aria-label="{{ 'customer.addresses.address1' | t }}">
+                                <label class="Form__Label" for="CustomerAddressFormAddress1--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.address1' | t }}</label>
+                            </div>
+            
+                            <div class="Form__Item Form__Item--floatingLabel">
+                                <input id="CustomerAddressFormAddress2--{{ section.id }}-{{ address.id }}" type="text" class="Form__Input" name="address[address2]" value="{{ form.address2 }}" placeholder="{{ 'customer.addresses.address2' | t }}" aria-label="{{ 'customer.addresses.address2' | t }}">
+                                <label class="Form__Label" for="CustomerAddressFormAddress2--{{ section.id }}-{{ address.id }}">{{ 'customer.addresses.address2' | t }}</label>
                             </div>
             
                             <div class="Form__Item">

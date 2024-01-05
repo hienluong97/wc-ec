@@ -61,7 +61,7 @@
           "disabled": true,
           "settings": {
             "heading": "ストーリー",
-            "open_collapsible_tab": true
+            "open_collapsible_tab": false
           }
         }
       },
@@ -85,7 +85,8 @@
         "gallery_design": "stack_images",
         "media_centered": true,
         "media_with": 82,
-        "media_with_mobile": 100
+        "media_with_mobile": 100,
+        "open_collapsible_tab": true
       }
     },
     "product-recommendations": {
