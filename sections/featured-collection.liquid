@@ -72,7 +72,7 @@
         <div class="ProductList ProductList--grid Grid">
           {%- for product in collection.products limit: item_count -%}
             <div class="Grid__Item 1/{{ mobile_items_per_row }}--small 1/{{ desktop_items_per_row }}--medium-up">
-              {% render 'product-card', product: product, show_rating: section.settings.show_rating, show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_swatches: section.settings.show_swatches, show_quick_add: section.settings.enable_quick_add %}
+              {% render 'product-card', product: product, show_rating: section.settings.show_rating, show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_swatches: section.settings.show_swatches, show_quick_add: section.settings.enable_quick_add, collection: collection.title %}
             </div>
           {%- endfor -%}
         </div>

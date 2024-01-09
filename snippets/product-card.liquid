@@ -1,5 +1,4 @@
 {% assign show_labels = show_labels | default: settings.product_show_labels %}
-
 <div class="ProductCard">
      <div class="ProductCard__Inner">
         {%- liquid 
@@ -22,7 +21,9 @@
             {%- if product.featured_media -%}
                 {%- assign media_aspect_ratio = product.featured_media.aspect_ratio | default: product.featured_media.preview_image.aspect_ratio -%}
 
-                <a href="{{ product.url | within: collection }}" class="Ratio {% unless use_natural_size %}Ratio--{{ settings.product_image_size }}{% endunless %} {% unless settings.product_card_media_fit_cover %} Ratio--contain{% endunless %}"
+                <a href="{%- if collection contains "クラウドファンディング" -%}
+            collections/cloudfunding{{ product.url }}{%- else -%} {{ product.url }}{%- endif -%}" 
+        class="Ratio {% unless use_natural_size %}Ratio--{{ settings.product_image_size }}{% endunless %} {% unless settings.product_card_media_fit_cover %} Ratio--contain{% endunless %}"
                     {% if use_natural_size %}style="--tg-aspect-ratio: {{ media_aspect_ratio }};"{% endif %}>
                     {%- if has_alternate_image -%}
                         <img class="ProductCard__Image ProductCard__Image--alternate Image--fadeIn Image--lazyLoad" 
@@ -71,7 +72,8 @@
             {%- else -%}  
                 <div class="Ratio ProductCard__NoImage {% unless use_natural_size %}Ratio--{{ settings.product_image_size }}{% endunless %}"
                     {% if use_natural_size %}style="--tg-aspect-ratio: 1;"{% endif %}>
-                     <a href="{{ product.url | within: collection }}" class="ProductCard__NoImageTitle">{{ product.title | escape }}</a>
+                     <a href="{%- if collection contains "クラウドファンディング" -%}
+            collections/cloudfunding{{ product.url }}{%- else -%} {{ product.url }}{%- endif -%}" class="ProductCard__NoImageTitle">{{ product.title | escape }}</a>
                 </div>
             {%- endif -%}  
 
@@ -125,7 +127,8 @@
                 </div>
             {%- endif -%}
             <h2 class="ProductCard__Title">
-                <a href="{{ product.url | within: collection | default: '#' }}" class="">{{ product.title }}</a>
+                <a href="{%- if collection contains "クラウドファンディング" -%}
+            collections/cloudfunding{{ product.url }}{%- else -%} {{ product.url }}{%- endif -%}" class="">{{ product.title }}</a>
             </h2>
             
             {%- if show_rating and product.metafields.reviews.rating.value != blank -%}
@@ -164,7 +167,8 @@
 
             <div class="ProductCard__Meta">
                 {%- render 'product-price-card', product: product -%}
-                <a href="{{ product.url | within: collection | default: '#' }}">{%- render 'icon-arrow' -%}</a>
+                <a href="{%- if collection contains "クラウドファンディング" -%}
+            collections/cloudfunding{{ product.url }}{%- else -%} {{ product.url }}{%- endif -%}">{%- render 'icon-arrow' -%}</a>
             </div>
 
             {%- render 'product-card-color-swatch', product: product, show_swatches: show_swatches -%}

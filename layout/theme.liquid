@@ -228,8 +228,26 @@
 
 
      {%- if template == 'product' and urlParameter contains "cloudfunding" -%}
-       <a href="#" class="float_btn">応援バナー</a>
+       <a href="#shopify-section-template--21540746658071__main" id="float_btn" class="">応援する</a>
     {%- endif -%}
 
   </body>
+
+  <script>
+
+   // Get the button:
+let btn = document.getElementById("float_btn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+    btn.classList.add('show');
+  } else {
+    btn.classList.remove('show');
+  }
+}
+
+</script>
 </html>
