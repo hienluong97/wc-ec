@@ -242,11 +242,14 @@ let btn = document.getElementById("float_btn");
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-    btn.classList.add('show');
-  } else {
-    btn.classList.remove('show');
-  }
+
+        if( btn ) {
+            if ( document.body.scrollTop > 400 || document.documentElement.scrollTop > 400 ) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        }
 }
 
 </script>

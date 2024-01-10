@@ -6,7 +6,7 @@
         "6acc000b-9f2b-41a3-b917-8f3f7b38e4af": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/slide1_edef1da2-9f74-4ec6-9b81-2e5d7e1d4974.png",
+            "image": "shopify:\/\/shop_images\/image_4.webp",
             "overlay_opacity": 0,
             "overlay_opacity_mobile": 0,
             "image_link": "",
@@ -28,7 +28,7 @@
         "1570233d-c3bf-45b1-b97d-d84152cd10da": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/slide2_84b5fe9b-2e3c-47a8-b783-8ba1a9c17d82.png",
+            "image": "shopify:\/\/shop_images\/image_3.webp",
             "overlay_opacity": 0,
             "overlay_opacity_mobile": 0,
             "image_link": "",
@@ -50,7 +50,7 @@
         "104976c9-fbbe-428a-b35d-02c5e423db90": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/slide3_33519855-6cf6-4c02-ad4a-780e711ffa61.png",
+            "image": "shopify:\/\/shop_images\/image_2.webp",
             "overlay_opacity": 0,
             "overlay_opacity_mobile": 0,
             "image_link": "",
@@ -121,7 +121,7 @@
       ],
       "settings": {
         "spacing_position": "None",
-        "image": "shopify:\/\/shop_images\/slide1.png",
+        "image": "shopify:\/\/shop_images\/image_1.webp",
         "overlay_opacity": 20,
         "image_link": "",
         "content_position": "middleLeft"
@@ -164,7 +164,7 @@
       ],
       "settings": {
         "spacing_position": "Medium",
-        "image": "shopify:\/\/shop_images\/WAOCONDesigner.svg",
+        "image": "shopify:\/\/shop_images\/image.webp",
         "image_link": "",
         "image_position": "Left",
         "image_position_mobile": "Bottom",
