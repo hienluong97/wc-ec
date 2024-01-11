@@ -1,6 +1,6 @@
 <div class="Product__Block Product__Block--cutomProperty ProductForm__CustomProperty" {{ block.shopify_attributes }}>
     {%- if block.settings.property_type == 'text' -%}
-        <div class="Form__Item Form__Item--floatingLabel">
+        <div class="Form__Item Form__Item--floatingLabel" id="js_textInput">
             <input id="option-{{ section.id }}-{{ block.id }}" aria-label="{{ block.settings.property_name | escape }}" class="Form__Input" type="text" name="properties[{{ block.settings.property_name | escape }}]" placeholder="{{ block.settings.property_name | escape }}" {% if block.settings.property_is_required %}required{% endif %} form="{{ product_form_id }}"> 
             <label for="option-{{ section.id }}-{{ block.id }}">{{ block.settings.property_name | escape }}{% if block.settings.property_is_required %} *{% endif %}</label> 
         </div>
@@ -19,7 +19,7 @@
             {%- continue -%}
         {%- endif -%}
         <div class="Form__Item Form__Item--floatingLabel">
-            <select id="option-{{ section.id }}-{{ block.id }}" class="Form__Select" name="properties[{{ block.settings.property_name | escape }}]" title="{{ block.settings.property_name | escape }}" {% if block.settings.property_is_required %}required{% endif %} form="{{ product_form_id }}">
+            <select onchange="handleOnChangeOption(value)" id="option-{{ section.id }}-{{ block.id }}" class="Form__Select" name="properties[{{ block.settings.property_name | escape }}]" title="{{ block.settings.property_name | escape }}" {% if block.settings.property_is_required %}required{% endif %} form="{{ product_form_id }}">
                 {% unless block.settings.property_first_value_is_selected %}<option value="" selected>{{ 'product.form.custom_property_invalid_feedback' | t: property_name: block.settings.property_name }}</option>{% endunless %}
                 {%- for value in values -%}
                     {%- assign trim_value = value | strip -%}
@@ -84,3 +84,24 @@
         </ul>
     {%- endif -%}
 </div>
+
+<script type="text/javascript">
+
+function handleOnChangeOption(value) {
+  var textarea = document.getElementById("js_textInput");
+  if (value.includes("他")) {
+    textarea.style.display = "block";
+  }else {
+    textarea.style.display = "none";
+  }
+}
+
+</script>
+
+<style>
+    #js_textInput {
+        display: none;
+    }
+    
+</style>
+

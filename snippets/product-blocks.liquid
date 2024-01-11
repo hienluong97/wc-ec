@@ -608,7 +608,9 @@
         {%- when 'complementary_products' -%}
             {%- render 'product-block-recommendations-related', block: block, recommendations_type: 'complementary' -%}
         {%- when 'custom_property' -%}
+            {%- if product.tags contains "event" -%} 
                 {%- render 'product-custom-property', block: block, product_form_id: product_form_id -%}
+            {%- endif -%}
     {%- endcase -%}
 {%- endfor -%}
 

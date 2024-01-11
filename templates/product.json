@@ -36,6 +36,28 @@
             "inventory_quantity_threshold": 0
           }
         },
+        "e4a3e177-bc86-4a1f-a719-af69a58a836a": {
+          "type": "custom_property",
+          "settings": {
+            "property_type": "dropdown",
+            "property_name": "ファーストドリンク",
+            "property_is_required": false,
+            "property_values": "生ビール, レモンサワー, ハイボール, その他",
+            "image_prefix": "",
+            "property_first_value_is_selected": true
+          }
+        },
+        "4d99d146-01d4-4e39-96a8-e7bd90ed94c2": {
+          "type": "custom_property",
+          "settings": {
+            "property_type": "text",
+            "property_name": "その他入力",
+            "property_is_required": false,
+            "property_values": "",
+            "image_prefix": "",
+            "property_first_value_is_selected": true
+          }
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -71,6 +93,8 @@
         "price",
         "variant_picker",
         "quantity_selector",
+        "e4a3e177-bc86-4a1f-a719-af69a58a836a",
+        "4d99d146-01d4-4e39-96a8-e7bd90ed94c2",
         "buy_buttons",
         "share",
         "8fb96e6c-df37-4677-9b77-1607f39bdab3",
