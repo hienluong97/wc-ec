@@ -42,7 +42,7 @@
             "property_type": "dropdown",
             "property_name": "ファーストドリンク",
             "property_is_required": false,
-            "property_values": "生ビール, レモンサワー, ハイボール, その他",
+            "property_values": "value 1, value 2, value 3",
             "image_prefix": "",
             "property_first_value_is_selected": true
           }

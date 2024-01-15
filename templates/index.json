@@ -189,6 +189,50 @@
         "enable_quick_add": false
       }
     },
+    "video_with_text_6qdH3C": {
+      "type": "video-with-text",
+      "blocks": {
+        "heading_RcfVXe": {
+          "type": "heading",
+          "settings": {
+            "text": "仲良くなって、仕事に繋がる",
+            "heading_font_size": "HeadlineLarge"
+          }
+        },
+        "subheading_QwMLPD": {
+          "type": "subheading",
+          "settings": {
+            "text": "とってもカジュアルな交流会"
+          }
+        },
+        "description_ggXDR9": {
+          "type": "description",
+          "settings": {
+            "text": "<p>面倒な自己紹介一切なし！<br\/>自然に知り合う・勝手に繋がる<br\/>お昼は「らふトーク」夜は「べんちょい」<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RcfVXe",
+        "subheading_QwMLPD",
+        "description_ggXDR9"
+      ],
+      "custom_css": [
+        ".SectionHeader__Heading,.SectionHeader__Subheading {color: #1a1a1a; font-size: 32px; font-weight: 800; letter-spacing: 1px; text-wrap: nowrap; text-transform: uppercase;}",
+        ".SectionHeader__Subheading {color: #999;}",
+        ".SectionHeader__Description {margin-top: 40px; color: #000; font-size: 16px; font-weight: 400; line-height: 2; letter-spacing: 1px; text-transform: uppercase;}",
+        "@media screen and (max-width: 1200px) {.SectionHeader__Heading, .SectionHeader__Subheading {font-size: 24px; }}",
+        "@media screen and (max-width: 700px) {}"
+      ],
+      "settings": {
+        "spacing_position": "Medium",
+        "image_link": "",
+        "image_position": "Left",
+        "image_position_mobile": "Bottom",
+        "text_align": "Left",
+        "desktop_text_position": "Middle"
+      }
+    },
     "949fa78e-763f-4994-8f31-650c2c0ea335": {
       "type": "featured-collection",
       "settings": {
@@ -215,6 +259,7 @@
     "7ccde71b-a229-45bb-a0a4-7d2b7b765122",
     "77765a34-8739-46ab-8331-4683e5d54b39",
     "f917d87e-0670-414c-a4ab-41c342dd8200",
+    "video_with_text_6qdH3C",
     "949fa78e-763f-4994-8f31-650c2c0ea335"
   ]
 }

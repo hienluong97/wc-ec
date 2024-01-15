@@ -253,4 +253,15 @@ function scrollFunction() {
 }
 
 </script>
+
+{% if checkout.attributes['Checkout-Method'] == 'pickup' %}
+  <script type="text/javascript">billingAddressForm
+     document.querySelector('#billingAddressForm').style.display = 'none';
+    // document.querySelector('.section--shipping-address [data-address-field="address1"]').style.display = 'none';
+    // document.querySelector('.section--shipping-address [data-address-field="address2"]').style.display = 'none';
+    // document.querySelector('.section--shipping-address [data-address-field="city"]').style.display = 'none';
+    // document.querySelector('.section--shipping-address [data-address-field="country"]').style.display = 'none';
+    // document.querySelector('.section--shipping-address [data-address-field="zip"]').style.display = 'none';
+  </script>
+{% endif %}
 </html>

@@ -97,6 +97,10 @@
   align-items: center;
 }
 
+/* .Header .Header__Logo {
+  width: 20vw;
+} */
+
 .Header .Header__Logo, .Header .Header__LogoLink {
   display: flex;
   align-items: center;
@@ -406,6 +410,15 @@
     width: 60vw ;
 }
 
+
+@media screen and (max-width: 900px) { 
+.Header__TopWrapper .Header__storeName {
+    width: 50vw ;
+}
+
+}
+
+
 .storeName__text {
     color: #000;
     font-family: Rift;
@@ -440,8 +453,8 @@
     letter-spacing: 2px;
 }
 
-@media screen and (max-width: 1007px) { 
-    .sp_display_none {
+@media screen and (max-width: 1150px) { 
+    .header__search__text.sp_display_none {
     display: none !important;
 }
 }

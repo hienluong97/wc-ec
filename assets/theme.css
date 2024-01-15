@@ -1775,7 +1775,7 @@ textarea.Form__Input {
   display: flex;
   flex-wrap: wrap;
   margin-top: -1px;
-  margin-right: -1px;
+  /* margin-right: -1px; */
   margin-left: 0;
   border-top: 1px solid var(--tg-sys-color-outline);
 }

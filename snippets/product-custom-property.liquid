@@ -13,15 +13,17 @@
         </div>
         {%- if block.settings.property_is_required -%}<span class="InvalidFeedback InvalidFeedback--underFeild">{{ 'product.form.custom_property_input_invalid_feedback' | t: property_name: block.settings.property_name }}</span>{%- endif -%}
     {%- elsif block.settings.property_type == 'dropdown' -%}
-        {%- assign values = block.settings.property_values | split: ',' -%}
-
-        {%- if values == empty -%}
+        {%- assign values = block.settings.property_values | split: ', ' -%}
+        {% comment %} For each product {% endcomment %}
+        {% assign event_first_drink = product.metafields.custom.event_first_drink | split: "," %} 
+        {% comment %} {%- if values == empty -%}
             {%- continue -%}
-        {%- endif -%}
+        {%- endif -%} {% endcomment %}
         <div class="Form__Item Form__Item--floatingLabel">
             <select onchange="handleOnChangeOption(value)" id="option-{{ section.id }}-{{ block.id }}" class="Form__Select" name="properties[{{ block.settings.property_name | escape }}]" title="{{ block.settings.property_name | escape }}" {% if block.settings.property_is_required %}required{% endif %} form="{{ product_form_id }}">
                 {% unless block.settings.property_first_value_is_selected %}<option value="" selected>{{ 'product.form.custom_property_invalid_feedback' | t: property_name: block.settings.property_name }}</option>{% endunless %}
-                {%- for value in values -%}
+                {% assign event_first_drink = product.metafields.custom.event_first_drink | split: "," %}
+                {%- for value in event_first_drink -%}
                     {%- assign trim_value = value | strip -%}
                     <option value="{{ trim_value | escape }}" {% if forloop.first and block.settings.property_first_value_is_selected %}selected{% endif %}>{{ trim_value | escape }}</option>
                 {%- endfor -%}
