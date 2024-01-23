@@ -151,7 +151,6 @@
       }else{
         formData = new FormData(this.element.querySelector('.FilterProducts__Form--drawer'));
       }
-  
       const searchParams = new URLSearchParams(formData).toString();
   
       this._reloadProducts(searchParams, filterFrom);
@@ -180,15 +179,15 @@
   
           _this.filterProductsContentElement.innerHTML = tempElement.querySelector('.FilterProducts__Content').innerHTML;
           document.dispatchEvent(new CustomEvent('theme:loading:end'));
-  
+
           let itemsCountElement = tempElement.querySelector('.CollectionToolBar__ResultCount');
-  
+
           if(itemsCountElement){
             let itemsCountNumber = itemsCountElement.getAttribute("data-items-count");
   
-            let targetCountEle = _this.element.querySelector(".CollectionAside__ProductCount strong");
+            let targetCountEle = _this.element.querySelector(".CollectionAside__ProductCount");
             if(targetCountEle && itemsCountNumber){
-              targetCountEle.innerHTML = itemsCountNumber;
+              targetCountEle.innerHTML = `${itemsCountNumber}商品`;
             }
           }
           

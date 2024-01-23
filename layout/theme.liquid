@@ -226,42 +226,29 @@
     | replace: '\u0026', '&'
   -%}{% capture urlParameter %}https://{{ pageUrl }}{% endcapture %}
 
-
      {%- if template == 'product' and urlParameter contains "cloudfunding" -%}
        <a href="#shopify-section-template--21540746658071__main" id="float_btn" class="">応援する</a>
     {%- endif -%}
 
-  </body>
+</body>
 
-  <script>
 
-   // Get the button:
-let btn = document.getElementById("float_btn");
+<script>
+    // Get the button:
+    let btn = document.getElementById("float_btn");
+    console.log(btn)
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
 
-function scrollFunction() {
-
+    function scrollFunction() {
         if( btn ) {
             if ( document.body.scrollTop > 400 || document.documentElement.scrollTop > 400 ) {
-                btn.classList.add('show');
+                 btn.classList.add('show');
             } else {
                 btn.classList.remove('show');
             }
         }
-}
-
+    }
 </script>
-
-{% if checkout.attributes['Checkout-Method'] == 'pickup' %}
-  <script type="text/javascript">billingAddressForm
-     document.querySelector('#billingAddressForm').style.display = 'none';
-    // document.querySelector('.section--shipping-address [data-address-field="address1"]').style.display = 'none';
-    // document.querySelector('.section--shipping-address [data-address-field="address2"]').style.display = 'none';
-    // document.querySelector('.section--shipping-address [data-address-field="city"]').style.display = 'none';
-    // document.querySelector('.section--shipping-address [data-address-field="country"]').style.display = 'none';
-    // document.querySelector('.section--shipping-address [data-address-field="zip"]').style.display = 'none';
-  </script>
-{% endif %}
 </html>
