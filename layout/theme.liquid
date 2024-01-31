@@ -212,7 +212,6 @@
       </script>
     {%- endif -%}
 
-
     {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
   {%- assign pageUrl = contentForQuerystring
     | split: '"pageurl":"'
@@ -227,7 +226,10 @@
   -%}{% capture urlParameter %}https://{{ pageUrl }}{% endcapture %}
 
      {%- if template == 'product' and urlParameter contains "cloudfunding" -%}
-       <a href="#shopify-section-template--21540746658071__main" id="float_btn" class="">応援する</a>
+        {%- if settings.support_image != blank -%}
+         <a href="#shopify-section-template--21540746658071__main" id="support_btn" class="">  <img src="{{ settings.support_image | image_url: width: 130 }}"  loading="lazy"  width="130" height="130" alt="support">
+         </a>
+        {%- endif -%}
     {%- endif -%}
 
 </body>
@@ -235,15 +237,14 @@
 
 <script>
     // Get the button:
-    let btn = document.getElementById("float_btn");
-    console.log(btn)
+    let btn = document.getElementById("support_btn");
 
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
 
     function scrollFunction() {
         if( btn ) {
-            if ( document.body.scrollTop > 400 || document.documentElement.scrollTop > 400 ) {
+            if ( document.body.scrollTop > 500 || document.documentElement.scrollTop > 500 ) {
                  btn.classList.add('show');
             } else {
                 btn.classList.remove('show');

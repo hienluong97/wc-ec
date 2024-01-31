@@ -17,7 +17,8 @@
     "social_twitter": "#",
     "social_facebook": "#",
     "social_instagram": "#",
-    "favicon": "shopify:\/\/shop_images\/Union.svg",
+    "favicon": "shopify://shop_images/Union.svg",
+    "support_image": "shopify://shop_images/Union.svg",
     "price_currency_format": "money_without_trailing_zeros",
     "sections": {
       "cart-drawer": {
@@ -35,7 +36,7 @@
           "primary_menu": "main-menu",
           "secondary_menu": "footer",
           "show_social_media": true,
-          "logo": "shopify:\/\/shop_images\/logo.svg",
+          "logo": "shopify://shop_images/logo.svg",
           "logo_max_width": 80,
           "enable_country_selector": true,
           "enable_language_selector": true
