@@ -990,8 +990,12 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " tab-active";
 }
 
-document.getElementById("defaultOpen").click();
-document.getElementById("defaultOpenBottom").click();
+let activeTab = document.getElementById("defaultOpen"); 
+
+if(activeTab) {
+    document.getElementById("defaultOpen").click();
+}
+// document.getElementById("defaultOpenBottom").click();
 
 </script>
 
