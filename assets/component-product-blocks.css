@@ -345,7 +345,7 @@ noscript.Product__Block {
 }
 
 /*css for クラウドファンディング*/
-.crowdfunder-widget {
+/* .crowdfunder-widget {
     padding: 0 !important;
     background-color: unset !important;
 }
@@ -404,4 +404,49 @@ p:has(.cf-moneytotal) {
 
 .ProductForm__QuantityWrapper {
    display: none !important;
+} */
+
+/* .Template--product .ProductSummary {
+    position: unset !important;
+} */
+
+.ProductForm__QuantityWrapper {
+   display: none !important;
+} 
+
+image-gallery .fundpop-widget-container {
+    box-shadow: unset !important
+}
+
+
+#fundpop-header-block, .fundpop-target-text-block, .fundpop-target-value-block , .fundpop-target-value-block, .fundpop-progress-block, .fundpop-funded-block, #fundpop-countdown-block, #fundpop-time, .fundpop-divider-block {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    background: rgb(251, 251, 251) !important;
+}
+
+#fundpop-header-block {
+  display: none !important;
+}
+
+#fundpop-badge-block.fundpop-widget-footer {
+    background: rgb(251, 251, 251) !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+#fundpop-badge-block.fundpop-widget-footer span {
+    background: rgb(251, 251, 251) !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+}
+
+#fundpop-badge-block.fundpop-widget-footer svg {
+    background: rgb(251, 251, 251) !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
 }

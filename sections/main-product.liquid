@@ -5,6 +5,7 @@
   assign inventory_quantity_threshold = 5
   assign recommendations_related_count = 0
   assign recommendations_complementary_count = 0
+  assign variants = product.variants 
 
   for block in section.blocks
     case block.type
@@ -72,8 +73,48 @@
         </div>
       </div>
   </div>
-     <div class="ProductDescription">
-          {%- if product.description != blank -%}
+    <div class="ProductDescription">
+        {%- if product.description != blank -%}
+                {%- if product.tags contains "crowdfunder" -%}
+
+                    <div>
+                        <div class="tab-bar Container--custom">
+                            <button class="tablinks"  onclick="openTab(event, 'story')">STORY</button>
+                            <button class="tablinks tab-active"  id="defaultOpen" onclick="openTab(event, 'plan')">PLAN</button>
+                        </div>
+
+                        <div id="story" class="tabcontent Container--custom">
+                             {% comment %} <div class="Accordion__Body RTE">
+                                {{ product.description }}
+                            </div> {% endcomment %}
+                        </div>
+
+                        <div id="plan" class="tabcontent Container--custom">
+                            <div class="plan-wrapper">
+                                {% for variant in variants %}
+                                <div class="plan-block">
+                                    <div class="plan-block-title-group">
+                                        <p>{{ variant.metafields.custom.sub_title  }}</p>
+                                        <h3 class="plan-block-title">
+                                            <img src="{{ variant.metafields.custom.icon | image_url: width: 30 }}"  loading="lazy"  width="38" height="38" alt={{ variant.metafields.custom.plan_title }}>
+                                             <span>{{ variant.metafields.custom.plan_title  }}</span>
+                                        </h3>
+                                    </div>
+                                    <div class="plan-block-desc">
+                                          {{ variant.metafields.custom.plan_description | metafield_tag }}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {% comment %} <div class="tab-bar tab-bar-bottom Container--custom">
+                            <button class="tablinks"  onclick="openTab(event, 'story')">STORY</button>
+                            <button class="tablinks tab-active"  id="defaultOpenBottom" onclick="openTab(event, 'plan')">PLAN</button>
+                        </div> {% endcomment %}
+                    </div>
+
+                {% else %}
                     <div class="Accordion__Item Product__Block Product__Block--collapsibleInfoJS Product__Block--descriptionCollapsible no-js-hidden" {{ block.shopify_attributes }}>
                         <div class="Accordion__Header">
                             <button class="Accordion__Button {% unless section.settings.open_collapsible_tab %}Collapsed{% endunless %}" type="button" data-tg-toggle="Collapse" {% if section.settings.open_collapsible_tab %}aria-expanded="true"{% else %}aria-expanded="false"{% endif %} data-tg-target="#ProductBlockAccordion-{{ section.id }}">
@@ -82,12 +123,13 @@
                             </button>
                         </div>
                         <div id="ProductBlockAccordion-{{ section.id }}" class="Accordion__Collapse Collapse {% if section.settings.open_collapsible_tab %}Show{% endif %}">
-                            <div class="Accordion__Body RTE">
+                             <div class="Accordion__Body RTE">
                                 {{ product.description }}
                             </div>
                         </div>
                     </div>
-    
+                {%- endif -%}
+
                     <noscript>
                         <details class="Product__Block Product__Block--collapsibleInfo Product__Block--descriptionCollapsible"{% if section.settings.open_collapsible_tab %} open{% endif %} {{ block.shopify_attributes }}>
                             {% assign default_description_drawer_title = 'product.general.description' | t %}
@@ -101,8 +143,8 @@
                             </div>
                         </details>
                     </noscript>
-                {%- endif -%}
-     </div>
+        {%- endif -%}
+    </div>
 </section-product>
 
 {%- if section.settings.enable_image_zoom -%}
@@ -932,4 +974,197 @@
         font-weight: 500 !important;
         font-family: YuGothic;
     }
+</style>
+
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" tab-active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " tab-active";
+}
+
+document.getElementById("defaultOpen").click();
+document.getElementById("defaultOpenBottom").click();
+
+</script>
+
+<style>
+    /* Style the tab */
+    .tab-bar {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab-bar button {
+    color: var(--main, #1A1A1A);
+    text-align: center;
+    font-family: Lato;
+    font-size: 38px !important;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 3px;
+    flex-grow: 1;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 20px;
+    transition: 0.3s;
+    font-size: 17px;
+    width: 40%;
+    background: #FFF;
+    border-right: 1px solid #5C5C5C;
+    border-bottom: 1px solid #5C5C5C;
+    border-left: 1px solid #5C5C5C;
+    position: relative;
+
+    }
+
+    .tablinks:first-child {  
+        border-right: unset;
+    }
+
+    .tablinks:first-child::after { 
+        position: absolute;
+        content: "";
+        height: 1px;
+        width: 30%;
+        background-color: #5C5C5C;
+        z-index: 20;
+        bottom: -1px;
+        left: -30%;
+    }
+
+    .tablinks:last-child::after { 
+        position: absolute;
+        content: "";
+        height: 1px;
+        width: 30%;
+        background-color: #5C5C5C;
+        z-index: 20;
+        bottom: -1px;
+        right: -30%;
+    }
+     
+     .tab-bar-bottom  {
+        margin-top: 100px;
+     }
+    .tab-bar.tab-bar-bottom button {
+        border-bottom: 1px solid #5C5C5C;
+    }
+
+    .tab-bar.tab-bar-bottom button.tab-active {
+        background-color: var(--tg-sys-color-background);
+        border-top: 2px solid var(--tg-sys-color-background);
+        z-index: 2;
+    }
+
+
+    .tab-bar-bottom    .tablinks:first-child::after {  }
+
+    /* Change background color of buttons on hover */
+    .tab-bar button:hover {
+    background-color: #FFF;
+    }
+
+    /* Create an active/current tablink class */
+    .tab-bar button.tab-active {
+        background-color: var(--tg-sys-color-background);
+        border-bottom: unset;
+        border-bottom: 2px solid var(--tg-sys-color-background);
+        z-index: 2;
+    }
+
+
+    /* Style the tab content */
+    .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+    }
+
+    .tabcontent 
+    .row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+    }
+
+    /* Create four equal columns that sits next to each other */
+    .column {
+    -ms-flex: 50%; /* IE10 */
+    flex: 50%;
+    max-width: 50%;
+    padding: 0 4px;
+    }
+</style>
+
+<style>
+    .plan-wrapper {
+        margin-top: 120px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 60px 80px; 
+    }
+
+    .plan-block {
+        width: calc( 50% - 80px);
+        background-color: #FFF;
+        border: 1px solid #5C5C5C;
+        padding: 20px;
+        flex-grow: 1;
+    }
+
+    .plan-block-title-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .plan-block-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #1A1A1A;
+        font-family: "Noto Sans JP";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .plan-block-title span {
+        padding-left: 10px;
+     }
+
+    .plan-block-desc div p {
+       color: #1A1A1A;
+        font-family: "Noto Sans JP";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5; 
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
 </style>
