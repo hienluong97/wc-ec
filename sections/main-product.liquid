@@ -79,14 +79,12 @@
 
                     <div>
                         <div class="tab-bar Container--custom">
-                            <button class="tablinks"  onclick="openTab(event, 'story')">STORY</button>
-                            <button class="tablinks tab-active"  id="defaultOpen" onclick="openTab(event, 'plan')">PLAN</button>
+                            <button class="tablinks tab-active"  id="defaultOpen" onclick="openTab(event, 'story')">STORY</button>
+                            <button class="tablinks tab-active"  onclick="openTab(event, 'plan')">PLAN</button>
                         </div>
 
                         <div id="story" class="tabcontent Container--custom">
-                             {% comment %} <div class="Accordion__Body RTE">
                                 {{ product.description }}
-                            </div> {% endcomment %}
                         </div>
 
                         <div id="plan" class="tabcontent Container--custom">
@@ -94,7 +92,8 @@
                                 {% for variant in variants %}
                                 <div class="plan-block">
                                     <div class="plan-block-title-group">
-                                        <p>{{ variant.metafields.custom.sub_title  }}</p>
+                                        <p><span>限定</span> <span>{{ variant.metafields.custom.quantity  }}</span></p>
+                                        <p class="plan-block-subtitle">{{ variant.metafields.custom.sub_title  }}</p>
                                         <h3 class="plan-block-title">
                                             <img src="{{ variant.metafields.custom.icon | image_url: width: 30 }}"  loading="lazy"  width="38" height="38" alt={{ variant.metafields.custom.plan_title }}>
                                              <span>{{ variant.metafields.custom.plan_title  }}</span>
@@ -1136,6 +1135,19 @@ document.getElementById("defaultOpenBottom").click();
         align-items: center;
         flex-direction: column;
         margin-bottom: 20px;
+    }
+
+    .plan-block-subtitle {
+        color: #1A1A1A;
+        text-align: center;
+        font-family: "Noto Sans JP";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px; /* 160% */
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 0px;
     }
 
     .plan-block-title {

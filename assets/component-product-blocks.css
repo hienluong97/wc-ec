@@ -450,3 +450,261 @@ image-gallery .fundpop-widget-container {
     height: 0 !important;
     opacity: 0 !important;
 }
+
+
+/* css for  中村 航司 選手 story */
+
+.video-wapper {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.video-title {
+    color: var(--main, #1A1A1A);
+    font-family: "Noto Sans JP";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.video-iframe {
+    width: 70%;
+    height: 450px;
+}
+
+@media screen and (max-width: 950px) {   
+.video-iframe {
+    width: 100%;
+    height: 300px;
+}
+}
+
+.intro {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.intro-col {
+    width: calc(( 100% - 40px) / 3 );
+    max-height: 400px;
+}
+
+.intro-col img {
+    height: 100%;
+    width: 100%;
+}
+
+.intro-col:first-child {
+   display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.video-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.video-title-group  span {
+    color: var(--main, #1A1A1A);
+    font-family: "Noto Sans JP";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    color: #1A1A1A;
+    font-family: "Noto Sans JP";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.intro-text-link {
+    padding-top: 10px;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.achievement {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.achievement-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-width: 31%;
+}
+
+.achievement-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.achievement-title-group span {
+    color: var(--main, #1A1A1A);
+    font-family: "Noto Sans JP";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.achievement-content-text {
+    margin-top: 30px;
+
+}
+.achievement-content-text p {
+   color: #1A1A1A;
+    font-family: "Noto Sans JP";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+.challenge {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.challenge-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-width: 35%;
+}
+
+.challenge-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.challenge-title-group span {
+    color: var(--main, #1A1A1A);
+    font-family: "Noto Sans JP";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.challenge-content-text {
+    margin-top: 30px;
+
+}
+.challenge-content-text p {
+   color: #1A1A1A;
+    font-family: "Noto Sans JP";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+.target {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+.target-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.target-image img {
+   width: 100%;
+   height: 100%;
+}
+
+.target-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.target-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.target-title-group span {
+    color: var(--main, #1A1A1A);
+    font-family: "Noto Sans JP";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.target-content-text {
+    margin-top: 30px;
+
+}
+.target-content-text p {
+   color: #1A1A1A;
+    font-family: "Noto Sans JP";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
