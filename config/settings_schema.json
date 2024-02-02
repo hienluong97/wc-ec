@@ -4,8 +4,8 @@
     "theme_name": "Mandolin",
     "theme_author": "ThemeGoal",
     "theme_version": "2.9.1",
-    "theme_documentation_url": "https://themegoal.com/pages/documentation",
-    "theme_support_url": "https://support.themegoal.com/hc/en-us/requests/new"
+    "theme_documentation_url": "https:\/\/themegoal.com\/pages\/documentation",
+    "theme_support_url": "https:\/\/support.themegoal.com\/hc\/en-us\/requests\/new"
   },
   {
     "name": "Colors",
@@ -48,7 +48,7 @@
         "id": "text_font",
         "default": "assistant_n3",
         "label": "Font",
-        "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https://help.shopify.com/en/manual/online-store/os/store-speed/improving-speed#fonts)"
+        "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https:\/\/help.shopify.com\/en\/manual\/online-store\/os\/store-speed\/improving-speed#fonts)"
       },
       {
         "type": "range",
@@ -69,7 +69,7 @@
         "id": "heading_font",
         "default": "assistant_n4",
         "label": "Font",
-        "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https://help.shopify.com/en/manual/online-store/os/store-speed/improving-speed#fonts)"
+        "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https:\/\/help.shopify.com\/en\/manual\/online-store\/os\/store-speed\/improving-speed#fonts)"
       },
       {
         "type": "range",
@@ -90,7 +90,7 @@
         "id": "display_font",
         "default": "assistant_n4",
         "label": "Font",
-        "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https://help.shopify.com/en/manual/online-store/os/store-speed/improving-speed#fonts)"
+        "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https:\/\/help.shopify.com\/en\/manual\/online-store\/os\/store-speed\/improving-speed#fonts)"
       },
       {
         "type": "range",
@@ -108,7 +108,7 @@
       },
       {
         "type": "paragraph",
-        "content": "[Learn how to](https://themegoal.com/products/add-custom-fonts) upload your fonts."
+        "content": "[Learn how to](https:\/\/themegoal.com\/products\/add-custom-fonts) upload your fonts."
       }
     ]
   },
@@ -252,55 +252,55 @@
       {
         "type": "text",
         "id": "social_twitter",
-        "info": "https://twitter.com/shopify",
+        "info": "https:\/\/twitter.com\/shopify",
         "label": "Twitter"
       },
       {
         "type": "text",
         "id": "social_facebook",
-        "info": "https://facebook.com/shopify",
+        "info": "https:\/\/facebook.com\/shopify",
         "label": "Facebook"
       },
       {
         "type": "text",
         "id": "social_pinterest",
-        "info": "https://pinterest.com/shopify",
+        "info": "https:\/\/pinterest.com\/shopify",
         "label": "Pinterest"
       },
       {
         "type": "text",
         "id": "social_instagram",
-        "info": "http://instagram.com/shopify",
+        "info": "http:\/\/instagram.com\/shopify",
         "label": "Instagram"
       },
       {
         "type": "text",
         "id": "social_tiktok",
-        "info": "https://tiktok.com/@shopify",
+        "info": "https:\/\/tiktok.com\/@shopify",
         "label": "TikTok"
       },
       {
         "type": "text",
         "id": "social_tumblr",
-        "info": "https://shopify.tumblr.com",
+        "info": "https:\/\/shopify.tumblr.com",
         "label": "Tumblr"
       },
       {
         "type": "text",
         "id": "social_snapchat",
-        "info": "https://www.snapchat.com/add/shopify",
+        "info": "https:\/\/www.snapchat.com\/add\/shopify",
         "label": "Snapchat"
       },
       {
         "type": "text",
         "id": "social_youtube",
-        "info": "https://www.youtube.com/shopify",
+        "info": "https:\/\/www.youtube.com\/shopify",
         "label": "YouTube"
       },
       {
         "type": "text",
         "id": "social_vimeo",
-        "info": "https://www.vimeo.com/shopify",
+        "info": "https:\/\/www.vimeo.com\/shopify",
         "label": "Vimeo"
       }
     ]
@@ -323,6 +323,17 @@
         "type": "image_picker",
         "id": "support_image",
         "label": "support image",
+        "info": "Will be scaled down to 130 x 130px"
+      }
+    ]
+  },
+  {
+    "name": "Support image orange",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "support_image_orange",
+        "label": "support image orange",
         "info": "Will be scaled down to 130 x 130px"
       }
     ]
@@ -371,13 +382,13 @@
         "type": "textarea",
         "id": "custom_code_css",
         "label": "CSS code",
-        "info": "Your CSS code will be loaded in site's head and will be available sitewide on all pages. Do not include <style></style> tag."
+        "info": "Your CSS code will be loaded in site's head and will be available sitewide on all pages. Do not include <style><\/style> tag."
       },
       {
         "type": "textarea",
         "id": "custom_code_javascript",
         "label": "Javascript code",
-        "info": "Your inline JavaScript will be loaded in site's footer and will be available sitewide on all pages. Do not include <script></script> tag."
+        "info": "Your inline JavaScript will be loaded in site's footer and will be available sitewide on all pages. Do not include <script><\/script> tag."
       }
     ]
   }

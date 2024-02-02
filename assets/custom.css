@@ -561,3 +561,21 @@ button.cursor-not-allowed:hover {
     opacity: 1;
     visibility: visible;
 }
+
+
+#support_btn_orange {
+    display:flex;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+  }
+#support_btn_orange.show {
+    opacity: 1;
+    visibility: visible;
+}
+

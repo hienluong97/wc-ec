@@ -179,6 +179,7 @@
                 <p> <span class="support-number">{{ support_goal | minus: total_inventory_quantity }}個</span> <br>サポート数</p>
     
                 {% assign support_money_goal = product.metafields.custom.crowdfunder_currency %}
+                {% assign support_total_setup = product.metafields.custom.crowdfunder_total_setup %}
                 {% assign unSupported_money = 0 %}
                 {% assign money_of_each_prod = 0 %}
                 {% for product in product.variants %}
@@ -186,7 +187,7 @@
                 {% assign unSupported_money = unSupported_money | plus: money_of_each_prod %}
                 {% endfor %}
     
-                {% assign supported_money  = support_money_goal | minus: unSupported_money %}
+                {% assign supported_money  = support_total_setup | minus: unSupported_money %}
                 <p> <span class="support-number">{{ supported_money | round }}円</span><br>サポートされた金額</p>
                 <p> <span class="support-number">{{ support_money_goal }}円</span><br>ゴール金額</p>
     

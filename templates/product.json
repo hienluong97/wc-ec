@@ -105,18 +105,18 @@
         },
         "8fb96e6c-df37-4677-9b77-1607f39bdab3": {
           "type": "crowdfunder-custom",
+          "disabled": true,
           "settings": {}
         },
         "2fe593de-7527-462e-808f-b747ed07d3b9": {
           "type": "shopify:\/\/apps\/crowdfunder\/blocks\/crowdfunder\/3bdd0fe8-5fc7-4d01-b35b-48bca1437d27",
+          "disabled": true,
           "settings": {}
         },
-        "description_collapsible": {
-          "type": "description_collapsible",
-          "disabled": true,
+        "fundpop_crowdfunding_app_block_CTFN3c": {
+          "type": "shopify:\/\/apps\/fundpop-crowdfunding\/blocks\/app-block\/b432f25d-5e22-41a1-a9cb-7b13841dfd9d",
           "settings": {
-            "heading": "ストーリー",
-            "open_collapsible_tab": false
+            "heading": "Fundpop"
           }
         }
       },
@@ -135,7 +135,7 @@
         "share",
         "8fb96e6c-df37-4677-9b77-1607f39bdab3",
         "2fe593de-7527-462e-808f-b747ed07d3b9",
-        "description_collapsible"
+        "fundpop_crowdfunding_app_block_CTFN3c"
       ],
       "settings": {
         "spacing_position": "Bottom",

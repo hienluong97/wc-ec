@@ -85,6 +85,10 @@
 
                         <div id="story" class="tabcontent Container--custom">
                                  {{ product.description }}
+                                 {%- if settings.support_image != blank -%}
+                                <a href="#shopify-section-template--21540746658071__main" id="support_btn" class="support_btn">  <img src="{{ settings.support_image | image_url: width: 130 }}"  loading="lazy"  width="130" height="130" alt="support">
+                                </a>
+                                {%- endif -%}
                         </div>
 
                         <div id="plan" class="tabcontent Container--custom">
@@ -105,12 +109,27 @@
                                 </div>
                                 {% endfor %}
                             </div> 
+                                {%- if settings.support_image_orange != blank -%}
+                                <a href="#shopify-section-template--21540746658071__main" id="support_btn_orange" class="support_btn">  <img src="{{ settings.support_image_orange | image_url: width: 130 }}"  loading="lazy"  width="130" height="130" alt="support">
+                                </a>
+                                {%- endif -%}
                         </div>
                          <div class="tab-bar tab-bar-bottom Container--custom">
                             <button class="tablinks story tab-active"  onclick="openTab('story')">STORY</button>
                             <button class="tablinks plan" onclick="openTab('plan')">PLAN</button>
                         </div> 
                     </div>
+
+                    {% comment %} <div class="support_btn">
+                        {%- if settings.support_image != blank -%}
+                        <a href="#shopify-section-template--21540746658071__main" id="support_btn" class="support_btn">  <img src="{{ settings.support_image | image_url: width: 130 }}"  loading="lazy"  width="130" height="130" alt="support">
+                        </a>
+                        {%- endif -%}
+                         {%- if settings.support_image_orange != blank -%}
+                        <a href="#shopify-section-template--21540746658071__main" id="support_btn" class="support_btn">  <img src="{{ settings.support_image_orange | image_url: width: 130 }}"  loading="lazy"  width="130" height="130" alt="support">
+                        </a>
+                        {%- endif -%}
+                    </div> {% endcomment %}
 
                 {% else %}
                     <div class="Accordion__Item Product__Block Product__Block--collapsibleInfoJS Product__Block--descriptionCollapsible no-js-hidden" {{ block.shopify_attributes }}>
@@ -951,6 +970,10 @@
 
 <style>
 
+    .Product {
+        margin-bottom: 0 !important;
+    }
+
     .ProductDescription .Accordion__Item.Product__Block.Product__Block--collapsibleInfoJS.Product__Block--descriptionCollapsible {
         margin-top: unset;
     }
@@ -975,39 +998,64 @@
 </style>
 
 <script>
-function openTab( tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-
-  if( tablinks[i].className.includes(tabName)) {
-        document.getElementById(tabName).style.display = "block";
-  } else {
-      tablinks[i].className = tablinks[i].className.replace(" tab-active", "");
-  }
-
-  }
-   var active_buttons = document.querySelectorAll(`.${tabName}`);
-   var k;
-   for (k = 0; k < active_buttons.length; k++) {
-    if(!active_buttons[k].className.includes("tab-active")) {
-        active_buttons[k].className += " tab-active";
-    }else {
-        return;
+    function openTab( tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
     }
-  }
-   document.getElementById(tabName).style.display = "block";
-}
 
-let activeTab = document.querySelector(".tab-active"); 
-if(activeTab) {
-    activeTab.click();
-}
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+
+    if( tablinks[i].className.includes(tabName)) {
+            document.getElementById(tabName).style.display = "block";
+    } else {
+        tablinks[i].className = tablinks[i].className.replace(" tab-active", "");
+    }
+
+    }
+    var active_buttons = document.querySelectorAll(`.${tabName}`);
+    var k;
+    for (k = 0; k < active_buttons.length; k++) {
+        if(!active_buttons[k].className.includes("tab-active")) {
+            active_buttons[k].className += " tab-active";
+        }else {
+            return;
+        }
+    }
+    document.getElementById(tabName).style.display = "block";
+    }
+
+    let activeTab = document.querySelector(".tab-active"); 
+    if(activeTab) {
+        activeTab.click();
+    }
+</script>
+
+
+
+<script>
+
+    // Get the button:
+    let btn = document.getElementById("support_btn");
+    let btn_orange = document.getElementById("support_btn_orange");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if( btn_orange && btn ) {
+            if ( document.body.scrollTop > 500 || document.documentElement.scrollTop > 500 ) {
+                btn.classList.add('show');
+                btn_orange.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+                btn_orange.classList.remove('show');
+            }
+        }
+    }
+
 
 
 </script>
