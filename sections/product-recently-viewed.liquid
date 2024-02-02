@@ -38,6 +38,10 @@
   }
 </style>
 
+{% if product.tags contains "crowdfunder" %}
+
+{% else %}
+
 <section-product-recently-viewed class="ProductRecentlyViewed no-js-hidden Container Container--noGutter Container--fluid Container--spacing{{ section.settings.spacing_position }}"
   style="border-top: 1px solid var(--tg-sys-color-outline);" data-section-id="{{ section.id }}" data-section-settings='{{ section_settings }}'>
   {%- if section.settings.heading != blank -%}
@@ -84,7 +88,7 @@
     {%- endif -%}
   </div>
 </section-product-recently-viewed>
-
+{% endif %}
 {% schema %}
 {
   "name": "Recently viewed products",
