@@ -579,3 +579,11 @@ button.cursor-not-allowed:hover {
     visibility: visible;
 }
 
+
+
+@media screen and (max-width: 950px) {   
+   #support_btn, #support_btn_orange {
+     width: 120px;
+     height: 120px;
+}
+}
