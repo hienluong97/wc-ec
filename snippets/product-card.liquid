@@ -17,12 +17,13 @@
             assign card_desktop_items_per_row = card_desktop_items_per_row | default: section.settings.grid_desktop_items_per_row | default: 3
             assign card_mobile_items_per_row = card_mobile_items_per_row | default: section.settings.grid_mobile_items_per_row | default: 1
         -%}
+
+   
         <div class="ProductCard__ImageWrapper {% if has_alternate_image %}ProductCard__ImageWrapper--withAlternateImage{% endif %}">
             {%- if product.featured_media -%}
                 {%- assign media_aspect_ratio = product.featured_media.aspect_ratio | default: product.featured_media.preview_image.aspect_ratio -%}
-
                 <a href="{%- if collection contains "クラウドファンディング" -%}
-            collections/cloudfunding{{ product.url }}{%- else -%} {{ product.url | within: collection | default: '#' }}{%- endif -%}" 
+            collections/cloudfunding{{ product.url }}{% elsif collection contains "Events" %}collections/events{{ product.url }}{% elsif collection contains "一般商品" %}collections/一般商品{{ product.url }}{%- else -%}{{ product.url | within: collection | default: '#' }}{%- endif -%}" 
         class="Ratio {% unless use_natural_size %}Ratio--{{ settings.product_image_size }}{% endunless %} {% unless settings.product_card_media_fit_cover %} Ratio--contain{% endunless %}"
                     {% if use_natural_size %}style="--tg-aspect-ratio: {{ media_aspect_ratio }};"{% endif %}>
                     {%- if has_alternate_image -%}
@@ -73,7 +74,7 @@
                 <div class="Ratio ProductCard__NoImage {% unless use_natural_size %}Ratio--{{ settings.product_image_size }}{% endunless %}"
                     {% if use_natural_size %}style="--tg-aspect-ratio: 1;"{% endif %}>
                      <a href="{%- if collection contains "クラウドファンディング" -%}
-            collections/cloudfunding{{ product.url }}{%- else -%} {{ product.url | within: collection | default: '#' }}{%- endif -%}" class="ProductCard__NoImageTitle">{{ product.title | escape }}</a>
+            collections/cloudfunding{{ product.url }}{% elsif collection contains "Events" %}collections/events{{ product.url }}{% elsif collection contains "一般商品" %}collections/一般商品{{ product.url }}{%- else -%} {{ product.url | within: collection | default: '#' }}{%- endif -%}" class="ProductCard__NoImageTitle">{{ product.title | escape }}</a>
                 </div>
             {%- endif -%}  
 
@@ -128,7 +129,7 @@
             {%- endif -%}
             <h2 class="ProductCard__Title">
                 <a href="{%- if collection contains "クラウドファンディング" -%}
-            collections/cloudfunding{{ product.url }}{%- else -%} {{ product.url | within: collection | default: '#' }}{%- endif -%}" class="">{{ product.title }}</a>
+            collections/cloudfunding{{ product.url }}{% elsif collection contains "Events" %}collections/events{{ product.url }}{% elsif collection contains "一般商品" %}collections/一般商品{{ product.url }}{%- else -%} {{ product.url | within: collection | default: '#' }}{%- endif -%}" class="">{{ product.title }}</a>
             </h2>
             
             {%- if show_rating and product.metafields.reviews.rating.value != blank -%}
@@ -168,7 +169,7 @@
             <div class="ProductCard__Meta">
                 {%- render 'product-price-card', product: product -%}
                 <a href="{%- if collection contains "クラウドファンディング" -%}
-            collections/cloudfunding{{ product.url }}{%- else -%} {{ product.url | within: collection | default: '#' }}{%- endif -%}">{%- render 'icon-arrow' -%}</a>
+            collections/cloudfunding{{ product.url }}{% elsif collection contains "Events" %}collections/events{{ product.url }}{% elsif collection contains "一般商品" %}collections/一般商品{{ product.url }}{%- else -%} {{ product.url | within: collection | default: '#' }}{%- endif -%}">{%- render 'icon-arrow' -%}</a>
             </div>
 
             {%- render 'product-card-color-swatch', product: product, show_swatches: show_swatches -%}
