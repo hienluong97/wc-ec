@@ -317,28 +317,6 @@
     ]
   },
   {
-    "name": "Support image",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "support_image",
-        "label": "support image",
-        "info": "Will be scaled down to 130 x 130px"
-      }
-    ]
-  },
-  {
-    "name": "Support image orange",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "support_image_orange",
-        "label": "support image orange",
-        "info": "Will be scaled down to 130 x 130px"
-      }
-    ]
-  },
-  {
     "name": "Currency format",
     "settings": [
       {

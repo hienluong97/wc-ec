@@ -16,9 +16,23 @@
         assign money_price_compare = product.selected_or_first_available_variant.compare_at_price | money_without_trailing_zeros
         assign money_price_unit = product.selected_or_first_available_variant.unit_price | money_without_trailing_zeros
     endif 
+
+    assign origin_price = product.selected_or_first_available_variant.price 
+    assign tax = product.selected_or_first_available_variant.price | times: 0.1 | round
 -%}
 
-<div class="Product__PriceList {{ block.settings.price_size }}">
+
+{%- if product.tags contains "include_tax" -%}
+            <div class="Product__PriceList {{ block.settings.price_size }}">
+        {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+            <span class="Price Price--sale">{{ money_price }}</span>
+            <span class="Price Price--saleRegular">{{ money_price_compare }}（税込）</span>
+        {%- else -%}
+            <span class="Price">{{ money_price }}（税込 ¥{{ origin_price | plus : tax | money_without_currency }} ）</span>
+        {%- endif -%}
+    </div>
+{%- else -%}
+       <div class="Product__PriceList {{ block.settings.price_size }}">
     {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
         <span class="Price Price--sale">{{ money_price }}</span>
         <span class="Price Price--saleRegular">{{ money_price_compare }}</span>
@@ -26,6 +40,9 @@
         <span class="Price">{{ money_price }}</span>
     {%- endif -%}
 </div>
+{%- endif -%}
+
+
 
 <div class="Product__UnitPrice {{ block.settings.price_size }}" style="display: {%- if product.selected_or_first_available_variant.unit_price_measurement -%}block{% else %}none{% endif %}">
     <div class="UnitPrice">

@@ -38,6 +38,7 @@
         },
         "e4a3e177-bc86-4a1f-a719-af69a58a836a": {
           "type": "custom_property",
+          "disabled": true,
           "settings": {
             "property_type": "dropdown",
             "property_name": "ファーストドリンク",
@@ -49,6 +50,7 @@
         },
         "4d99d146-01d4-4e39-96a8-e7bd90ed94c2": {
           "type": "custom_property",
+          "disabled": true,
           "settings": {
             "property_type": "text",
             "property_name": "その他入力",
@@ -61,12 +63,18 @@
         "custom_property_K8HnVa": {
           "type": "custom_property",
           "settings": {
-            "property_type": "long_text",
-            "property_name": "ご参加者お名前（複数名分購入の方は全て入力）",
+            "property_type": "text",
+            "property_name": "全員分のお名前とファーストドリンク",
             "property_is_required": false,
             "property_values": "value 1, value 2, value 3",
             "image_prefix": "",
             "property_first_value_is_selected": true
+          }
+        },
+        "short_description_gEzLxx": {
+          "type": "short_description",
+          "settings": {
+            "content": "<p>例) 田中一郎生ビール、佐藤花子レモンサワー<\/p>"
           }
         },
         "custom_property_hFRnD6": {
@@ -129,6 +137,7 @@
         "e4a3e177-bc86-4a1f-a719-af69a58a836a",
         "4d99d146-01d4-4e39-96a8-e7bd90ed94c2",
         "custom_property_K8HnVa",
+        "short_description_gEzLxx",
         "custom_property_hFRnD6",
         "custom_property_YRfVRi",
         "buy_buttons",

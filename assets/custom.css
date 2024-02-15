@@ -562,27 +562,15 @@ button.cursor-not-allowed:hover {
     visibility: visible;
 }
 
-
-#support_btn_orange {
-    display:flex;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    transition: background-color .3s, 
-    opacity .5s, visibility .5s;
-    opacity: 0;
-    visibility: hidden;
-    z-index: 1000;
-  }
-#support_btn_orange.show {
-    opacity: 1;
-    visibility: visible;
+#support_btn svg:hover path:nth-child(2) { 
+    fill: #FFA800;
 }
 
 
 
+
 @media screen and (max-width: 950px) {   
-   #support_btn, #support_btn_orange {
+   #support_btn {
      width: 120px;
      height: 120px;
 }

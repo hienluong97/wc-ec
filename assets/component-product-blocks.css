@@ -519,7 +519,7 @@ image-gallery .fundpop-widget-container {
 .video-title-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .video-title-group  span {
@@ -552,15 +552,6 @@ image-gallery .fundpop-widget-container {
     cursor: pointer;
 }
 
-.achievement {
-    margin-top: 100px;
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: center;
-    gap: 40px;
-    width: 100%;
-}
-
 @media screen and (max-width: 1008px) {  
     .intro {
     margin-top: 100px;
@@ -575,19 +566,31 @@ image-gallery .fundpop-widget-container {
     }
 }
 
+.achievement {
+    margin-top: 100px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
 
 .achievement-image {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-width: 31%;
+    width: 28%;
+}
+
+.achievement-content {
+    width: 72%;
 }
 
 .achievement-title-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .achievement-title-group span {
@@ -617,9 +620,16 @@ image-gallery .fundpop-widget-container {
 }
 
 @media screen and (max-width: 800px) {   
-  .achievement {
+.achievement {
     flex-direction: column-reverse;
-  }
+}
+
+.achievement-content {
+    width: 100%;
+}
+.achievement-image {
+    width: 100%;
+}
 }
 
 
@@ -643,7 +653,7 @@ image-gallery .fundpop-widget-container {
 .challenge-title-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .challenge-title-group span {
@@ -714,7 +724,7 @@ image-gallery .fundpop-widget-container {
 .target-title-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .target-title-group span {
@@ -752,7 +762,7 @@ image-gallery .fundpop-widget-container {
    display: flex;
    align-items: center;
    justify-content: center;
-   gap: 12px;
+   gap: 14px;
 }
 
 .benefits-title-group span {
@@ -883,7 +893,7 @@ image-gallery .fundpop-widget-container {
 .dream-title-group {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .dream-title-group span {
@@ -920,14 +930,14 @@ image-gallery .fundpop-widget-container {
 }
 
 .sp-title img {
-        width: 75px;
+        width: 65px;
     }
 
 
 
 @media screen and (max-width: 800px) {  
     .sp-title img { 
-        width: 60px;
+        width: 50px;
     }
 
     .sp-title span { 

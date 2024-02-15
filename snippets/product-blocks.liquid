@@ -145,10 +145,13 @@
             </div>
 
         {%- when 'short_description' -%}
-            {%- if block.settings.content != blank -%}
-                <div class="Product__Block Product__Block--shortDescription Product__ShortDescription RTE" {{ block.shopify_attributes }}>
+            {%- if product.tags contains "event" -%}
+            {%- if block.settings.content != blank and product.metafields.custom.event_first_drink != blank -%}
+                <div class="Product__Block Product__Block--shortDescription Product__ShortDescription RTE" {{ block.shopify_attributes }}>   
+                    *{{ product.metafields.custom.event_first_drink }}を記入
                     {{ block.settings.content }}
                 </div>
+            {%- endif -%}
             {%- endif -%}
         {%- when 'share' -%}
             <div class="Product__Block Product__Block--share ShareButtons {{ breakpoint_class }}" {{ block.shopify_attributes }}>

@@ -1,10 +1,14 @@
 <div class="Product__Block Product__Block--cutomProperty ProductForm__CustomProperty" {{ block.shopify_attributes }}>
     {%- if block.settings.property_type == 'text' -%}
-        <div class="Form__Item Form__Item--floatingLabel" id="js_textInput">
+         {%- if product.metafields.custom.event_first_drink != blank  -%}
+            <div class="Form__Item Form__Item--floatingLabel" id="js_textInput">
             <input id="option-{{ section.id }}-{{ block.id }}" aria-label="{{ block.settings.property_name | escape }}" class="Form__Input" type="text" name="properties[{{ block.settings.property_name | escape }}]" placeholder="{{ block.settings.property_name | escape }}" {% if block.settings.property_is_required %}required{% endif %} form="{{ product_form_id }}"> 
             <label for="option-{{ section.id }}-{{ block.id }}">{{ block.settings.property_name | escape }}{% if block.settings.property_is_required %} *{% endif %}</label> 
         </div>
         {%- if block.settings.property_is_required -%}<span class="InvalidFeedback InvalidFeedback--underFeild">{{ 'product.form.custom_property_input_invalid_feedback' | t: property_name: block.settings.property_name }}</span>{%- endif -%}
+         {%- else   %}
+
+        {%- endif -%}
 
     {%- elsif block.settings.property_type == 'long_text' -%}
         <div class="Form__Item Form__Item--floatingLabel">
@@ -93,26 +97,26 @@
 
 <script type="text/javascript">
 
-function handleOnChangeOption(value) {
-  var textarea = document.getElementById("js_textInput");
-  if (value.includes("他")) {
-    textarea.style.display = "block";
-  }else {
-    textarea.style.display = "none";
-  }
-}
+// function handleOnChangeOption(value) {
+//   var textarea = document.getElementById("js_textInput");
+//   if (value.includes("他")) {
+//     textarea.style.display = "block";
+//   }else {
+//     textarea.style.display = "none";
+//   }
+// }
 
 </script>
 
 <style>
-    #js_textInput {
+    /* #js_textInput {
         display: none;
     }
-
+ */
     .Product__Block.Product__Block--cutomProperty.ProductForm__CustomProperty textarea {
         height: 58px !important;
          resize: none;
     }
-    
+
 </style>
 
