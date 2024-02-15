@@ -5,8 +5,16 @@
             <input id="option-{{ section.id }}-{{ block.id }}" aria-label="{{ block.settings.property_name | escape }}" class="Form__Input" type="text" name="properties[{{ block.settings.property_name | escape }}]" placeholder="{{ block.settings.property_name | escape }}" {% if block.settings.property_is_required %}required{% endif %} form="{{ product_form_id }}"> 
             <label for="option-{{ section.id }}-{{ block.id }}">{{ block.settings.property_name | escape }}{% if block.settings.property_is_required %} *{% endif %}</label> 
         </div>
-        {%- if block.settings.property_is_required -%}<span class="InvalidFeedback InvalidFeedback--underFeild">{{ 'product.form.custom_property_input_invalid_feedback' | t: property_name: block.settings.property_name }}</span>{%- endif -%}
-         {%- else   %}
+            {%- if block.settings.property_is_required -%}<span class="InvalidFeedback InvalidFeedback--underFeild">{{ 'product.form.custom_property_input_invalid_feedback' | t: property_name: block.settings.property_name }}</span>
+            {%- endif -%}
+
+        {%- else   %}
+            <div class="Form__Item Form__Item--floatingLabel" id="js_textInput">
+            <input id="option-{{ section.id }}-{{ block.id }}" aria-label="{{ block.settings.property_name | escape }}" class="Form__Input" type="text" name="properties[{{ block.settings.property_name | escape }}]" placeholder="全員分のお名前" {% if block.settings.property_is_required %}required{% endif %} form="{{ product_form_id }}"> 
+            <label for="option-{{ section.id }}-{{ block.id }}">全員分のお名前{% if block.settings.property_is_required %} *{% endif %}</label> 
+        </div>
+        {%- if block.settings.property_is_required -%}<span class="InvalidFeedback InvalidFeedback--underFeild">{{ 'product.form.custom_property_input_invalid_feedback' | t: property_name: block.settings.property_name }}</span>
+        {%- endif -%}
 
         {%- endif -%}
 
